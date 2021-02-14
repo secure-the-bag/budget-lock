@@ -47,6 +47,20 @@ class Signup extends React.Component {
             </Header>
             <Form onSubmit={this.submit}>
               <Segment stacked>
+                <Form.Group widths='equal'>
+                  <Form.Input
+                    fluid label='First Name'
+                    name='firstName'
+                    placeholder='First Name'
+                    onChange={this.handleChange}
+                  />
+                  <Form.Input
+                    fluid label='Last Name'
+                    name='lastName'
+                    placeholder='Last Name'
+                    onChange={this.handleChange}
+                  />
+                </Form.Group>
                 <Form.Input
                   label="Email"
                   id="signup-form-email"
@@ -55,6 +69,16 @@ class Signup extends React.Component {
                   name="email"
                   type="email"
                   placeholder="E-mail address"
+                  onChange={this.handleChange}
+                />
+                <Form.Input
+                  label='Budget'
+                  id='budget'
+                  icon='money bill alternate'
+                  iconPosition='left'
+                  name='budget'
+                  type='budget'
+                  placeholder="Example: $1500"
                   onChange={this.handleChange}
                 />
                 <Form.Input
