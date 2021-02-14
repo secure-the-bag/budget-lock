@@ -22,7 +22,7 @@
 * (what they worked on in the project so far)
 * (what they will be handling next)
 
-### [Daphne Marie Tapia](https://dmtapia.github.io/)
+### Daphne Marie Tapia
 * (what they worked on in the project so far)
 * (what they will be handling next)
 
