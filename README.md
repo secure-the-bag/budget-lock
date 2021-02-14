@@ -4,8 +4,10 @@
 * [The Team](#the-team)
 
 # Development History
+(what is complete so far)
 
 # Pending Enhancements
+(what is pending)
 
 # The Team
 ### Nadine Alcantara
