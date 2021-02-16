@@ -40,6 +40,11 @@ class Overview extends React.Component {
       xAxis: {
         categories: ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sept', 'Nov', 'Dec'],
       },
+      yAxis: {
+        labels: {
+          format: '${value}',
+        },
+      },
       credits: {
         enabled: false,
       },
@@ -149,7 +154,7 @@ class Overview extends React.Component {
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
-              <Grid columns='2' style={{ padding: '0rem 1.5rem' }}>
+              <Grid columns='2' style={{ padding: '0rem 1.5rem 2rem 0rem' }}>
                 <Grid.Row columns={3}>
                   <Grid.Column width={3}>
                     <b>Groceries
