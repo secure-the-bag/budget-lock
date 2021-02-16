@@ -114,9 +114,9 @@ class Overview extends React.Component {
 
     return (
       <Container style={{ margin: '2rem 1rem' }}>
-        <Grid id='overview' container stretched>
+        <Grid id='overview' container stretched centered>
           <Grid.Row>
-            <Grid.Column width={5} style={{ border: '0.2rem solid gray', padding: '1rem', marginRight: '5rem', borderRadius: `10px` }}>
+            <Grid.Column width={5} style={{ border: '0.2rem solid gray', padding: '1rem', marginRight: '5rem', borderRadius: '10px' }}>
               <Grid.Row>
                 <div style={{ textAlign: 'right' }}>
                   <Icon name={'settings'} link/>
@@ -134,7 +134,7 @@ class Overview extends React.Component {
               </Grid.Row>
             </Grid.Column>
 
-            <Grid.Column width={10} style={{ border: '0.2rem solid gray', padding: '1rem', borderRadius: `10px` }}>
+            <Grid.Column width={10} style={{ border: '0.2rem solid gray', padding: '1rem', borderRadius: '10px' }}>
               <Grid.Column floated={'right'} style={{ flexGrow: '0', marginBottom: '1.5rem' }}>
                 <Icon name={'settings'} link/>
               </Grid.Column>
@@ -154,7 +154,7 @@ class Overview extends React.Component {
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
-              <Grid columns='2' style={{ padding: '0rem 1.5rem 2rem 0rem' }}>
+              <Grid columns='2' style={{ padding: '0rem 1.5rem 2rem 1.5rem' }}>
                 <Grid.Row columns={3}>
                   <Grid.Column width={3}>
                     <b>Groceries
@@ -209,7 +209,7 @@ class Overview extends React.Component {
         </Grid>
 
         <Grid container stretched
-              style={{ border: '0.2rem solid gray', padding: '2rem', borderRadius: `10px` }}>
+              style={{ border: '0.2rem solid gray', padding: '2rem', borderRadius: '10px' }}>
           <Grid.Row>
             <Header style={{ margin: '1rem', width: '-webkit-fill-available' }}>
               Trends
