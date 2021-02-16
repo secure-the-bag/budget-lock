@@ -34,7 +34,7 @@ class Overview extends React.Component {
       },
       tooltip: {
         formatter: function () {
-          return `<b>${this.x}:</b> $${this.y}`
+          return `<b>${this.x}:</b> $${this.y}`;
         },
       },
       xAxis: {
@@ -61,21 +61,21 @@ class Overview extends React.Component {
         plotBackgroundColor: null,
         plotBorderWidth: null,
         plotShadow: false,
-        type: 'pie'
+        type: 'pie',
       },
       title: {
-        text: 'November Spending: $432.12'
+        text: 'November Spending: $432.12',
       },
       tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
       },
       credits: {
         enabled: false,
       },
       accessibility: {
         point: {
-          valueSuffix: '%'
-        }
+          valueSuffix: '%',
+        },
       },
       plotOptions: {
         pie: {
@@ -83,9 +83,9 @@ class Overview extends React.Component {
           cursor: 'pointer',
           dataLabels: {
             enabled: true,
-            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-          }
-        }
+            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+          },
+        },
       },
       series: [{
         name: 'Brands',
@@ -94,33 +94,33 @@ class Overview extends React.Component {
           name: 'Chrome',
           y: 61.41,
           sliced: true,
-          selected: true
+          selected: true,
         }, {
           name: 'Internet Explorer',
-          y: 11.84
+          y: 11.84,
         }, {
           name: 'Firefox',
-          y: 10.85
+          y: 10.85,
         }, {
           name: 'Edge',
-          y: 4.67
+          y: 4.67,
         }, {
           name: 'Safari',
-          y: 4.18
+          y: 4.18,
         }, {
           name: 'Sogou Explorer',
-          y: 1.64
+          y: 1.64,
         }, {
           name: 'Opera',
-          y: 1.6
+          y: 1.6,
         }, {
           name: 'QQ',
-          y: 1.2
+          y: 1.2,
         }, {
           name: 'Other',
-          y: 2.61
-        }]
-      }]
+          y: 2.61,
+        }],
+      }],
     });
   }
 
@@ -130,12 +130,12 @@ class Overview extends React.Component {
       <Container style={{ margin: '2rem 1rem' }}>
         <Grid id='overview' container stretched>
           <Grid.Row>
-            <Grid.Column width={5} style={{ border: '0.2rem solid gray', padding: '2.5rem', marginRight: '5rem' }}>
+            <Grid.Column width={5} style={{ border: '0.2rem solid gray', padding: '1rem', marginRight: '5rem' }}>
               <Grid.Row>
-                <Grid.Column floated={'right'}>
+                <div style={{ textAlign: 'right' }}>
                   <Icon name={'settings'}/>
-                </Grid.Column>
-                <Grid.Column>
+                </div>
+                <Grid.Column style={{ padding: '1.5rem' }}>
                   <Header>Upcoming Bills
                     <hr/>
                   </Header>
@@ -148,8 +148,11 @@ class Overview extends React.Component {
               </Grid.Row>
             </Grid.Column>
 
-            <Grid.Column width={10} style={{ border: '0.2rem solid gray', padding: '2.5rem' }}>
-              <Grid columns={2} style={{ flexGrow: '0' }}>
+            <Grid.Column width={10} style={{ border: '0.2rem solid gray', padding: '1rem' }}>
+              <Grid.Column floated={'right'} style={{ flexGrow: '0', marginBottom: '1.5rem' }}>
+                <Icon name={'settings'}/>
+              </Grid.Column>
+              <Grid columns={2} style={{ flexGrow: '0', padding: '0rem 1.5rem' }}>
                 <Grid.Row>
                   <Grid.Column style={{ paddingRight: '0px' }}>
                     <Header>
@@ -165,7 +168,7 @@ class Overview extends React.Component {
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
-              <Grid columns='2'>
+              <Grid columns='2' style={{ padding: '0rem 1.5rem' }}>
                 <Grid.Row columns={3}>
                   <Grid.Column width={3}>
                     <b>Groceries | $10 </b>
