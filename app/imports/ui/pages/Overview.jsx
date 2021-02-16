@@ -51,6 +51,7 @@ class Overview extends React.Component {
           color: 'green',
           negativeColor: 'red',
           data: [130, 43, -143, 203, -66, 13, 0, 0, 0, 0, 0],
+          showInLegend: false,
         }],
     });
   }
@@ -88,37 +89,17 @@ class Overview extends React.Component {
         },
       },
       series: [{
-        name: 'Brands',
+        name: 'Categories',
         colorByPoint: true,
         data: [{
-          name: 'Chrome',
+          name: 'Groceries',
           y: 61.41,
-          sliced: true,
-          selected: true,
         }, {
-          name: 'Internet Explorer',
+          name: 'Restaurants',
           y: 11.84,
         }, {
-          name: 'Firefox',
-          y: 10.85,
-        }, {
-          name: 'Edge',
-          y: 4.67,
-        }, {
-          name: 'Safari',
-          y: 4.18,
-        }, {
-          name: 'Sogou Explorer',
-          y: 1.64,
-        }, {
-          name: 'Opera',
-          y: 1.6,
-        }, {
-          name: 'QQ',
-          y: 1.2,
-        }, {
-          name: 'Other',
-          y: 2.61,
+          name: 'Fun',
+          y: 30.85,
         }],
       }],
     });
@@ -130,10 +111,10 @@ class Overview extends React.Component {
       <Container style={{ margin: '2rem 1rem' }}>
         <Grid id='overview' container stretched>
           <Grid.Row>
-            <Grid.Column width={5} style={{ border: '0.2rem solid gray', padding: '1rem', marginRight: '5rem' }}>
+            <Grid.Column width={5} style={{ border: '0.2rem solid gray', padding: '1rem', marginRight: '5rem', borderRadius: `10px` }}>
               <Grid.Row>
                 <div style={{ textAlign: 'right' }}>
-                  <Icon name={'settings'}/>
+                  <Icon name={'settings'} link/>
                 </div>
                 <Grid.Column style={{ padding: '1.5rem' }}>
                   <Header>Upcoming Bills
@@ -148,9 +129,9 @@ class Overview extends React.Component {
               </Grid.Row>
             </Grid.Column>
 
-            <Grid.Column width={10} style={{ border: '0.2rem solid gray', padding: '1rem' }}>
+            <Grid.Column width={10} style={{ border: '0.2rem solid gray', padding: '1rem', borderRadius: `10px` }}>
               <Grid.Column floated={'right'} style={{ flexGrow: '0', marginBottom: '1.5rem' }}>
-                <Icon name={'settings'}/>
+                <Icon name={'settings'} link/>
               </Grid.Column>
               <Grid columns={2} style={{ flexGrow: '0', padding: '0rem 1.5rem' }}>
                 <Grid.Row>
@@ -171,15 +152,50 @@ class Overview extends React.Component {
               <Grid columns='2' style={{ padding: '0rem 1.5rem' }}>
                 <Grid.Row columns={3}>
                   <Grid.Column width={3}>
-                    <b>Groceries | $10 </b>
+                    <b>Groceries
+                      <br/>
+                      $280
+                    </b>
                   </Grid.Column>
                   <Grid.Column width={10}>
-                    <Progress value='4' total='5' progress='percent' color={'green'}>
-                      $150
+                    <Progress active progress percent={93} color={'red'}>
+                      $20 left
                     </Progress>
                   </Grid.Column>
                   <Grid.Column textAlign={'right'} width={3}>
-                    <b>$1500</b>
+                    <b>$300</b>
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row columns={3}>
+                  <Grid.Column width={3}>
+                    <b>Restaurants
+                      <br/>
+                      $12
+                    </b>
+                  </Grid.Column>
+                  <Grid.Column width={10}>
+                    <Progress active progress percent={12} color={'green'}>
+                      $88 left
+                    </Progress>
+                  </Grid.Column>
+                  <Grid.Column textAlign={'right'} width={3}>
+                    <b>$100</b>
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row columns={3}>
+                  <Grid.Column width={3}>
+                    <b>Fun
+                      <br/>
+                      $50
+                    </b>
+                  </Grid.Column>
+                  <Grid.Column width={10}>
+                    <Progress active progress percent={50} color={'yellow'}>
+                      $50 left
+                    </Progress>
+                  </Grid.Column>
+                  <Grid.Column textAlign={'right'} width={3}>
+                    <b>$50</b>
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
@@ -188,9 +204,9 @@ class Overview extends React.Component {
         </Grid>
 
         <Grid container stretched
-              style={{ border: '0.2rem solid gray', padding: '2rem' }}>
+              style={{ border: '0.2rem solid gray', padding: '2rem', borderRadius: `10px` }}>
           <Grid.Row>
-            <Header style={{ margin: '1rem' }}>
+            <Header style={{ margin: '1rem', width: '-webkit-fill-available' }}>
               Trends
               <hr/>
             </Header>
