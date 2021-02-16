@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Progress, Container, Header } from 'semantic-ui-react';
+import { Grid, Progress, Container, Header, Icon } from 'semantic-ui-react';
 import Highcharts from 'highcharts';
 
 class Overview extends React.Component {
@@ -32,6 +32,11 @@ class Overview extends React.Component {
       title: {
         text: 'Cash Flow Over Time',
       },
+      tooltip: {
+        formatter: function () {
+          return `<b>${this.x}:</b> $${this.y}`
+        },
+      },
       xAxis: {
         categories: ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sept', 'Nov', 'Dec'],
       },
@@ -63,6 +68,9 @@ class Overview extends React.Component {
       },
       tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      credits: {
+        enabled: false,
       },
       accessibility: {
         point: {
@@ -119,34 +127,65 @@ class Overview extends React.Component {
   render() {
 
     return (
-      <Container>
+      <Container style={{ margin: '2rem 1rem' }}>
         <Grid id='overview' container stretched>
           <Grid.Row>
-            <Grid.Column width={5}
-                         style={{ border: '0.2rem solid gray', padding: '2.5rem', marginRight: '5rem' }}>
-              <Header>Upcoming Bills
-                <hr/>
-              </Header>
-            </Grid.Column>
-
-            <Grid.Column width={10}
-                         style={{ border: '0.2rem solid gray', padding: '2.5rem' }}>
+            <Grid.Column width={5} style={{ border: '0.2rem solid gray', padding: '2.5rem', marginRight: '5rem' }}>
               <Grid.Row>
-                <Grid.Column textAlign={'left'} width={7}>
-                  <Header>November Budget</Header>
+                <Grid.Column floated={'right'}>
+                  <Icon name={'settings'}/>
                 </Grid.Column>
-                <Grid.Column textAlign={'right'} width={2}>
-                  <Header>Budget</Header>
+                <Grid.Column>
+                  <Header>Upcoming Bills
+                    <hr/>
+                  </Header>
+                  <p>Credit Card Payment: $150</p>
+                  <p>Credit Card Payment: $150</p>
+                  <p>Credit Card Payment: $150</p>
+                  <p>Credit Card Payment: $150</p>
+                  <p>Credit Card Payment: $150</p>
                 </Grid.Column>
               </Grid.Row>
-              <Progress value='4' total='5' progress='percent' color={'green'}>
-                Grocery
-              </Progress>
+            </Grid.Column>
+
+            <Grid.Column width={10} style={{ border: '0.2rem solid gray', padding: '2.5rem' }}>
+              <Grid columns={2} style={{ flexGrow: '0' }}>
+                <Grid.Row>
+                  <Grid.Column style={{ paddingRight: '0px' }}>
+                    <Header>
+                      November Budget
+                      <hr/>
+                    </Header>
+                  </Grid.Column>
+                  <Grid.Column textAlign={'right'} style={{ paddingLeft: '0px' }}>
+                    <Header>
+                      Budget
+                      <hr/>
+                    </Header>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+              <Grid columns='2'>
+                <Grid.Row columns={3}>
+                  <Grid.Column width={3}>
+                    <b>Groceries | $10 </b>
+                  </Grid.Column>
+                  <Grid.Column width={10}>
+                    <Progress value='4' total='5' progress='percent' color={'green'}>
+                      $150
+                    </Progress>
+                  </Grid.Column>
+                  <Grid.Column textAlign={'right'} width={3}>
+                    <b>$1500</b>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
             </Grid.Column>
           </Grid.Row>
         </Grid>
 
-        <Grid container stretched style={{ border: '0.2rem solid gray', padding: '2rem' }}>
+        <Grid container stretched
+              style={{ border: '0.2rem solid gray', padding: '2rem' }}>
           <Grid.Row>
             <Header style={{ margin: '1rem' }}>
               Trends
@@ -154,10 +193,10 @@ class Overview extends React.Component {
             </Header>
           </Grid.Row>
           <Grid.Row columns={'equal'}>
-            <Grid.Column >
+            <Grid.Column>
               <div id='cashFlow'/>
             </Grid.Column>
-            <Grid.Column >
+            <Grid.Column>
               <div id='monthSpending'/>
             </Grid.Column>
           </Grid.Row>
