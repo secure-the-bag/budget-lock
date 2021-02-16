@@ -49,6 +49,7 @@ class Overview extends React.Component {
         }],
     });
   }
+
   monthSpending() {
     Highcharts.chart('monthSpending', {
       chart: {
@@ -119,33 +120,46 @@ class Overview extends React.Component {
 
     return (
       <Container>
-        <Grid id='overview'>
-          <Grid.Row columns={2}>
-            <Grid.Column>
-              Upcoming Bills
+        <Grid id='overview' container stretched>
+          <Grid.Row>
+            <Grid.Column width={5}
+                         style={{ border: '0.2rem solid gray', padding: '2.5rem', marginRight: '5rem' }}>
+              <Header>Upcoming Bills
+                <hr/>
+              </Header>
             </Grid.Column>
-            <Grid.Column>
-              <Grid.Column>
-                November Budget
-              </Grid.Column>
-              <Grid.Column>
-                Budget
-              </Grid.Column>
-              <Progress value='4' total='5' progress='percent' color={'green'} >
-                Label
+
+            <Grid.Column width={10}
+                         style={{ border: '0.2rem solid gray', padding: '2.5rem' }}>
+              <Grid.Row>
+                <Grid.Column textAlign={'left'} width={7}>
+                  <Header>November Budget</Header>
+                </Grid.Column>
+                <Grid.Column textAlign={'right'} width={2}>
+                  <Header>Budget</Header>
+                </Grid.Column>
+              </Grid.Row>
+              <Progress value='4' total='5' progress='percent' color={'green'}>
+                Grocery
               </Progress>
             </Grid.Column>
           </Grid.Row>
-          <Grid.Row columns={'equal'} style={{ border: '0.2rem solid gray', padding: '2.5rem' }}>
-            {/*<Header style={{ margin: '1rem' }}>Trends</Header>*/}
-            <Grid.Row>
-              <Grid.Column>
-                <div id='cashFlow'/>
-              </Grid.Column>
-              <Grid.Column>
-                <div id='monthSpending'/>
-              </Grid.Column>
-            </Grid.Row>
+        </Grid>
+
+        <Grid container stretched style={{ border: '0.2rem solid gray', padding: '2rem' }}>
+          <Grid.Row>
+            <Header style={{ margin: '1rem' }}>
+              Trends
+              <hr/>
+            </Header>
+          </Grid.Row>
+          <Grid.Row columns={'equal'}>
+            <Grid.Column >
+              <div id='cashFlow'/>
+            </Grid.Column>
+            <Grid.Column >
+              <div id='monthSpending'/>
+            </Grid.Column>
           </Grid.Row>
         </Grid>
       </Container>
