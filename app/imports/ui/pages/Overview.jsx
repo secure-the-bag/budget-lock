@@ -42,6 +42,7 @@ class Overview extends React.Component {
       },
       yAxis: {
         labels: {
+          // eslint-disable-next-line no-template-curly-in-string
           format: '${value}',
         },
       },
