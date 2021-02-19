@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Image, Button, Dropdown } from 'semantic-ui-react';
+import { Grid, Image, Button } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 
 /** A simple static component to render some text for the landing page. */
@@ -16,7 +16,6 @@ class Landing extends React.Component {
                     <Grid.Column width={8}>
                         <h1>Welcome to Budget Lock</h1>
                         <p>Get started on organizing your finances with us!</p>
-                        
                         <Button basic as={NavLink} exact
                                 to="/signin">Sign In</Button>
                         <Button as={NavLink} exact
