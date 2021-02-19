@@ -31,7 +31,7 @@ class Transactions extends React.Component {
               <Grid.Column floated='right' width={4}>
                 <Statistic size='small' color='green'>
                   <Statistic.Value>$868.89</Statistic.Value>
-                  <Statistic.Label><i>Projected Balance</i></Statistic.Label>
+                  <Statistic.Label>Total Balance</Statistic.Label>
                 </Statistic>
               </Grid.Column>
             </Grid.Row>
