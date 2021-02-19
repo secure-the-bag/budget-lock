@@ -1,0 +1,8 @@
+.monthlySpendingTable {
+    height: 350px;
+    overflow-y: auto;
+}
+
+.monthlySpendingTable.negVal {
+    color: red !important;
+}
