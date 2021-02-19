@@ -1,5 +1,6 @@
 import React from 'react';
-import { Table, Modal, Button, Header, Icon, Form, Select} from 'semantic-ui-react';
+import { Table, Modal, Button, Header, Icon, Form, Select } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
 class MonthlySpendingRow extends React.Component {
   constructor(props) {
@@ -78,5 +79,10 @@ class MonthlySpendingRow extends React.Component {
     );
   }
 }
+
+/** Require a document to be passed to this component. */
+MonthlySpendingRow.propTypes = {
+  data: PropTypes.object.isRequired,
+};
 
 export default MonthlySpendingRow;

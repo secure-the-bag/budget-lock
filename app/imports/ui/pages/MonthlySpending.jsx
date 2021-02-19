@@ -99,7 +99,7 @@ class MonthlySpending extends React.Component {
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              {data.map((dati,index) => <SpendingRow key={index} data={dati}/>)}
+              {data.map((dati, index) => <SpendingRow key={index} data={dati}/>)}
             </Table.Body>
           </Table>
         </div>
