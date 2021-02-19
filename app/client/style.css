@@ -1,3 +1,38 @@
+.navBar {
+    margin-bottom: 10px;
+    box-shadow: none;
+    border: none !important;
+}
+
+.navBar .active.item {
+    font-weight: bold !important;
+    background: none !important;
+    text-decoration: underline !important;
+    text-decoration-color: gray !important;
+    text-underline-offset: 0.5em !important;
+}
+
+.navBar .item:hover {
+    background: none !important;
+    text-decoration: underline !important;
+    text-decoration-color: gray !important;
+    text-underline-offset: 0.5em !important;
+}
+
+.landingTopPic {
+    padding-top: 5em !important;
+}
+
+.landingTop {
+    padding-bottom: 3em !important;
+}
+
+.landingBottom {
+    background: #edffd9;
+    padding-top: 3em !important;
+    padding-bottom: 3em !important;
+}
+
 .monthlySpendingTable {
     height: 350px;
     overflow-y: auto;
