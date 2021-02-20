@@ -19,8 +19,8 @@
 * (what they will be handling next)
 
 ### Andre Joseph Ruiz
-* (what they worked on in the project so far)
-* (what they will be handling next)
+* First this report, I worked on building the sign up and sign in pages, determining what kind of personal information that would be used in the app model, and researching potential security measure to have on these pages (2FA, Encryption, etc).
+* Figuring out how to implement Two-Factor Authorization onto the sign in page and testing out different options.
 
 ### Daphne Marie Tapia
 * (what they worked on in the project so far)
