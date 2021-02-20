@@ -41,3 +41,18 @@
 .monthlySpendingTable.negVal {
     color: red !important;
 }
+
+.signBody {
+    background-color: beige !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
+.sign-button .ui.button {
+    background: #46622f !important;
+    color: white !important;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+

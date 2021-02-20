@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
-import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+import { Container, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
 
 /**
  * Signin page overrides the form’s submit event and call Meteor’s loginWithPassword().
@@ -43,13 +43,19 @@ export default class Signin extends React.Component {
     // Otherwise return the Login form.
     return (
       <Container id="signin-page">
+        <Grid.Column width={4}>
+          <Image centered size='small' src="/images/icon-final.png"/>
+        </Grid.Column>
         <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
           <Grid.Column>
-            <Header as="h2" textAlign="center">
-              Login to your account
+            <Header as="h1" textAlign="center" style={{ paddingBottom: '10px' }}>
+              Budget Lock
             </Header>
             <Form onSubmit={this.submit}>
-              <Segment stacked>
+              <Segment stacked className={'signBody'}>
+                <Header as="h2" textAlign="center" style={{ paddingTop: '20px', paddingBottom: '10px' }}>
+                  Login to Your Account
+                </Header>
                 <Form.Input
                   label="Email"
                   id="signin-form-email"
@@ -57,7 +63,6 @@ export default class Signin extends React.Component {
                   iconPosition="left"
                   name="email"
                   type="email"
-                  placeholder="E-mail address"
                   onChange={this.handleChange}
                 />
                 <Form.Input
@@ -66,16 +71,18 @@ export default class Signin extends React.Component {
                   icon="lock"
                   iconPosition="left"
                   name="password"
-                  placeholder="Password"
                   type="password"
                   onChange={this.handleChange}
                 />
-                <Form.Button id="signin-form-submit" content="Submit"/>
+                <div align='center'>
+                  <Form.Button className={'sign-button'} content="Login"/>
+                </div>
               </Segment>
             </Form>
-            <Message>
-              <Link to="/signup">Click here to Register</Link>
-            </Message>
+            <Segment align='center' textAlign='center' style={{ marginTop: '-10px' }}>
+              Invisible Authy by Twilio Terms & Policy <br/>
+              New user? Sign up <Link to="/signup">here</Link>
+            </Segment>
             {this.state.error === '' ? (
               ''
             ) : (

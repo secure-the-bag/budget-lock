@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
-import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+import { Container, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
 
 /**
@@ -11,7 +11,7 @@ class Signup extends React.Component {
   /** Initialize state fields. */
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '', error: '', redirectToReferer: false };
+    this.state = { firstName: '', lastName: '', phoneNumber: '', email: '', password: '', error: '', redirectToReferer: false };
   }
 
   /** Update the form controls each time the user interacts with them. */
@@ -21,8 +21,8 @@ class Signup extends React.Component {
 
   /** Handle Signup submission. Create user account and a profile entry, then redirect to the home page. */
   submit = () => {
-    const { email, password } = this.state;
-    Accounts.createUser({ email, username: email, password }, (err) => {
+    const { firstName, lastName, phoneNumber, email, password } = this.state;
+    Accounts.createUser({ firstName, lastName, phoneNumber, username: email, password }, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {
@@ -40,24 +40,28 @@ class Signup extends React.Component {
     }
     return (
       <Container id="signup-page">
+        <Grid.Column width={4}>
+          <Image centered size='small' src="/images/icon-final.png"/>
+        </Grid.Column>
         <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
           <Grid.Column>
-            <Header as="h2" textAlign="center">
-              Register your account
+            <Header as="h1" textAlign="center" style={{ paddingBottom: '10px' }}>
+              Budget Lock
             </Header>
             <Form onSubmit={this.submit}>
-              <Segment stacked>
+              <Segment className={'signBody'} stacked>
+                <Header as="h2" textAlign="center" style={{ paddingTop: '20px', paddingBottom: '10px' }}>
+                  Create An Account
+                </Header>
                 <Form.Group widths='equal'>
                   <Form.Input
                     fluid label='First Name'
                     name='firstName'
-                    placeholder='First Name'
                     onChange={this.handleChange}
                   />
                   <Form.Input
                     fluid label='Last Name'
                     name='lastName'
-                    placeholder='Last Name'
                     onChange={this.handleChange}
                   />
                 </Form.Group>
@@ -68,17 +72,11 @@ class Signup extends React.Component {
                   iconPosition="left"
                   name="email"
                   type="email"
-                  placeholder="E-mail address"
                   onChange={this.handleChange}
                 />
                 <Form.Input
-                  label='Budget'
-                  id='budget'
-                  icon='money bill alternate'
-                  iconPosition='left'
-                  name='budget'
-                  type='budget'
-                  placeholder="Example: $1500"
+                  label="Phone Number"
+                  name="phoneNumber"
                   onChange={this.handleChange}
                 />
                 <Form.Input
@@ -87,16 +85,18 @@ class Signup extends React.Component {
                   icon="lock"
                   iconPosition="left"
                   name="password"
-                  placeholder="Password"
                   type="password"
                   onChange={this.handleChange}
                 />
-                <Form.Button id="signup-form-submit" content="Submit"/>
+                <div align='center'>
+                  <Form.Button className={'sign-button'} content="Create Account"/>
+                </div>
               </Segment>
             </Form>
-            <Message>
+            <Segment align='center' textAlign='center' style={{ marginTop: '-10px' }}>
+              Invisible Authy by Twilio Terms & Policy <br/>
               Already have an account? Login <Link to="/signin">here</Link>
-            </Message>
+            </Segment>
             {this.state.error === '' ? (
               ''
             ) : (
