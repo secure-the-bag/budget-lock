@@ -21,8 +21,8 @@ class TransactionsCollection {
       category: {
         type: String,
         allowedValues: ['paycheck', 'creditCard', 'subscription', 'restaurant', 'groceries', 'shopping', 'fun'],
-        defaultValue: 'good'
-      }
+        defaultValue: '',
+      },
     }, { tracker: Tracker });
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.schema);
