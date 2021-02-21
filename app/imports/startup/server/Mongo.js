@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Stuffs } from '../../api/stuff/Stuff.js';
+import { Transactions } from '../../api/transaction/Transaction';
 
 /* eslint-disable no-console */
 
@@ -10,7 +11,17 @@ function addData(data) {
 }
 
 /** Initialize the collection if empty. */
-if (Stuffs.collection.find().count() === 0) {
+if (Transactions.collection.find()
+    .count() === 0) {
+  if (Meteor.settings.defaultData) {
+    console.log('Creating default transactions.');
+    Meteor.settings.defaultData.map(data => addData(data));
+  }
+}
+
+/** Initialize the collection if empty. */
+if (Stuffs.collection.find()
+    .count() === 0) {
   if (Meteor.settings.defaultData) {
     console.log('Creating default data.');
     Meteor.settings.defaultData.map(data => addData(data));
