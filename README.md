@@ -9,7 +9,7 @@
 * Developed a database schema for Transaction collection
 
 # Pending Enhancements
-(what is pending)
+* Implement Two-Factor Authorization onto the sign in page
 
 # The Team
 ### Nadine Alcantara
