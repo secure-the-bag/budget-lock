@@ -28,6 +28,6 @@
 * (what they worked on in the project so far)
 * (what they will be handling next)
 
-![ci-badge](https://github.com/ics-software-engineering/meteor-application-template-react/workflows/ci-meteor-application-template-react/badge.svg)
+***
 
-For details, please see http://ics-software-engineering.github.io/meteor-application-template-react/
+Template used for application development: [meteor-application-template-react](http://ics-software-engineering.github.io/meteor-application-template-react/)
