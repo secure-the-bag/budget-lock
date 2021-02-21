@@ -1,21 +1,94 @@
 import React from 'react';
-import { Button, Container, Divider, Grid, Input, Statistic, Table } from 'semantic-ui-react';
+import { Button, Container, Divider, Grid, Icon, Input, Modal, Statistic, Table } from 'semantic-ui-react';
 import TransactionItem from '../components/TransactionItem';
+import AddTransaction from '../components/AddTransaction';
 
 /**
  * User can add transactions by month, budget, due date, and type
  */
 class Transactions extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+    };
+  }
+
   render() {
+    const modal = (e, text) => {
+      // eslint-disable-next-line no-console
+      console.log(text);
+    };
+
+    const scheduledTransactions = [{
+      date: '02/25/2021',
+      payee: 'Discover',
+      category: 'Credit Card Payment',
+      notes: '',
+      type: 'expenses',
+      amount: 150,
+      balance: 868.90,
+    }, {
+      date: '02/20/2021',
+      payee: 'University of Hawaii',
+      category: 'Paycheck',
+      notes: '',
+      type: 'income',
+      amount: 360.26,
+      balance: 1018.90,
+    }];
+
+    const clearedTransactions = [{
+      date: '02/01/2021',
+      payee: 'Spotify',
+      category: 'Subscriptions',
+      notes: '',
+      type: 'expenses',
+      amount: 5.22,
+      balance: 658.64,
+    }, {
+      date: '02/01/2021',
+      payee: 'Walmart',
+      category: 'Groceries',
+      notes: '',
+      type: 'expenses',
+      amount: 21.36,
+      balance: 663.86,
+    }, {
+      date: '02/01/2021',
+      payee: 'Ireh Restaurant',
+      category: 'Restaurants',
+      notes: '',
+      type: 'expenses',
+      amount: 17.32,
+      balance: 675.22,
+    }, {
+      date: '02/01/2021',
+      payee: 'University of Hawaii',
+      category: 'Paycheck',
+      notes: '',
+      type: 'income',
+      amount: 402.43,
+      balance: 682.54,
+    }, {
+      date: '02/01/2021',
+      payee: 'Starting Balance',
+      notes: '',
+      category: '',
+      type: 'starting',
+      amount: 280.11,
+      balance: 280.11,
+    }];
+
     return (
         <Container style={{ margin: '2rem 1rem' }}>
           <Grid id='transaction' container
                 style={{ border: '0.2rem solid gray', padding: '2rem', borderRadius: '10px' }}>
-            <Grid.Row verticalAlign='middle' columns={2}>
-              <Grid.Column floated='left' width={11} textAlign='right'>
+            <Grid.Row verticalAlign='middle' columns={2} stretched centered>
+              <Grid.Column width={8} textAlign='right'>
                 <Statistic.Group size='tiny' widths={3}>
                   <Statistic>
-                    <Statistic.Value>$658.63</Statistic.Value>
+                    <Statistic.Value>$658.64</Statistic.Value>
                     <p style={{ textAlign: 'center' }}>Current Balance</p>
                   </Statistic>
                   <Statistic>
@@ -28,9 +101,9 @@ class Transactions extends React.Component {
                   </Statistic>
                 </Statistic.Group>
               </Grid.Column>
-              <Grid.Column floated='right' width={4}>
+              <Grid.Column width={5} textAlign='left'>
                 <Statistic size='small' color='green'>
-                  <Statistic.Value>$868.89</Statistic.Value>
+                  <Statistic.Value>$868.90</Statistic.Value>
                   <Statistic.Label>Total Balance</Statistic.Label>
                 </Statistic>
               </Grid.Column>
@@ -40,8 +113,26 @@ class Transactions extends React.Component {
 
             <Grid.Row columns={2} verticalAlign='bottom'>
               <Grid.Column floated='left'>
-                <Button compact>Add Transaction</Button>
-                <Button compact disabled>Delete Selected (0)</Button>
+                <Modal
+                    size='tiny'
+                    closeIcon
+                    onClose={() => this.setState({ open: false })}
+                    onOpen={() => this.setState({ open: true })}
+                    open={this.state.open}
+                    trigger={<Button onClick={(e) => modal(e, 'add')} style={{ cursor: 'pointer' }}>Add Transaction</Button>}
+                >
+                  <Modal.Content>
+                    <AddTransaction/>
+                  </Modal.Content>
+                  <Modal.Actions>
+                    <Button color='red' onClick={() => this.setState({ open: false })}>
+                      <Icon name='remove'/> Cancel
+                    </Button>
+                    <Button color='green' onClick={() => this.setState({ open: false })}>
+                      <Icon name='checkmark' /> Add Transaction
+                    </Button>
+                  </Modal.Actions>
+                </Modal>
               </Grid.Column>
               <Grid.Column textAlign='right' floated='right'>
                 <Input size='mini' icon='search' placeholder='Search...' />
@@ -49,10 +140,9 @@ class Transactions extends React.Component {
             </Grid.Row>
 
             <Grid.Row>
-              <Table singleLine compact='very'>
+              <Table singleLine>
                 <Table.Header>
                   <Table.Row>
-                    <Table.HeaderCell collapsing/>
                     <Table.HeaderCell width={2}>Date</Table.HeaderCell>
                     <Table.HeaderCell width={3}>Payee</Table.HeaderCell>
                     <Table.HeaderCell width={4}>Category</Table.HeaderCell>
@@ -61,8 +151,16 @@ class Transactions extends React.Component {
                     <Table.HeaderCell width={2}>Balance</Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
-
-                <TransactionItem/>
+                <Table.Body>
+                  <Table.Row>
+                    <Table.Cell colSpan={6}><b>Scheduled Transactions</b></Table.Cell>
+                  </Table.Row>
+                  {scheduledTransactions.map((value, index) => <TransactionItem key={index} data={value}/>)}
+                  <Table.Row>
+                    <Table.Cell colSpan={6}><b>Cleared Transactions</b></Table.Cell>
+                  </Table.Row>
+                  {clearedTransactions.map((value, index) => <TransactionItem key={index} data={value}/>)}
+                </Table.Body>
               </Table>
             </Grid.Row>
           </Grid>

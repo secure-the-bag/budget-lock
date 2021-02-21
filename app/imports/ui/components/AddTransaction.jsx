@@ -2,16 +2,15 @@ import React from 'react';
 import { Grid, Header, Segment } from 'semantic-ui-react';
 import SimpleSchema from 'simpl-schema';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import { AutoForm, DateField, ErrorsField, LongTextField, NumField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
+import { AutoForm, DateField, ErrorsField, NumField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
 
 const formSchema = new SimpleSchema({
   date: Date,
   payee: String,
   category: {
     type: String,
-    allowedValues: ['Credit Card Payment', 'Fun', 'Groceries', 'Restaurant', 'Subscription'],
+    allowedValues: ['Credit Card Payment', 'Fun', 'Groceries', 'Restaurants', 'Paycheck', 'Subscriptions'],
   },
-  notes: String,
   amount: Number,
 });
 
@@ -29,7 +28,6 @@ class AddTransaction extends React.Component {
                 <TextField name='payee' />
                 <SelectField name='category' />
                 <NumField name='amount' />
-                <LongTextField name='notes' />
                 <SubmitField/>
                 <ErrorsField/>
               </Segment>
