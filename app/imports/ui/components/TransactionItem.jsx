@@ -37,6 +37,8 @@ class TransactionItem extends React.Component {
           size={'tiny'}
           closeIcon
           open={this.state.open}
+          onClose={() => this.setState({ open: false })}
+          onOpen={() => this.setState({ open: true })}
           trigger={
             <Table.Row onClick={(e) => modal(e, this.props.data.date)} style={{ cursor: 'pointer' }}>
               <Table.Cell>{this.props.data.date}</Table.Cell>
@@ -47,8 +49,6 @@ class TransactionItem extends React.Component {
               <Table.Cell>${this.props.data.balance}</Table.Cell>
             </Table.Row>
           }
-          onClose={() => this.setState({ open: false })}
-          onOpen={() => this.setState({ open: true })}
           >
           <Modal.Content>
             <Form>
@@ -80,7 +80,7 @@ class TransactionItem extends React.Component {
             <Button color='red' onClick={() => this.setState({ open: false })}>
               <Icon name='trash alternate outline'/> Delete
             </Button>
-            <Button color='green' onClick={() => this.setState({ open: true })}>
+            <Button color='green' onClick={() => this.setState({ open: false })}>
               <Icon name='checkmark' /> Submit
             </Button>
           </Modal.Actions>
