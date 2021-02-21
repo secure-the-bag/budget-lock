@@ -13,11 +13,15 @@
 
 # The Team
 ### Nadine Alcantara
-* (what they worked on in the project so far)
+* Done:
+  * Implement Landing page and Navigation Bar mockups  
+  * Initialize database schema for Transaction collection
 * (what they will be handling next)
 
 ### Jennifer Hsu
-* (what they worked on in the project so far)
+* Done:
+  * Design mockups for different pages
+  * Implement Monthly Spending and Overview page mockups
 * (what they will be handling next)
 
 ### Andre Joseph Ruiz
@@ -25,9 +29,14 @@
 * Moving forward, I'm figuring out how to implement Two-Factor Authorization onto the sign in page and testing out different options. Twilio so far would be the best choice, but Google's Recaptcha is another potention option.
 
 ### Daphne Marie Tapia
-* (what they worked on in the project so far)
+* Done: 
+  * Implement Transaction page mockup
 * (what they will be handling next)
 
 ***
 
 Template used for application development: [meteor-application-template-react](http://ics-software-engineering.github.io/meteor-application-template-react/)
+
+***
+
+Last updated: 02/21/2021
