@@ -4,7 +4,9 @@
 * [The Team](#the-team)
 
 # Development History
-(what is complete so far)
+## Milestone 1: Mockup Development
+* Created HTML mockups for the following pages: Sign Up and Sign In, Landing, Overview, Monthly Spending, Transactions
+* Developed a database schema for Transaction collection
 
 # Pending Enhancements
 (what is pending)
