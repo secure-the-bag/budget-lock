@@ -10,6 +10,7 @@
 
 # Pending Enhancements
 * Implement Two-Factor Authorization onto the sign in page
+* Implement pages for the following: User Profile, Upcoming Bills
 
 # The Team
 ### Nadine Alcantara
