@@ -24,7 +24,10 @@
 * Done:
   * Design mockups for different pages
   * Implement Monthly Spending and Overview page mockups
-* (what they will be handling next)
+* Next
+  * Research into password encryption
+  * Research MongoDB user authentication 
+  * Development of profile page for users
 
 ### Andre Joseph Ruiz
 * Done:
