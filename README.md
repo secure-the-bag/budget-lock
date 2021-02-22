@@ -13,7 +13,7 @@
 
 # The Team
 ### Nadine Alcantara
-* Done:
+* Done
   * Implement Landing page and Navigation Bar mockups  
   * Initialize database schema for Transaction collection
 * Next
@@ -21,7 +21,7 @@
   * Linking database to the mockup pages
 
 ### Jennifer Hsu
-* Done:
+* Done
   * Design mockups for different pages
   * Implement Monthly Spending and Overview page mockups
 * Next
@@ -30,15 +30,18 @@
   * Development of profile page for users
 
 ### Andre Joseph Ruiz
-* Done:
+* Done
   * Building the sign up and sign in pages, determining what kind of personal information that would be used in the app model, and researching potential security measure to have on these pages (2FA, Encryption, etc).
-* Next:
+* Next
   * Implementing Two-Factor Authorization onto the sign in page and testing out different options. Twilio so far would be the best choice, but Google's Recaptcha is another potention option.
 
 ### Daphne Marie Tapia
-* Done: 
+* Done
   * Implement Transaction page mockup
-* (what they will be handling next)
+* Next
+  * Further development of Transaction page (allow multiple deletions and editing)
+  * Match schema used in AddTransactions.jsx with the one in Transaction collection
+  * Implement Upcoming Bills page mockup  
 
 ***
 
