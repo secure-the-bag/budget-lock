@@ -11,6 +11,7 @@
 # Pending Enhancements
 * Implement Two-Factor Authorization onto the sign in page
 * Implement pages for the following: User Profile, Upcoming Bills
+* Research the following: password encryption, MongoDB user authentication
 
 # The Team
 ### Nadine Alcantara
