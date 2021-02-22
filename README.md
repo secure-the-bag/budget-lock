@@ -16,7 +16,9 @@
 * Done:
   * Implement Landing page and Navigation Bar mockups  
   * Initialize database schema for Transaction collection
-* (what they will be handling next)
+* Next
+  * Further development on the front-end application
+  * Linking database to the mockup pages
 
 ### Jennifer Hsu
 * Done:
