@@ -1,29 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { Meteor } from 'meteor/meteor';
+import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Icon, Container, Button, Input, Loader, Form } from 'semantic-ui-react';
-// import swal from 'sweetalert';
-// import { Link } from 'react-router-dom';
-import 'uniforms-bridge-simple-schema-2'; // required for Uniforms
-// import { AutoForm, ErrorsField, HiddenField, SubmitField, TextField } from 'uniforms-semantic';
+import { Icon, Container, Button, Loader, Grid, Segment } from 'semantic-ui-react';
+import swal from 'sweetalert';
+import { AutoForm, ErrorsField, HiddenField, SubmitField, TextField } from 'uniforms-semantic';
+import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
+import { Profiles } from '../../api/profile/Profile';
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       readOnly: true,
       style: 'profile-input-disabled',
     };
   }
 
-  // submit(data) {
-  //   const { firstName, lastName, phone, _id } = data;
-  //   Profile.update(_id, { $set: { firstName, lastName, phone } }, (error) => (error ?
-  //     swal('Error', error.message, 'error') :
-  //     swal('Success', 'Item updated successfully', 'success')));
-  // }
+  submit(data) {
+    const { firstName, lastName, email, phone, _id } = data;
+    Profiles.update(_id, { $set: { firstName, lastName, email, phone } }, (error) => (error ?
+      swal('Error', error.message, 'error') :
+      swal('Success', 'Item updated successfully', 'success')));
+  }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
@@ -44,7 +43,7 @@ class Profile extends React.Component {
       return (
         <Button onClick={() => this.onEdit()}>
           <Button.Content>
-            <Icon name='edit' />
+            <Icon name='edit'/>
           </Button.Content>
         </Button>
       );
@@ -57,55 +56,59 @@ class Profile extends React.Component {
   }
 
   renderForm() {
+    const bridge = new SimpleSchema2Bridge(Profiles.schema);
+
     return (
-      <Form className={this.state.style}>
-        <Form.Field
-          control={Input}
-          label='First name'
-          placeholder='First name'
-          value='John'
-          readOnly={this.state.readOnly}
-        />
-        <Form.Field
-          control={Input}
-          label='Last name'
-          placeholder='Last name'
-          value='Foo'
-          readOnly={this.state.readOnly}
-        />
-        <Form.Field
-          control={Input}
-          label='Email'
-          placeholder='john@foo.com'
-          value='john@foo.com'
-          readOnly={this.state.readOnly}
-        />
-        <Form.Field
-          control={Input}
-          label='Phone'
-          placeholder='(123)-321-5321'
-          value='(123)-321-5321'
-          readOnly={this.state.readOnly}
-        />
-        <div align={'center'}>
-          {!this.state.readOnly
-            ? <Button type='submit'>Update</Button>
-            : <div/>
-          }
-        </div>
-      </Form>
+      <div>
+        <AutoForm schema={bridge}
+                  onSubmit={data => this.submit(data)}
+                  model={this.props.profile[0]}
+                  className={this.state.style}
+        >
+          <Segment>
+            <div align={'right'}>
+              {this.renderEditButton()}
+            </div>
+
+            <TextField
+              label='First Name'
+              name='firstName'
+              disabled={this.state.readOnly}
+            />
+            <TextField
+              label='Last Name'
+              name='lastName'
+              disabled={this.state.readOnly}
+            />
+            <TextField
+              label='Email'
+              name='email'
+              disabled={this.state.readOnly}
+            />
+            <TextField
+              label='Phone Number'
+              name='phoneNumber'
+              disabled={this.state.readOnly}
+            />
+            <div align='center'>
+              {!this.state.readOnly
+                ? <SubmitField value='Update'/>
+                : <div/>
+              }
+            </div>
+            <ErrorsField/>
+            <HiddenField name='owner'/>
+          </Segment>
+        </AutoForm>
+      </div>
     );
   }
 
   renderPage() {
     return (
-      <Container style={{ padding: '5rem' }} >
-        <div align={'right'}>
-          {this.renderEditButton()}
-        </div>
+      <Container style={{ padding: '5rem' }}>
         {this.renderForm()}
       </Container>
-
     );
   }
 }
@@ -119,14 +122,9 @@ Profile.propTypes = {
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
   // Get access to Profile documents.
-  // const sub = Meteor.subscribe('Profile');
-  const sub = true;
-
+  const sub = Meteor.subscribe(Profiles.userPublicationName);
   return {
-    profile: [],
-    // profile: Profile.find({}).fetch(),
-    // ready: sub.ready(),
-    ready: sub,
-
+    profile: Profiles.collection.find({}).fetch(),
+    ready: sub.ready(),
   };
 })(Profile);
