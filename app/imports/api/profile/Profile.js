@@ -3,26 +3,19 @@ import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
 
 /** Encapsulates state and variable values for this collection. */
-class TransactionsCollection {
+class ProfilesCollection {
   constructor() {
     // The name of this collection.
-    this.name = 'TransactionsCollection';
+    this.name = 'ProfilesCollection';
     // Define the Mongo collection.
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
-      name: String,
-      date: Date,
-      payee: String,
-      amount: Number,
-      balance: Number,
-      notes: String,
+      firstName: String,
+      lastName: String,
+      email: String,
+      phoneNumber: Number,
       owner: String,
-      category: {
-        type: String,
-        allowedValues: ['paycheck', 'creditCard', 'subscription', 'restaurant', 'groceries', 'shopping', 'fun', 'starting'],
-        defaultValue: '',
-      },
     }, { tracker: Tracker });
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.schema);
@@ -32,4 +25,4 @@ class TransactionsCollection {
   }
 }
 
-export const Transactions = new TransactionsCollection();
+export const Profiles = new ProfilesCollection();

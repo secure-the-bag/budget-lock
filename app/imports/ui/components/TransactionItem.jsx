@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Form, Icon, Modal, Table, Select } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import { getCategoryEquivalent } from '../utilities/GlobalFunctions';
 
 class TransactionItem extends React.Component {
   constructor(props) {
@@ -39,6 +40,8 @@ class TransactionItem extends React.Component {
       balanceCell = <Table.Cell>${this.props.data.balance.toFixed(2)}</Table.Cell>;
     }
 
+    const category = getCategoryEquivalent(this.props.data.category, 'label');
+
     return (
         <Modal
           size={'tiny'}
@@ -50,7 +53,7 @@ class TransactionItem extends React.Component {
             <Table.Row onClick={(e) => modal(e, this.props.data.date)} style={{ cursor: 'pointer' }}>
               <Table.Cell>{this.props.data.date.toLocaleDateString()}</Table.Cell>
               <Table.Cell>{this.props.data.payee}</Table.Cell>
-              <Table.Cell>{this.props.data.category}</Table.Cell>
+              <Table.Cell>{category}</Table.Cell>
               <Table.Cell>{this.props.data.notes}</Table.Cell>
               {amountCell}
               {balanceCell}
