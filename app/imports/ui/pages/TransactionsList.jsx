@@ -6,7 +6,7 @@ import AddTransaction from '../components/AddTransaction';
 /**
  * User can add transactions by month, budget, due date, and type
  */
-class Transactions extends React.Component {
+class TransactionsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -174,4 +174,4 @@ class Transactions extends React.Component {
   }
 }
 
-export default Transactions;
+export default TransactionsList;

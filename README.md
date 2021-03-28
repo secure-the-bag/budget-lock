@@ -5,7 +5,7 @@
 
 # Development History
 ## Milestone 1: Mockup Development
-* Created HTML mockups for the following pages: Sign Up and Sign In, Landing, Overview, Monthly Spending, Transactions
+* Created HTML mockups for the following pages: Sign Up and Sign In, Landing, Overview, Monthly Spending, TransactionsList
 * Developed a database schema for Transaction collection
 
 # Pending Enhancements

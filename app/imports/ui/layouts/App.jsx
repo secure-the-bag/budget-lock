@@ -17,7 +17,7 @@ import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import Overview from '../pages/Overview';
 import MonthlySpending from '../pages/MonthlySpending';
-import Transactions from '../pages/Transactions';
+import TransactionsList from '../pages/TransactionsList';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -32,7 +32,7 @@ class App extends React.Component {
               <Route path="/signup" component={Signup}/>
               <Route path="/signout" component={Signout}/>
               <ProtectedRoute path="/overview" component={Overview}/>
-              <ProtectedRoute path="/transactions" component={Transactions}/>
+              <ProtectedRoute path="/transactions" component={TransactionsList}/>
               <ProtectedRoute path="/monthly-spending" component={MonthlySpending}/>
               <ProtectedRoute path="/list" component={ListStuff}/>
               <ProtectedRoute path="/add" component={AddStuff}/>
