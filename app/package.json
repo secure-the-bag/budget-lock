@@ -7,6 +7,7 @@
     "core-js": "^3.8.3",
     "graphql": "^14.5.8",
     "highcharts": "^9.0.0",
+    "meteor": "^2.1.0",
     "meteor-node-stubs": "^1.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
@@ -18,6 +19,7 @@
     "simpl-schema": "^1.10.2",
     "sweetalert": "^2.1.2",
     "uniforms": "^3.0.0",
+    "uniforms-bridge-json-schema": "^3.2.1",
     "uniforms-bridge-simple-schema-2": "^3.0.0",
     "uniforms-semantic": "^3.0.0"
   },
