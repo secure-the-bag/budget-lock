@@ -20,65 +20,70 @@ class Transactions extends React.Component {
       console.log(text);
     };
 
-    const scheduledTransactions = [{
-      date: '02/25/2021',
+    const allTransactions = [{
+      name: '',
+      date: new Date(2021, 2, 31),
       payee: 'Discover',
-      category: 'Credit Card Payment',
+      category: 'creditCard',
       notes: '',
-      type: 'expenses',
-      amount: 150,
+      amount: -150,
       balance: 868.90,
     }, {
-      date: '02/20/2021',
+      name: '',
+      date: new Date(2021, 2, 30),
       payee: 'University of Hawaii',
-      category: 'Paycheck',
+      category: 'paycheck',
       notes: '',
-      type: 'income',
       amount: 360.26,
       balance: 1018.90,
-    }];
-
-    const clearedTransactions = [{
-      date: '02/01/2021',
+    }, {
+      name: '',
+      date: new Date(2021, 2, 29),
       payee: 'Spotify',
-      category: 'Subscriptions',
+      category: 'subscription',
       notes: '',
-      type: 'expenses',
-      amount: 5.22,
+      amount: -5.22,
       balance: 658.64,
     }, {
-      date: '02/01/2021',
+      name: '',
+      date: new Date(2021, 2, 24),
       payee: 'Walmart',
-      category: 'Groceries',
+      category: 'groceries',
       notes: '',
-      type: 'expenses',
-      amount: 21.36,
+      amount: -21.36,
       balance: 663.86,
     }, {
-      date: '02/01/2021',
+      name: '',
+      date: new Date(2021, 2, 24),
       payee: 'Ireh Restaurant',
-      category: 'Restaurants',
+      category: 'restaurant',
       notes: '',
-      type: 'expenses',
-      amount: 17.32,
+      amount: -17.32,
       balance: 675.22,
     }, {
-      date: '02/01/2021',
+      name: '',
+      date: new Date(2021, 2, 24),
       payee: 'University of Hawaii',
-      category: 'Paycheck',
+      category: 'paycheck',
       notes: '',
-      type: 'income',
       amount: 402.43,
       balance: 682.54,
     }, {
-      date: '02/01/2021',
+      name: '',
+      date: new Date(2021, 2, 20),
       payee: 'Starting Balance',
       notes: '',
       category: '',
-      type: 'starting',
       amount: 280.11,
       balance: 280.11,
     }];
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const scheduledTransactions = allTransactions.filter(({ date }) => date > today);
+
+    const clearedTransactions = allTransactions.filter(({ date }) => date <= today);
 
     return (
         <Container style={{ margin: '2rem 1rem' }}>

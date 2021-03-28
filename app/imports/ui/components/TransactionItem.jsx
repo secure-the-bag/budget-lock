@@ -26,10 +26,17 @@ class TransactionItem extends React.Component {
     };
 
     let amountCell;
-    if (this.props.data.type === 'expenses') {
-      amountCell = <Table.Cell style={{ color: 'red' }}>-${this.props.data.amount}</Table.Cell>;
+    if (this.props.data.amount < 0) {
+      amountCell = <Table.Cell style={{ color: 'red' }}>-${Math.abs(this.props.data.amount).toFixed(2)}</Table.Cell>;
     } else {
-      amountCell = <Table.Cell>${this.props.data.amount}</Table.Cell>;
+      amountCell = <Table.Cell>${this.props.data.amount.toFixed(2)}</Table.Cell>;
+    }
+
+    let balanceCell;
+    if (this.props.data.balance < 0) {
+      balanceCell = <Table.Cell style={{ color: 'red' }}>-${Math.abs(this.props.data.balance).toFixed(2)}</Table.Cell>;
+    } else {
+      balanceCell = <Table.Cell>${this.props.data.balance.toFixed(2)}</Table.Cell>;
     }
 
     return (
@@ -41,12 +48,12 @@ class TransactionItem extends React.Component {
           onOpen={() => this.setState({ open: true })}
           trigger={
             <Table.Row onClick={(e) => modal(e, this.props.data.date)} style={{ cursor: 'pointer' }}>
-              <Table.Cell>{this.props.data.date}</Table.Cell>
+              <Table.Cell>{this.props.data.date.toLocaleDateString()}</Table.Cell>
               <Table.Cell>{this.props.data.payee}</Table.Cell>
               <Table.Cell>{this.props.data.category}</Table.Cell>
               <Table.Cell>{this.props.data.notes}</Table.Cell>
               {amountCell}
-              <Table.Cell>${this.props.data.balance}</Table.Cell>
+              {balanceCell}
             </Table.Row>
           }
           >
