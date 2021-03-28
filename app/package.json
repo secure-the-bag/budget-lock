@@ -3,10 +3,12 @@
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.12.5",
+    "bcryptjs": "^2.4.3",
     "classnames": "^2.2.6",
     "core-js": "^3.8.3",
     "graphql": "^14.5.8",
     "highcharts": "^9.0.0",
+    "meteor": "^2.1.0",
     "meteor-node-stubs": "^1.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
