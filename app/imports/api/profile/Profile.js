@@ -12,9 +12,10 @@ class ProfilesCollection {
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
       firstName: String,
-      LastName: String,
+      lastName: String,
       email: String,
       phoneNumber: Number,
+      owner: String
     }, { tracker: Tracker });
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.schema);
