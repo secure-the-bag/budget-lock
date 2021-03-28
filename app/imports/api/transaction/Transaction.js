@@ -20,7 +20,7 @@ class TransactionsCollection {
       owner: String,
       category: {
         type: String,
-        allowedValues: ['paycheck', 'creditCard', 'subscription', 'restaurant', 'groceries', 'shopping', 'fun'],
+        allowedValues: ['paycheck', 'creditCard', 'subscription', 'restaurant', 'groceries', 'shopping', 'fun', 'starting'],
         defaultValue: '',
       },
     }, { tracker: Tracker });

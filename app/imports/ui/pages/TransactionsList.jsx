@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Container, Divider, Grid, Icon, Input, Modal, Statistic, Table } from 'semantic-ui-react';
+import { Container, Divider, Grid, Input, Statistic, Table } from 'semantic-ui-react';
 import TransactionItem from '../components/TransactionItem';
 import AddTransaction from '../components/AddTransaction';
 
@@ -7,19 +7,7 @@ import AddTransaction from '../components/AddTransaction';
  * User can add transactions by month, budget, due date, and type
  */
 class TransactionsList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-    };
-  }
-
   render() {
-    const modal = (e, text) => {
-      // eslint-disable-next-line no-console
-      console.log(text);
-    };
-
     const allTransactions = [{
       name: '',
       date: new Date(2021, 2, 31),
@@ -71,9 +59,9 @@ class TransactionsList extends React.Component {
     }, {
       name: '',
       date: new Date(2021, 2, 20),
-      payee: 'Starting Balance',
+      payee: '',
       notes: '',
-      category: '',
+      category: 'starting',
       amount: 280.11,
       balance: 280.11,
     }];
@@ -118,26 +106,7 @@ class TransactionsList extends React.Component {
 
             <Grid.Row columns={2} verticalAlign='bottom'>
               <Grid.Column floated='left'>
-                <Modal
-                    size='tiny'
-                    closeIcon
-                    onClose={() => this.setState({ open: false })}
-                    onOpen={() => this.setState({ open: true })}
-                    open={this.state.open}
-                    trigger={<Button onClick={(e) => modal(e, 'add')} style={{ cursor: 'pointer' }}>Add Transaction</Button>}
-                >
-                  <Modal.Content>
-                    <AddTransaction/>
-                  </Modal.Content>
-                  <Modal.Actions>
-                    <Button color='red' onClick={() => this.setState({ open: false })}>
-                      <Icon name='remove'/> Cancel
-                    </Button>
-                    <Button color='green' onClick={() => this.setState({ open: false })}>
-                      <Icon name='checkmark' /> Add Transaction
-                    </Button>
-                  </Modal.Actions>
-                </Modal>
+                <AddTransaction/>
               </Grid.Column>
               <Grid.Column textAlign='right' floated='right'>
                 <Input size='mini' icon='search' placeholder='Search...' />
