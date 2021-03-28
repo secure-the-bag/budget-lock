@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Stuffs } from '../../api/stuff/Stuff.js';
 import { Transactions } from '../../api/transaction/Transaction';
+import { Profiles } from '../../api/profile/Profile';
 
 /* eslint-disable no-console */
 
@@ -8,6 +9,15 @@ import { Transactions } from '../../api/transaction/Transaction';
 function addData(data) {
   console.log(`  Adding: ${data.name} (${data.owner})`);
   Stuffs.collection.insert(data);
+}
+
+/** Initialize the collection if empty. */
+if (Profiles.collection.find()
+    .count() === 0) {
+  if (Meteor.settings.defaultData) {
+    console.log('Creating default transactions.');
+    Meteor.settings.defaultData.map(data => addData(data));
+  }
 }
 
 /** Initialize the collection if empty. */
