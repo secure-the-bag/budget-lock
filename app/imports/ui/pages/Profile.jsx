@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Icon, Container, Button, Loader, Grid, Segment } from 'semantic-ui-react';
+import { Icon, Container, Button, Loader, Segment } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import { AutoForm, ErrorsField, HiddenField, SubmitField, TextField } from 'uniforms-semantic';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
@@ -14,14 +14,30 @@ class Profile extends React.Component {
     this.state = {
       readOnly: true,
       style: 'profile-input-disabled',
+      id: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
     };
   }
 
-  submit(data) {
+  setData(data) {
     const { firstName, lastName, email, phone, _id } = data;
-    Profiles.update(_id, { $set: { firstName, lastName, email, phone } }, (error) => (error ?
+    this.setState({ firstName: firstName });
+    this.setState({ lastName: lastName });
+    this.setState({ email: email });
+    this.setState({ phone: phone });
+    this.setState({ id: _id });
+  }
+
+  submit() {
+    Profiles.collection.update(this.state.id,
+      { $set: { firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email, phone: this.state.phone } }, (error) => (error ?
       swal('Error', error.message, 'error') :
-      swal('Success', 'Item updated successfully', 'success')));
+      swal('Success', 'Profile Updated', 'success')));
+    this.setState({ readOnly: true });
+    this.setState({ style: 'profile-input-disabled' });
   }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
@@ -61,7 +77,7 @@ class Profile extends React.Component {
     return (
       <div>
         <AutoForm schema={bridge}
-                  onSubmit={data => this.submit(data)}
+                  onSubmit={data => this.setData(data)}
                   model={this.props.profile[0]}
                   className={this.state.style}
         >
@@ -92,7 +108,8 @@ class Profile extends React.Component {
             />
             <div align='center'>
               {!this.state.readOnly
-                ? <SubmitField value='Update'/>
+                ? <SubmitField value='Update'
+                    onClick={() => this.submit()}/>
                 : <div/>
               }
             </div>
