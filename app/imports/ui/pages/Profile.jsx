@@ -14,6 +14,7 @@ class Profile extends React.Component {
 
     this.state = {
       readOnly: true,
+      style: 'profile-input-disabled',
     };
   }
 
@@ -31,16 +32,20 @@ class Profile extends React.Component {
 
   onEdit() {
     this.setState({ readOnly: !this.state.readOnly });
+    if (!this.state.readOnly) {
+      this.setState({ style: 'profile-input-disabled' });
+    } else {
+      this.setState({ style: '' });
+    }
   }
 
   renderEditButton() {
     if (this.state.readOnly) {
       return (
-        <Button animated='fade' onClick={() => this.onEdit()}>
-          <Button.Content visible>
+        <Button onClick={() => this.onEdit()}>
+          <Button.Content>
             <Icon name='edit' />
           </Button.Content>
-          <Button.Content hidden>Edit</Button.Content>
         </Button>
       );
     }
@@ -52,68 +57,41 @@ class Profile extends React.Component {
   }
 
   renderForm() {
-    if (this.state.readOnly) {
-      return (
-        <Form className={'profile-input-disabled'}>
-          <Form.Field
-            control={Input}
-            label='First name'
-            placeholder='First name'
-            value='John'
-            readOnly
-          />
-          <Form.Field
-            control={Input}
-            label='Last name'
-            placeholder='Last name'
-            value='Foo'
-            readOnly
-          />
-          <Form.Field
-            control={Input}
-            label='Email'
-            placeholder='john@foo.com'
-            value='john@foo.com'
-            readOnly
-          />
-          <Form.Field
-            control={Input}
-            label='Phone'
-            placeholder='(123)-321-5321'
-            value='(123)-321-5321'
-            readOnly
-          />
-        </Form>
-      );
-    } return (
-      <Form>
+    return (
+      <Form className={this.state.style}>
         <Form.Field
           control={Input}
           label='First name'
           placeholder='First name'
           value='John'
-          readOnly
+          readOnly={this.state.readOnly}
         />
         <Form.Field
           control={Input}
           label='Last name'
           placeholder='Last name'
           value='Foo'
+          readOnly={this.state.readOnly}
         />
         <Form.Field
           control={Input}
           label='Email'
           placeholder='john@foo.com'
           value='john@foo.com'
+          readOnly={this.state.readOnly}
         />
         <Form.Field
           control={Input}
           label='Phone'
           placeholder='(123)-321-5321'
           value='(123)-321-5321'
+          readOnly={this.state.readOnly}
         />
         <div align={'center'}>
-          <Button type='submit'>Submit</Button>
+          {!this.state.readOnly
+            ? <Button type='submit'>Update</Button>
+            : <div/>
+          }
         </div>
       </Form>
     );
@@ -142,13 +120,13 @@ Profile.propTypes = {
 export default withTracker(() => {
   // Get access to Profile documents.
   // const sub = Meteor.subscribe('Profile');
-  const sub = 'filler';
+  const sub = true;
 
   return {
     profile: [],
     // profile: Profile.find({}).fetch(),
     // ready: sub.ready(),
-    ready: true,
+    ready: sub,
 
   };
 })(Profile);
