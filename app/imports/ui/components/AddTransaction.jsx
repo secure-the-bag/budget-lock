@@ -52,13 +52,13 @@ class AddTransaction extends React.Component {
 
   // On submit, insert data.
   submit(data, formRef) {
-    const { date, category, amount } = data;
-    const balance = 0;
-    const owner = Meteor.user().username;
+    const { date, category } = data;
     const payee = (typeof data.payee === 'string') ? data.payee : '';
     const name = (typeof data.name === 'string') ? data.name : '';
     const notes = (typeof data.notes === 'string') ? data.notes : '';
-    Transactions.collection.insert({ name, date, payee, amount, balance, notes, owner, category },
+    const amount = (['paycheck', 'starting'].includes(category)) ? data.amount : -data.amount;
+    const owner = Meteor.user().username;
+    Transactions.collection.insert({ name, date, payee, amount, balance: 0, notes, owner, category },
         { removeEmptyStrings: false },
         (error) => {
       if (error) {
