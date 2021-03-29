@@ -35,7 +35,7 @@
 * Done
   * Building the sign up and sign in pages, determining what kind of personal information that would be used in the app model, and researching potential security measure to have on these pages (2FA, Encryption, etc).
 * Next
-  * Implementing Two-Factor Authorization onto the sign in page and testing out different options. Twilio so far would be the best choice, but Google's Recaptcha is another potention option.
+  * Implementing Two-Factor Authorization onto the sign in page and testing out different options. Twilio so far would be the best choice, but Google's Recaptcha is another potential option.
 
 ### Daphne Marie Tapia
 * Done
