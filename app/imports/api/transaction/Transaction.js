@@ -11,12 +11,11 @@ class TransactionsCollection {
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
-      name: String,
       date: Date,
-      payee: String,
+      payee: { type: String, defaultValue: '' },
       amount: Number,
       balance: Number,
-      notes: String,
+      notes: { type: String, optional: true, defaultValue: '' },
       owner: String,
       category: {
         type: String,

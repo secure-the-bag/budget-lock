@@ -6,6 +6,7 @@ import { Profiles } from '../../api/profile/Profile';
 /* eslint-disable no-console */
 
 const defaultProfiles = JSON.parse(Assets.getText('defaultProfile.json'));
+const defaultTransaction = JSON.parse(Assets.getText('defaultTransactions.json'));
 
 /** Initialize the database with a default data document. */
 function addData(data) {
@@ -24,13 +25,15 @@ if (Profiles.collection.find().count() === 0) {
   defaultProfiles.map(data => addProfiles(data));
 }
 
+function addTransaction(data) {
+  console.log(`  Adding: Transaction ${data.payee} | ${data.category} | (${data.owner})`);
+  Transactions.collection.insert(data);
+}
+
 /** Initialize the collection if empty. */
-if (Transactions.collection.find()
-    .count() === 0) {
-  if (Meteor.settings.defaultData) {
-    console.log('Creating default transactions.');
-    Meteor.settings.defaultData.map(data => addData(data));
-  }
+if (Transactions.collection.find().count() === 0) {
+  console.log('Creating default transaction data.');
+  defaultTransaction.map(data => addTransaction(data));
 }
 
 /** Initialize the collection if empty. */
