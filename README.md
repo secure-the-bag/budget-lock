@@ -74,11 +74,9 @@
 
 ### Andre Joseph Ruiz
 * Done
-  *
-  *
+  * Finished skeleton mockups for 2FA code and setting up Postman testing database.
 * Next
-  *
-  *
+  * Implementation of 2FA into Signin and Profile Pages.
 
 ### Daphne Marie Tapia
 * Done
