@@ -56,3 +56,14 @@
     padding-right: 40px;
 }
 
+.profile-input-disabled .ui input {
+    background: whitesmoke !important;
+}
+
+.profile-input-disabled .ui.form .disabled.fields .field, .ui.form .disabled.field, .ui.form .field :disabled {
+    opacity: 1 !important;
+}
+
+.profile-input-disabled label {
+    opacity: 1 !important;
+}
