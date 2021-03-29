@@ -59,27 +59,7 @@ class MonthlySpendingChart extends React.Component {
       }],
     });
     this.setState({ chart: chart });
-    // const chart = Highcharts.chart('chart', {
-    //   series: [{ data: _this.props.data }],
-    // });
-    // Save the chart "container" in the state so we can access it from anywhere.
-    this.setState({ chart });
   }
-
-  // componentWillReceiveProps(props) {
-  //   // Update the chart with new data every time we receive props.
-  //       const data = [{
-  //         name: 'Groceries',
-  //         y: 61.41,
-  //       }, {
-  //         name: 'Restaurants',
-  //         y: 11.84,
-  //       }, {
-  //         name: 'Fun',
-  //         y: 30.85,
-  //       }];
-  //   this.state.chart.series.data.setData(data);
-  // }
 
   render() {
     return <div id="monthSpending" />;
