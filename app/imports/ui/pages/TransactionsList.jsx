@@ -18,17 +18,23 @@ class TransactionsList extends React.Component {
   }
 
   renderPage() {
+    // categorize transactions by date
     const today = new Date();
     today.setHours(23, 59, 59, 999);
-
     const clearedTransactions = this.props.transactions.filter(({ date }) => date <= today);
-    const currentBalance = clearedTransactions[1].balance.toFixed(2);
-
     const scheduledTransactions = this.props.transactions.filter(({ date }) => date > today);
-    // const scheduledBalance = scheduledTransactions[0].balance.toFixed(2);
+
+    // compute for balances, total expenses, and total income
+    const totalBalance = this.props.transactions[0].balance;
+    const currentBalance = clearedTransactions[0].balance;
     const scheduledExpenses = scheduledTransactions.filter(({ amount }) => amount < 0)
-        .reduce((accumulator, transaction) => accumulator + transaction.amount, 0).toFixed(2);
-    const scheduledIncome = 0;
+        .reduce((accumulator, transaction) => accumulator + transaction.amount, 0);
+    const scheduledIncome = ((totalBalance - currentBalance) + Math.abs(scheduledExpenses));
+
+    // convert to computed numbers to string
+    const toString = (value) => ((value < 0) ?
+        { string: `-$${(Math.abs(value)).toFixed(2)}`, color: 'red' } :
+        { string: `$${value.toFixed(2)}`, color: 'green' });
 
     return (
       <Container style={{ margin: '2rem 1rem' }}>
@@ -38,22 +44,22 @@ class TransactionsList extends React.Component {
             <Grid.Column width={8} textAlign='right'>
               <Statistic.Group size='tiny' widths={3}>
                 <Statistic>
-                  <Statistic.Value>{currentBalance}</Statistic.Value>
+                  <Statistic.Value>{toString(currentBalance).string}</Statistic.Value>
                   <p style={{ textAlign: 'center' }}>Current Balance</p>
                 </Statistic>
                 <Statistic>
-                  <Statistic.Value>{scheduledIncome}</Statistic.Value>
+                  <Statistic.Value>${scheduledIncome.toFixed(2)}</Statistic.Value>
                   <p style={{ textAlign: 'center' }}>Scheduled Income</p>
                 </Statistic>
                 <Statistic>
-                  <Statistic.Value>-${Math.abs(scheduledExpenses)}</Statistic.Value>
+                  <Statistic.Value>{toString(scheduledExpenses).string}</Statistic.Value>
                   <p style={{ textAlign: 'center' }}>Scheduled Expenses</p>
                 </Statistic>
               </Statistic.Group>
             </Grid.Column>
             <Grid.Column width={5} textAlign='left'>
-              <Statistic size='small' color='green'>
-                <Statistic.Value>{this.props.transactions[0].balance.toFixed(2)}</Statistic.Value>
+              <Statistic size='small' color={toString(totalBalance).color}>
+                <Statistic.Value>{toString(totalBalance).string}</Statistic.Value>
                 <Statistic.Label>Total Balance</Statistic.Label>
               </Statistic>
             </Grid.Column>
