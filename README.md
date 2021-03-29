@@ -1,9 +1,10 @@
 # Table of Contents
-* [01/24/2021 - 02/21/2021](#01/24/2021-02/21/2021-|-Milestone-1:-Mockup Development)
-* [02/21/2021 - 03/21/2021](#02/21/2021)
+* [01/24/2021 - 02/21/2021](#milestone-1)
+* [02/21/2021 - 03/21/2021](#milestone-2)
 
 # Development History
-## 01/24/2021 - 02/21/2021 | Milestone 1: Mockup Development
+## Milestone 1
+## 01/24/2021 - 02/21/2021 | Mockup Development
 * Created HTML mockups for the following pages: Sign Up and Sign In, Landing, Overview, Monthly Spending, TransactionsList
 * Developed a database schema for Transaction collection
 
@@ -46,7 +47,8 @@
 
 ***
 
-## 02/21/2021 - 03/21/2021 | Milestone 2: Database Implementation
+## Milestone 2
+## 02/21/2021 - 03/21/2021 | Database Implementation
 *
 
 # Pending Enhancements
