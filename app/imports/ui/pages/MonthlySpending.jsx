@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import SpendingRow from '../components/MonthlySpendingRow';
 import MonthlySpendingChart from '../components/MonthlySpendingChart';
 import { Transactions } from '../../api/transaction/Transaction';
-import { getCategoryEquivalent } from "../utilities/GlobalFunctions";
+import { getCategoryEquivalent } from '../utilities/GlobalFunctions';
 
 class MonthlySpending extends React.Component {
   constructor(props) {
@@ -27,7 +27,9 @@ class MonthlySpending extends React.Component {
     const spending = this.props.transactions.filter(({ amount }) => amount < 0);
     const month = new Date();
     month.setHours(0, 0, 0, 0);
-    const currentMonth = spending.filter(({ date }) => month.getMonth() === date.getMonth() && date <= month);
+    let currentMonth = [{}];
+    currentMonth = spending.filter(({ date }) => month.getMonth() === date.getMonth() && date <= month);
+    currentMonth = _.sortBy(currentMonth, 'date');
     const monthlySpending = [];
     let totalSpending = 0;
     for (let i = 0; i < currentMonth.length; i++) {
@@ -62,7 +64,7 @@ class MonthlySpending extends React.Component {
 
     return (
       <Container style={{ margin: '2rem 1rem' }}>
-        <MonthlySpendingChart totalSpending={totalSpending} data={chartData}
+        <MonthlySpendingChart totalSpending={totalSpending.toFixed(2)} data={chartData}
                               month={month.toLocaleString('default', { month: 'long' })}/>
         <div className='monthlySpendingTable'>
           <Table basic='very' selectable>
