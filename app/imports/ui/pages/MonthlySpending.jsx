@@ -2,11 +2,11 @@ import React from 'react';
 import { Table, Container, Loader } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import Highcharts from 'highcharts';
 import PropTypes from 'prop-types';
 import SpendingRow from '../components/MonthlySpendingRow';
 import MonthlySpendingChart from '../components/MonthlySpendingChart';
 import { Transactions } from '../../api/transaction/Transaction';
+import { getCategoryEquivalent } from "../utilities/GlobalFunctions";
 
 class MonthlySpending extends React.Component {
   constructor(props) {
@@ -14,71 +14,7 @@ class MonthlySpending extends React.Component {
     this.state = {
       categoryName: '',
       text: '',
-      totalSpending: 0,
-      chart: {},
     };
-  }
-
-  componentDidMount() {
-
-  }
-
-  monthSpending() {
-    // Highcharts.chart('monthSpending', {
-    //   chart: {
-    //     plotBackgroundColor: null,
-    //     plotBorderWidth: null,
-    //     plotShadow: false,
-    //     type: 'pie',
-    //   },
-    //   title: {
-    //     text: `November Spending: $${this.state.totalSpending}`,
-    //   },
-    //   tooltip: {
-    //     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
-    //   },
-    //   credits: {
-    //     enabled: false,
-    //   },
-    //   accessibility: {
-    //     point: {
-    //       valueSuffix: '%',
-    //     },
-    //   },
-    //   plotOptions: {
-    //     pie: {
-    //       allowPointSelect: true,
-    //       cursor: 'pointer',
-    //       dataLabels: {
-    //         enabled: true,
-    //         format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-    //       },
-    //     },
-    //   },
-    //   series: [{
-    //     name: 'Categories',
-    //     colorByPoint: true,
-    //     point: {
-    //       events: {
-    //         // have to fix later
-    //         click: function (e) {
-    //           const category = e.point.options.name;
-    //           this.setState({ categoryName: category });
-    //         },
-    //       },
-    //     },
-    //     data: [{
-    //       name: 'Groceries',
-    //       y: 61.41,
-    //     }, {
-    //       name: 'Restaurants',
-    //       y: 11.84,
-    //     }, {
-    //       name: 'Fun',
-    //       y: 30.85,
-    //     }],
-    //   }],
-    // });
   }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
@@ -106,21 +42,28 @@ class MonthlySpending extends React.Component {
       totalSpending += Math.abs(currentMonth[i].amount);
       monthlySpending.push(data);
     }
-
-    const chartData = [{
-      name: 'Groceries',
-      y: 61.41,
-    }, {
-      name: 'Restaurants',
-      y: 11.84,
-    }, {
-      name: 'Fun',
-      y: 30.85,
-    }];
+    // eslint-disable-next-line no-undef
+    const groupedCategory = _.groupBy(currentMonth, 'category');
+    const categoryName = Object.keys(groupedCategory);
+    const chartData = [];
+    for (let i = 0; i < categoryName.length; i++) {
+      let amount = 0;
+      let category = '';
+      for (let j = 0; j < groupedCategory[categoryName[i]].length; j++) {
+        amount += Math.abs(groupedCategory[categoryName[i]][j].amount);
+        category = getCategoryEquivalent(groupedCategory[categoryName[i]][j].category, 'label');
+      }
+      chartData.push({
+        name: category,
+        y: amount / totalSpending,
+        x: amount,
+      });
+    }
 
     return (
       <Container style={{ margin: '2rem 1rem' }}>
-        <MonthlySpendingChart totalSpending={totalSpending} data={chartData} month={month.getMonth()}/>
+        <MonthlySpendingChart totalSpending={totalSpending} data={chartData}
+                              month={month.toLocaleString('default', { month: 'long' })}/>
         <div className='monthlySpendingTable'>
           <Table basic='very' selectable>
             <Table.Header>

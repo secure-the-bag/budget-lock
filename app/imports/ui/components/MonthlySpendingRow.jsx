@@ -80,7 +80,7 @@ class MonthlySpendingRow extends React.Component {
             <Table.Cell>{this.props.data.date}</Table.Cell>
             <Table.Cell>{this.props.data.payee}</Table.Cell>
             <Table.Cell>{getCategoryEquivalent(this.props.data.category, 'label')}</Table.Cell>
-            <Table.Cell style={{ color: 'red' }}>${this.props.data.amount}</Table.Cell>
+            <Table.Cell style={{ color: 'red' }}>-${Math.abs(this.props.data.amount).toFixed(2)}</Table.Cell>
           </Table.Row>
         }
         onClose={() => this.setState({ open: false })}

@@ -22,7 +22,8 @@ class MonthlySpendingChart extends React.Component {
         text: `${_this.props.month} Spending: $${_this.props.totalSpending}`,
       },
       tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
+        // eslint-disable-next-line no-template-curly-in-string
+        pointFormat: '{point.name}: <b>${point.x}</b>',
       },
       credits: {
         enabled: false,
