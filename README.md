@@ -1,8 +1,6 @@
 # Table of Contents
-* [Development History](#development-history)
-  [01/24/2021 - 02/21/2021](#01/24/2021)
-* [Pending Enhancements](#pending-enhancements)
-* [The Team](#the-team)
+* [01/24/2021 - 02/21/2021](#01/24/2021)
+* [02/21/2021 - 03/21/2021](#02/21/2021)
 
 # Development History
 ## 01/24/2021 - 02/21/2021 | Milestone 1: Mockup Development
