@@ -58,17 +58,14 @@ class Profile extends React.Component {
   }
 
   verifyPassword() {
-
     if (this.state.newPassword !== this.state.verifyPassword) {
       swal('Error', 'New Password does not match.', 'error').then();
       return;
     }
-
     if (this.state.newPassword.length < 5 || this.state.verifyPassword.length < 5) {
       swal('Error', 'New password must be 5 characters or longer.', 'error').then();
       return;
     }
-
     const react = this;
     Accounts.changePassword(this.state.oldPassword, this.state.newPassword, function (err) {
       if (!err) {
@@ -175,10 +172,10 @@ class Profile extends React.Component {
           <Modal.Content>
             <Form>
               <Form.Input label='Current Password' type='password' required
-                          autocomplete='current-password'
+                          autoComplete='current-password'
                           onChange={(e, data) => this.onChangeOldPW(e, data)}/>
               <Form.Input label='New Password' type='password' required
-                          autocomplete='new-password'
+                          autoComplete='new-password'
                           placeholder='New password must be 5 characters or longer'
                           onChange={(e, data) => this.onChangeNewPW(e, data)}/>
               <Form.Input label='Verify New Password' type='password' required
