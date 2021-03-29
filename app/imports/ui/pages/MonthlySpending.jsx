@@ -11,10 +11,7 @@ import { getCategoryEquivalent } from '../utilities/GlobalFunctions';
 class MonthlySpending extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      categoryName: '',
-      text: '',
-    };
+    this.state = {};
   }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
@@ -27,8 +24,9 @@ class MonthlySpending extends React.Component {
     const spending = this.props.transactions.filter(({ amount }) => amount < 0);
     const month = new Date();
     month.setHours(0, 0, 0, 0);
-    let currentMonth = [{}];
+    let currentMonth;
     currentMonth = spending.filter(({ date }) => month.getMonth() === date.getMonth() && date <= month);
+    // eslint-disable-next-line no-undef
     currentMonth = _.sortBy(currentMonth, 'date');
     const monthlySpending = [];
     let totalSpending = 0;

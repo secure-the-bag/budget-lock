@@ -61,6 +61,8 @@ class MonthlySpendingRow extends React.Component {
           swal('Success', 'Transaction updated successfully', 'success').then(() => {
             react.setState({ open: false });
             formRef.reset();
+            // eslint-disable-next-line no-undef
+            window.location.reload();
           });
         }
       });
