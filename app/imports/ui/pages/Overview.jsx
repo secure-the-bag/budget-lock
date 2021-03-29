@@ -5,7 +5,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Transactions } from '../../api/transaction/Transaction';
 import MonthlySpendingChart from '../components/MonthlySpendingChart';
-import CashFlowOverTimeChart from "../components/CashFlowOverTimeChart";
+import CashFlowOverTimeChart from '../components/CashFlowOverTimeChart';
 import { getCategoryEquivalent } from '../utilities/GlobalFunctions';
 
 class Overview extends React.Component {
