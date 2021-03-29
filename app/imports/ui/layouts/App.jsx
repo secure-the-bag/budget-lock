@@ -35,11 +35,8 @@ class App extends React.Component {
               <ProtectedRoute path="/overview" component={Overview}/>
               <ProtectedRoute path="/transactions" component={TransactionsList}/>
               <ProtectedRoute path="/monthly-spending" component={MonthlySpending}/>
-              <ProtectedRoute path="/list" component={ListStuff}/>
-              <ProtectedRoute path="/add" component={AddStuff}/>
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
               <ProtectedRoute path="/profile" component={Profile}/>
-              <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <Route component={NotFound}/>
             </Switch>
             <Footer/>
