@@ -93,10 +93,12 @@ class MonthlySpending extends React.Component {
     const monthlySpending = [];
     for (let i = 0; i < currentMonth.length; i++) {
       const data = {
-        text: this.props.transactions[i].payee,
-        price: this.props.transactions[i].amount,
-        date: this.props.transactions[i].date.toLocaleDateString(),
-        category: this.props.transactions[i].category,
+        payee: currentMonth[i].payee,
+        amount: currentMonth[i].amount,
+        date: currentMonth[i].date.toLocaleDateString(),
+        category: currentMonth[i].category,
+        notes: currentMonth[i].notes,
+        _id: currentMonth[i]._id,
       };
       monthlySpending.push(data);
     }
@@ -109,7 +111,7 @@ class MonthlySpending extends React.Component {
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>Date</Table.HeaderCell>
-                <Table.HeaderCell>Place</Table.HeaderCell>
+                <Table.HeaderCell>Payee</Table.HeaderCell>
                 <Table.HeaderCell>Category</Table.HeaderCell>
                 <Table.HeaderCell>Amount</Table.HeaderCell>
               </Table.Row>

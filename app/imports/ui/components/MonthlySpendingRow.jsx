@@ -1,7 +1,38 @@
 import React from 'react';
-import { Table, Modal, Button, Header, Icon, Form, Select } from 'semantic-ui-react';
+import { Table, Modal, Button, Header, Icon } from 'semantic-ui-react';
+import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
-import { getCategoryEquivalent } from '../utilities/GlobalFunctions';
+import {
+  AutoForm,
+  ErrorsField, LongTextField,
+  SelectField,
+  TextField,
+} from 'uniforms-semantic';
+import SimpleSchema from 'simpl-schema';
+import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
+import swal from 'sweetalert';
+import { getCategoryEquivalent, getCategoryChoices } from '../utilities/GlobalFunctions';
+import { Transactions } from '../../api/transaction/Transaction';
+
+const formSchema = new SimpleSchema({
+  date: Date,
+  payee: {
+    type: String,
+    optional: true,
+  },
+  category: String,
+  amount: Number,
+  name: {
+    type: String,
+    optional: true,
+  },
+  notes: {
+    type: String,
+    optional: true,
+  },
+});
+
+const bridge = new SimpleSchema2Bridge(formSchema);
 
 class MonthlySpendingRow extends React.Component {
   constructor(props) {
@@ -11,18 +42,33 @@ class MonthlySpendingRow extends React.Component {
     };
   }
 
+  // On submit, insert data.
+  submit(data, formRef) {
+    const { date, category, amount } = data;
+    const balance = 0;
+    const owner = Meteor.user().username;
+    const payee = (typeof data.payee === 'string') ? data.payee : '';
+    const name = (typeof data.name === 'string') ? data.name : '';
+    const notes = (typeof data.notes === 'string') ? data.notes : '';
+    const react = this;
+
+    Transactions.collection.update(this.props.data._id,
+      { $set: { name, date, payee, amount, balance, notes, owner, category } },
+      (error) => {
+        if (error) {
+          swal('Error', error.message, 'error');
+        } else {
+          swal('Success', 'Transaction updated successfully', 'success').then(() => {
+            react.setState({ open: false });
+            formRef.reset();
+          });
+        }
+      });
+  }
+
   render() {
 
-    const options = [
-      { key: 'm', text: 'Shopping', value: 'Shopping' },
-      { key: 'f', text: 'Fun', value: 'Fun' },
-      { key: 'o', text: 'Restaurants', value: 'Restaurants' },
-    ];
-
-    const modal = (e, text) => {
-      console.log('clicked');
-      console.log(text);
-    };
+    let formRef = null;
 
     return (
       <Modal
@@ -30,12 +76,11 @@ class MonthlySpendingRow extends React.Component {
         closeIcon
         open={this.state.open}
         trigger={
-          <Table.Row onClick={(e) => modal(e, this.props.data.text)}
-                     style={{ cursor: 'pointer' }}>
+          <Table.Row style={{ cursor: 'pointer' }}>
             <Table.Cell>{this.props.data.date}</Table.Cell>
-            <Table.Cell>{this.props.data.text}</Table.Cell>
+            <Table.Cell>{this.props.data.payee}</Table.Cell>
             <Table.Cell>{getCategoryEquivalent(this.props.data.category, 'label')}</Table.Cell>
-            <Table.Cell style={{ color: 'red' }}>-${this.props.data.price}</Table.Cell>
+            <Table.Cell style={{ color: 'red' }}>${this.props.data.amount}</Table.Cell>
           </Table.Row>
         }
         onClose={() => this.setState({ open: false })}
@@ -43,40 +88,22 @@ class MonthlySpendingRow extends React.Component {
       >
         <Header icon='money bill alternate outline' content='Edit Transaction' />
         <Modal.Content>
-          <Form>
-            <Form.Field>
-              <label>Date</label>
-              <input placeholder='Date'
-                     defaultValue={this.props.data.date}/>
-            </Form.Field>
-            <Form.Field>
-              <label>Store</label>
-              <input placeholder='Store'
-                     defaultValue={this.props.data.text}
-              />
-            </Form.Field>
-            <Form.Field>
-              <label>Amount</label>
-              <input placeholder='$0.00'
-                     defaultValue={this.props.data.price}/>
-            </Form.Field>
-            <Form.Field
-              control={Select}
-              label='Category'
-              options={options}
-              placeholder='Shopping'
-            />
-            <Button type='submit'>Submit</Button>
-          </Form>
+          <AutoForm ref={ref => { formRef = ref; }}
+                    schema={bridge}
+                    model={this.props.data}
+                    onSubmit={data => { this.submit(data, formRef); }}>
+            <TextField name='date'/>
+            <TextField name='payee'/>
+            <SelectField name='category'
+                         options={getCategoryChoices()}/>
+            <TextField name='amount'/>
+            <LongTextField name='notes'/>
+            <Button color='green'>
+              <Icon name='checkmark' /> Update
+            </Button>
+            <ErrorsField/>
+          </AutoForm>
         </Modal.Content>
-        <Modal.Actions>
-          <Button color='red' onClick={() => this.setState({ open: false })}>
-            <Icon name='remove' /> No
-          </Button>
-          <Button color='green' onClick={() => this.setState({ open: true })}>
-            <Icon name='checkmark' /> Yes
-          </Button>
-        </Modal.Actions>
       </Modal>
     );
   }
