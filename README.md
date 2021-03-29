@@ -49,16 +49,17 @@
 
 ## Milestone 2
 ## 02/21/2021 - 03/21/2021 | Database Implementation
-*
+* Linked the database to the different pages
+* Implemented Trillo API functionality
 
 # Pending Enhancements
-*
+* Implement 2FA with Trillo on Sign Up page
 
 # The Team
 ### Nadine Alcantara
 * Done
-  *
-  *
+  * Created Profiles API
+  * Linked Profiles API to Sign Up page to add profiles to the collections 
 * Next
   *
   *
