@@ -11,7 +11,7 @@ app.get('/login', (req, res) => {
     .verifications
     .create({
       to: `+${req.query.phoneNumber}`,
-      channel: 'sms',
+      channel: req.query.channel,
     })
     .then((data) => {
       res.status(200).send(data);
