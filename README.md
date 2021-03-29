@@ -54,6 +54,7 @@
 
 # Pending Enhancements
 * Implement 2FA with Trillo on Sign Up page
+* Further enhance the pages and add the Admin page
 
 # The Team
 ### Nadine Alcantara
@@ -61,8 +62,8 @@
   * Created Profiles API
   * Linked Profiles API to Sign Up page to add profiles to the collections 
 * Next
-  *
-  *
+  * Further assist in implementing database schemas into pages
+  * Implement the Admin page 
 
 ### Jennifer Hsu
 * Done
