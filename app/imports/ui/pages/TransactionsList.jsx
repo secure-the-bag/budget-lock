@@ -25,11 +25,11 @@ class TransactionsList extends React.Component {
     const scheduledTransactions = this.props.transactions.filter(({ date }) => date > today);
 
     // compute for balances, total expenses, and total income
+    const total = (array) => array.reduce((accumulator, transaction) => accumulator + transaction.amount, 0);
     const totalBalance = this.props.transactions[0].balance;
     const currentBalance = clearedTransactions[0].balance;
-    const scheduledExpenses = scheduledTransactions.filter(({ amount }) => amount < 0)
-        .reduce((accumulator, transaction) => accumulator + transaction.amount, 0);
-    const scheduledIncome = ((totalBalance - currentBalance) + Math.abs(scheduledExpenses));
+    const scheduledExpenses = total(scheduledTransactions.filter(({ amount }) => amount < 0));
+    const scheduledIncome = total(scheduledTransactions.filter(({ amount }) => amount >= 0));
 
     // convert to computed numbers to string
     const toStringColor = (value) => ((value < 0) ?
