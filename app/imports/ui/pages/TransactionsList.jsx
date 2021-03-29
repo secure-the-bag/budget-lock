@@ -32,7 +32,7 @@ class TransactionsList extends React.Component {
     const scheduledIncome = ((totalBalance - currentBalance) + Math.abs(scheduledExpenses));
 
     // convert to computed numbers to string
-    const toString = (value) => ((value < 0) ?
+    const toStringColor = (value) => ((value < 0) ?
         { string: `-$${(Math.abs(value)).toFixed(2)}`, color: 'red' } :
         { string: `$${value.toFixed(2)}`, color: 'green' });
 
@@ -44,7 +44,7 @@ class TransactionsList extends React.Component {
             <Grid.Column width={8} textAlign='right'>
               <Statistic.Group size='tiny' widths={3}>
                 <Statistic>
-                  <Statistic.Value>{toString(currentBalance).string}</Statistic.Value>
+                  <Statistic.Value>{toStringColor(currentBalance).string}</Statistic.Value>
                   <p style={{ textAlign: 'center' }}>Current Balance</p>
                 </Statistic>
                 <Statistic>
@@ -52,14 +52,14 @@ class TransactionsList extends React.Component {
                   <p style={{ textAlign: 'center' }}>Scheduled Income</p>
                 </Statistic>
                 <Statistic>
-                  <Statistic.Value>{toString(scheduledExpenses).string}</Statistic.Value>
+                  <Statistic.Value>{toStringColor(scheduledExpenses).string}</Statistic.Value>
                   <p style={{ textAlign: 'center' }}>Scheduled Expenses</p>
                 </Statistic>
               </Statistic.Group>
             </Grid.Column>
             <Grid.Column width={5} textAlign='left'>
-              <Statistic size='small' color={toString(totalBalance).color}>
-                <Statistic.Value>{toString(totalBalance).string}</Statistic.Value>
+              <Statistic size='small' color={toStringColor(totalBalance).color}>
+                <Statistic.Value>{toStringColor(totalBalance).string}</Statistic.Value>
                 <Statistic.Label>Total Balance</Statistic.Label>
               </Statistic>
             </Grid.Column>
