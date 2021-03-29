@@ -1,0 +1,16 @@
+[
+  {
+    "owner": "admin@foo.com",
+    "firstName": "Admin",
+    "lastName": "Foo",
+    "email": "admin@foo.com",
+    "phoneNumber": "123456789"
+  },
+  {
+    "owner": "john@foo.com",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john@foo.com",
+    "phoneNumber": "123456789"
+  }
+]
