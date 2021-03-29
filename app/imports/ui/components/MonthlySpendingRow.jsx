@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table, Modal, Button, Header, Icon, Form, Select } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import { getCategoryEquivalent } from '../utilities/GlobalFunctions';
 
 class MonthlySpendingRow extends React.Component {
   constructor(props) {
@@ -31,8 +32,9 @@ class MonthlySpendingRow extends React.Component {
         trigger={
           <Table.Row onClick={(e) => modal(e, this.props.data.text)}
                      style={{ cursor: 'pointer' }}>
-            <Table.Cell>{this.props.data.text}</Table.Cell>
             <Table.Cell>{this.props.data.date}</Table.Cell>
+            <Table.Cell>{this.props.data.text}</Table.Cell>
+            <Table.Cell>{getCategoryEquivalent(this.props.data.category, 'label')}</Table.Cell>
             <Table.Cell style={{ color: 'red' }}>-${this.props.data.price}</Table.Cell>
           </Table.Row>
         }
@@ -43,15 +45,15 @@ class MonthlySpendingRow extends React.Component {
         <Modal.Content>
           <Form>
             <Form.Field>
+              <label>Date</label>
+              <input placeholder='Date'
+                     defaultValue={this.props.data.date}/>
+            </Form.Field>
+            <Form.Field>
               <label>Store</label>
               <input placeholder='Store'
                      defaultValue={this.props.data.text}
               />
-            </Form.Field>
-            <Form.Field>
-              <label>Date</label>
-              <input placeholder='Date'
-                     defaultValue={this.props.data.date}/>
             </Form.Field>
             <Form.Field>
               <label>Amount</label>

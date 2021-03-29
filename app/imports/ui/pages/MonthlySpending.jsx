@@ -1,7 +1,11 @@
 import React from 'react';
-import { Table, Container } from 'semantic-ui-react';
+import { Table, Container, Loader } from 'semantic-ui-react';
+import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
 import Highcharts from 'highcharts';
+import PropTypes from 'prop-types';
 import SpendingRow from '../components/MonthlySpendingRow';
+import { Transactions } from '../../api/transaction/Transaction';
 
 class MonthlySpending extends React.Component {
   constructor(props) {
@@ -74,17 +78,28 @@ class MonthlySpending extends React.Component {
     });
   }
 
+  // /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
+  // render() {
+  //   return (this.props.ready) ? this.renderPage() : <Loader active>
+  //     Fetching Transactions</Loader>;
+  // }
+
   render() {
 
-    const data = [{
-      text: 'Walmart',
-      price: 9.53,
-      date: '12/03/2021',
-    }, {
-      text: 'Tepresso',
-      price: 3.53,
-      date: '12/05/2021',
-    }];
+    const spending = this.props.transactions.filter(({ amount }) => amount < 0);
+    const month = new Date();
+    month.setHours(0, 0, 0, 0);
+    const currentMonth = spending.filter(({ date }) => month.getMonth() === date.getMonth() && date <= month);
+    const monthlySpending = [];
+    for (let i = 0; i < currentMonth.length; i++) {
+      const data = {
+        text: this.props.transactions[i].payee,
+        price: this.props.transactions[i].amount,
+        date: this.props.transactions[i].date.toLocaleDateString(),
+        category: this.props.transactions[i].category,
+      };
+      monthlySpending.push(data);
+    }
 
     return (
       <Container style={{ margin: '2rem 1rem' }}>
@@ -93,13 +108,14 @@ class MonthlySpending extends React.Component {
           <Table basic='very' selectable>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell>Place</Table.HeaderCell>
                 <Table.HeaderCell>Date</Table.HeaderCell>
-                <Table.HeaderCell>Money</Table.HeaderCell>
+                <Table.HeaderCell>Place</Table.HeaderCell>
+                <Table.HeaderCell>Category</Table.HeaderCell>
+                <Table.HeaderCell>Amount</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              {data.map((dati, index) => <SpendingRow key={index} data={dati}/>)}
+              {monthlySpending.map((data, index) => <SpendingRow key={index} data={data}/>)}
             </Table.Body>
           </Table>
         </div>
@@ -108,4 +124,18 @@ class MonthlySpending extends React.Component {
   }
 }
 
-export default MonthlySpending;
+/** Ensure that the React Router location object is available in case we need to redirect. */
+MonthlySpending.propTypes = {
+  transactions: PropTypes.array.isRequired,
+  ready: PropTypes.bool.isRequired,
+};
+
+/** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
+export default withTracker(() => {
+  // Get access to Transaction documents.
+  const sub = Meteor.subscribe(Transactions.userPublicationName);
+  return {
+    transactions: Transactions.collection.find({}).fetch(),
+    ready: sub.ready(),
+  };
+})(MonthlySpending);
