@@ -67,11 +67,14 @@
 
 ### Jennifer Hsu
 * Done
-  *
-  *
+  * Implemented Profile and connected it to database
+  * Implemented Monthly Spending page and connected it to database (allow user to also edit transaction)
+  * Updated Overview to connect with Monthly Spending
+  * Conducted research on bcrypt; turns out Meteor already implements bcrypt internally.
 * Next
-  *
-  *
+  * Implement Cash Flow Over Time page and database
+  * Update Overview
+  * Implement Budget editor and API
 
 ### Andre Joseph Ruiz
 * Done
