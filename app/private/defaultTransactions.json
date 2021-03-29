@@ -1,0 +1,59 @@
+[
+  {
+    "date": "Wed Mar 31 2021 00:00:00 GMT-1000 (Hawaii-Aleutian Standard Time)",
+    "payee": "Discover",
+    "category": "creditCard",
+    "notes": "",
+    "amount": -150,
+    "balance": 868.90,
+    "owner": "admin@foo.com"
+  }, {
+    "date": "Tues Mar 30 2021 00:00:00 GMT-1000 (Hawaii-Aleutian Standard Time)",
+    "payee": "University of Hawaii",
+    "category": "paycheck",
+    "notes": "",
+    "amount": 360.26,
+    "balance": 1018.90,
+    "owner": "admin@foo.com"
+  }, {
+    "date": "Mon Mar 29 2021 00:00:00 GMT-1000 (Hawaii-Aleutian Standard Time)",
+    "payee": "Spotify",
+    "category": "subscription",
+    "notes": "",
+    "amount": -5.22,
+    "balance": 658.64,
+    "owner": "admin@foo.com"
+  }, {
+    "date": "Wed Mar 24 2021 00:00:00 GMT-1000 (Hawaii-Aleutian Standard Time)",
+    "payee": "Walmart",
+    "category": "groceries",
+    "notes": "",
+    "amount": -21.36,
+    "balance": 663.86,
+    "owner": "admin@foo.com"
+  }, {
+    "date": "Wed Mar 24 2021 00:00:00 GMT-1000 (Hawaii-Aleutian Standard Time)",
+    "payee": "Ireh Restaurant",
+    "category": "restaurant",
+    "notes": "",
+    "amount": -17.32,
+    "balance": 675.22,
+    "owner": "admin@foo.com"
+  }, {
+    "date": "Wed Mar 24 2021 00:00:00 GMT-1000 (Hawaii-Aleutian Standard Time)",
+    "payee": "University of Hawaii",
+    "category": "paycheck",
+    "notes": "",
+    "amount": 402.43,
+    "balance": 682.54,
+    "owner": "admin@foo.com"
+  }, {
+    "date": "Sat Mar 20 2021 00:00:00 GMT-1000 (Hawaii-Aleutian Standard Time)",
+    "payee": "",
+    "notes": "",
+    "category": "starting",
+    "amount": 280.11,
+    "balance": 280.11,
+    "owner": "admin@foo.com"
+  }
+]

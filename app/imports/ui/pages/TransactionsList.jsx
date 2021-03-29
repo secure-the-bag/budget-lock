@@ -1,77 +1,30 @@
 import React from 'react';
-import { Container, Divider, Grid, Input, Statistic, Table } from 'semantic-ui-react';
+import { Container, Divider, Grid, Input, Loader, Statistic, Table } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
 import TransactionItem from '../components/TransactionItem';
 import AddTransaction from '../components/AddTransaction';
+import { Transactions } from '../../api/transaction/Transaction';
 
 /**
  * User can add transactions by month, budget, due date, and type
  */
 class TransactionsList extends React.Component {
+
+  /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
-    const allTransactions = [{
-      name: '',
-      date: new Date(2021, 2, 31),
-      payee: 'Discover',
-      category: 'creditCard',
-      notes: '',
-      amount: -150,
-      balance: 868.90,
-    }, {
-      name: '',
-      date: new Date(2021, 2, 30),
-      payee: 'University of Hawaii',
-      category: 'paycheck',
-      notes: '',
-      amount: 360.26,
-      balance: 1018.90,
-    }, {
-      name: '',
-      date: new Date(2021, 2, 29),
-      payee: 'Spotify',
-      category: 'subscription',
-      notes: '',
-      amount: -5.22,
-      balance: 658.64,
-    }, {
-      name: '',
-      date: new Date(2021, 2, 24),
-      payee: 'Walmart',
-      category: 'groceries',
-      notes: '',
-      amount: -21.36,
-      balance: 663.86,
-    }, {
-      name: '',
-      date: new Date(2021, 2, 24),
-      payee: 'Ireh Restaurant',
-      category: 'restaurant',
-      notes: '',
-      amount: -17.32,
-      balance: 675.22,
-    }, {
-      name: '',
-      date: new Date(2021, 2, 24),
-      payee: 'University of Hawaii',
-      category: 'paycheck',
-      notes: '',
-      amount: 402.43,
-      balance: 682.54,
-    }, {
-      name: '',
-      date: new Date(2021, 2, 20),
-      payee: '',
-      notes: '',
-      category: 'starting',
-      amount: 280.11,
-      balance: 280.11,
-    }];
+    return (this.props.ready) ? this.renderPage() : <Loader active>Fetching Transactions</Loader>;
+  }
+
+  renderPage() {
 
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const scheduledTransactions = allTransactions.filter(({ date }) => date > today);
+    const scheduledTransactions = this.props.transactions.filter(({ date }) => date > today);
 
-    const clearedTransactions = allTransactions.filter(({ date }) => date <= today);
+    const clearedTransactions = this.props.transactions.filter(({ date }) => date <= today);
 
     return (
       <Container style={{ margin: '2rem 1rem' }}>
@@ -143,4 +96,18 @@ class TransactionsList extends React.Component {
   }
 }
 
-export default TransactionsList;
+/** Ensure that the React Router location object is available in case we need to redirect. */
+TransactionsList.propTypes = {
+  transactions: PropTypes.array.isRequired,
+  ready: PropTypes.bool.isRequired,
+};
+
+/** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
+export default withTracker(() => {
+  // Get access to Transaction documents.
+  const sub = Meteor.subscribe(Transactions.userPublicationName);
+  return {
+    transactions: Transactions.collection.find({}).fetch(),
+    ready: sub.ready(),
+  };
+})(TransactionsList);
