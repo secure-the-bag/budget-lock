@@ -79,11 +79,11 @@
 
 ### Daphne Marie Tapia
 * Done
-  *
-  *
+  * Further development of TransactionsList.jsx (formerly Transactions.jsx, filters 'Sheduled Transactions' and 'Cleared Transactions')
+  * Further development of AddTransaction.jsx (user can now add a transaction to collection; matched form schema with collection's schema)
 * Next
-  *
-  * 
+  * Implement Upcoming Bills page 
+  * Further development of TransactionItem.jsx (allow user to edit/delete selected transaction/row from database/collection)
 
 Template used for application development: [meteor-application-template-react](http://ics-software-engineering.github.io/meteor-application-template-react/)
 
