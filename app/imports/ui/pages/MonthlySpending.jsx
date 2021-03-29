@@ -5,6 +5,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import Highcharts from 'highcharts';
 import PropTypes from 'prop-types';
 import SpendingRow from '../components/MonthlySpendingRow';
+import MonthlySpendingChart from '../components/MonthlySpendingChart';
 import { Transactions } from '../../api/transaction/Transaction';
 
 class MonthlySpending extends React.Component {
@@ -13,84 +14,86 @@ class MonthlySpending extends React.Component {
     this.state = {
       categoryName: '',
       text: '',
+      totalSpending: 0,
+      chart: {},
     };
   }
 
   componentDidMount() {
-    this.monthSpending();
+
   }
 
   monthSpending() {
-    Highcharts.chart('monthSpending', {
-      chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        type: 'pie',
-      },
-      title: {
-        text: 'November Spending: $432.12',
-      },
-      tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
-      },
-      credits: {
-        enabled: false,
-      },
-      accessibility: {
-        point: {
-          valueSuffix: '%',
-        },
-      },
-      plotOptions: {
-        pie: {
-          allowPointSelect: true,
-          cursor: 'pointer',
-          dataLabels: {
-            enabled: true,
-            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-          },
-        },
-      },
-      series: [{
-        name: 'Categories',
-        colorByPoint: true,
-        point: {
-          events: {
-            // have to fix later
-            click: function (e) {
-              const category = e.point.options.name;
-              this.setState({ categoryName: category });
-            },
-          },
-        },
-        data: [{
-          name: 'Groceries',
-          y: 61.41,
-        }, {
-          name: 'Restaurants',
-          y: 11.84,
-        }, {
-          name: 'Fun',
-          y: 30.85,
-        }],
-      }],
-    });
+    // Highcharts.chart('monthSpending', {
+    //   chart: {
+    //     plotBackgroundColor: null,
+    //     plotBorderWidth: null,
+    //     plotShadow: false,
+    //     type: 'pie',
+    //   },
+    //   title: {
+    //     text: `November Spending: $${this.state.totalSpending}`,
+    //   },
+    //   tooltip: {
+    //     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
+    //   },
+    //   credits: {
+    //     enabled: false,
+    //   },
+    //   accessibility: {
+    //     point: {
+    //       valueSuffix: '%',
+    //     },
+    //   },
+    //   plotOptions: {
+    //     pie: {
+    //       allowPointSelect: true,
+    //       cursor: 'pointer',
+    //       dataLabels: {
+    //         enabled: true,
+    //         format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+    //       },
+    //     },
+    //   },
+    //   series: [{
+    //     name: 'Categories',
+    //     colorByPoint: true,
+    //     point: {
+    //       events: {
+    //         // have to fix later
+    //         click: function (e) {
+    //           const category = e.point.options.name;
+    //           this.setState({ categoryName: category });
+    //         },
+    //       },
+    //     },
+    //     data: [{
+    //       name: 'Groceries',
+    //       y: 61.41,
+    //     }, {
+    //       name: 'Restaurants',
+    //       y: 11.84,
+    //     }, {
+    //       name: 'Fun',
+    //       y: 30.85,
+    //     }],
+    //   }],
+    // });
   }
 
-  // /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
-  // render() {
-  //   return (this.props.ready) ? this.renderPage() : <Loader active>
-  //     Fetching Transactions</Loader>;
-  // }
-
+  /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
+    return (this.props.ready) ? this.renderPage() : <Loader active>Fetching Transactions</Loader>;
+  }
+
+  renderPage() {
 
     const spending = this.props.transactions.filter(({ amount }) => amount < 0);
     const month = new Date();
     month.setHours(0, 0, 0, 0);
     const currentMonth = spending.filter(({ date }) => month.getMonth() === date.getMonth() && date <= month);
     const monthlySpending = [];
+    let totalSpending = 0;
     for (let i = 0; i < currentMonth.length; i++) {
       const data = {
         payee: currentMonth[i].payee,
@@ -100,12 +103,24 @@ class MonthlySpending extends React.Component {
         notes: currentMonth[i].notes,
         _id: currentMonth[i]._id,
       };
+      totalSpending += Math.abs(currentMonth[i].amount);
       monthlySpending.push(data);
     }
 
+    const chartData = [{
+      name: 'Groceries',
+      y: 61.41,
+    }, {
+      name: 'Restaurants',
+      y: 11.84,
+    }, {
+      name: 'Fun',
+      y: 30.85,
+    }];
+
     return (
       <Container style={{ margin: '2rem 1rem' }}>
-        <div id='monthSpending'/>
+        <MonthlySpendingChart totalSpending={totalSpending} data={chartData} month={month.getMonth()}/>
         <div className='monthlySpendingTable'>
           <Table basic='very' selectable>
             <Table.Header>
