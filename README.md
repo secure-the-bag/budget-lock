@@ -1,10 +1,10 @@
 # Table of Contents
-* [Development History](#development-history)
-* [Pending Enhancements](#pending-enhancements)
-* [The Team](#the-team)
+* [01/24/2021 - 02/21/2021](#milestone-1)
+* [02/21/2021 - 03/21/2021](#milestone-2)
 
 # Development History
-## Milestone 1: Mockup Development
+## Milestone 1
+## 01/24/2021 - 02/21/2021 | Mockup Development
 * Created HTML mockups for the following pages: Sign Up and Sign In, Landing, Overview, Monthly Spending, TransactionsList
 * Developed a database schema for Transaction collection
 
@@ -47,8 +47,48 @@
 
 ***
 
+## Milestone 2
+## 02/21/2021 - 03/21/2021 | Database Implementation
+* Linked the database to the different pages
+* Implemented Trillo API functionality
+
+# Pending Enhancements
+* Implement 2FA with Trillo on Sign Up page
+* Further enhance the pages and add the Admin page
+
+# The Team
+### Nadine Alcantara
+* Done
+  * Created Profiles API
+  * Linked Profiles API to Sign Up page to add profiles to the collections 
+* Next
+  * Further assist in implementing database schemas into pages
+  * Implement the Admin page 
+
+### Jennifer Hsu
+* Done
+  *
+  *
+* Next
+  *
+  *
+
+### Andre Joseph Ruiz
+* Done
+  * Finished skeleton mockups for 2FA code and setting up Postman testing database.
+* Next
+  * Implementation of 2FA into Signin and Profile Pages.
+
+### Daphne Marie Tapia
+* Done
+  * Further development of TransactionsList.jsx (formerly Transactions.jsx, filters 'Sheduled Transactions' and 'Cleared Transactions')
+  * Further development of AddTransaction.jsx (user can now add a transaction to collection; matched form schema with collection's schema)
+* Next
+  * Implement Upcoming Bills page 
+  * Further development of TransactionItem.jsx (allow user to edit/delete selected transaction/row from database/collection)
+
 Template used for application development: [meteor-application-template-react](http://ics-software-engineering.github.io/meteor-application-template-react/)
 
 ***
 
-Last updated: 02/21/2021
+Last updated: 03/28/2021
