@@ -3,6 +3,7 @@ import { Grid, Progress, Container, Header, Icon, Loader } from 'semantic-ui-rea
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import { iroh } from 'iroh';
 import { Transactions } from '../../api/transaction/Transaction';
 import MonthlySpendingChart from '../components/MonthlySpendingChart';
 import CashFlowOverTimeChart from '../components/CashFlowOverTimeChart';
@@ -20,6 +21,7 @@ class Overview extends React.Component {
   }
 
   renderPage() {
+
     const spending = this.props.transactions.filter(({ amount }) => amount < 0);
     const month = new Date();
     month.setHours(0, 0, 0, 0);
