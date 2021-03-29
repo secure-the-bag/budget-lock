@@ -4,7 +4,7 @@
 * [The Team](#the-team)
 
 # Development History
-## Milestone 1: Mockup Development
+## 01/24/2021 - 02/21/2021 | Milestone 1: Mockup Development
 * Created HTML mockups for the following pages: Sign Up and Sign In, Landing, Overview, Monthly Spending, TransactionsList
 * Developed a database schema for Transaction collection
 
@@ -47,8 +47,47 @@
 
 ***
 
+## 02/21/2021 - 03/21/2021 | Milestone 2: Database Implementation
+*
+
+# Pending Enhancements
+*
+
+# The Team
+### Nadine Alcantara
+* Done
+  *
+  *
+* Next
+  *
+  *
+
+### Jennifer Hsu
+* Done
+  *
+  *
+* Next
+  *
+  *
+
+### Andre Joseph Ruiz
+* Done
+  *
+  *
+* Next
+  *
+  *
+
+### Daphne Marie Tapia
+* Done
+  *
+  *
+* Next
+  *
+  * 
+
 Template used for application development: [meteor-application-template-react](http://ics-software-engineering.github.io/meteor-application-template-react/)
 
 ***
 
-Last updated: 02/21/2021
+Last updated: 03/28/2021
