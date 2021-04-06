@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema from 'simpl-schema';
-import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import swal from 'sweetalert';
+import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { Button, Modal } from 'semantic-ui-react';
 import {
   AutoForm,
   DateField,
   ErrorsField,
-  LongTextField,
   NumField,
   SelectField,
   SubmitField,
@@ -17,41 +16,39 @@ import {
 import { Transactions } from '../../api/transaction/Transaction';
 import { getCategoryChoices } from '../utilities/GlobalFunctions';
 
-const formSchema = new SimpleSchema({
-  date: Date,
-  payee: {
-    type: String,
-    optional: true,
-  },
-  category: String,
-  amount: Number,
-  name: {
-    type: String,
-    optional: true,
-  },
-  notes: {
-    type: String,
-    optional: true,
-  },
-});
+const AddTransaction = () => {
+  const [modalOpen, setModalOpen] = useState(false);
 
-const bridge = new SimpleSchema2Bridge(formSchema);
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  };
 
-class AddTransaction extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      modalOpen: false,
-    };
-  }
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
 
-  // Handles the state of the modal (close or open)
-  handleModalOpen = () => this.setState({ modalOpen: true });
+  const makeSchema = () => new SimpleSchema({
+    date: Date,
+    payee: {
+      type: String,
+      optional: true,
+    },
+    category: String,
+    amount: Number,
+    name: {
+      type: String,
+      optional: true,
+    },
+    notes: {
+      type: String,
+      optional: true,
+    },
+  });
 
-  handleModalClose = () => this.setState({ modalOpen: false });
+  const formSchema = makeSchema();
+  const bridge = new SimpleSchema2Bridge(formSchema);
 
-  // On submit, insert data.
-  submit(data, formRef) {
+  const submit = (data) => {
     const { date, category } = data;
     const payee = (typeof data.payee === 'string') ? data.payee : '';
     const name = (typeof data.name === 'string') ? data.name : '';
@@ -59,51 +56,47 @@ class AddTransaction extends React.Component {
     const amount = (['paycheck', 'starting'].includes(category)) ? data.amount : -data.amount;
     const owner = Meteor.user().username;
     Transactions.collection.insert({ name, date, payee, amount, balance: 0, notes, owner, category },
-        { removeEmptyStrings: false },
-        (error) => {
-      if (error) {
-        swal('Error', error.message, 'error');
-      } else {
-        swal('Success', 'Data added successfully', 'success').then(() => {
-          this.handleModalClose();
-          formRef.reset();
-          // eslint-disable-next-line no-undef
-          window.location.reload();
-        });
-      }
-    });
-  }
+      { removeEmptyStrings: false },
+      (error) => {
+        if (error) {
+          swal('Error', error.message, 'error');
+        } else {
+          swal('Success', 'Data added successfully', 'success').then(() => {
+            handleModalClose();
+          });
+        }
+      });
+  };
 
-  render() {
-    let formRef = null;
-    return (
-      <Modal size='mini'
-             closeIcon
-             open={this.state.modalOpen}
-             onClose={this.handleModalClose}
-             onOpen={this.handleModalOpen}
-             trigger={<Button>Add Transaction</Button>}
-      >
-        <Modal.Header>Add Transaction</Modal.Header>
-        <Modal.Content>
-          <AutoForm ref={ref => { formRef = ref; }}
-                    schema={bridge}
-                    onSubmit={data => { this.submit(data, formRef); }}>
-            <DateField name='date'/>
-            <TextField name='payee'
-                       defaultValue=''/>
-            <SelectField name='category'
-                         options={getCategoryChoices()}/>
-            <NumField name='amount'/>
-            <TextField name='name'/>
-            <LongTextField name='notes'/>
-            <SubmitField value='Submit'/>
-            <ErrorsField/>
-          </AutoForm>
-        </Modal.Content>
-      </Modal>
-    );
-  }
-}
+  return (
+    <Modal as={AutoForm}
+           schema={bridge}
+           onSubmit={data => { submit(data); }}
+           size={'mini'}
+           closeIcon
+           open={modalOpen}
+           onClose={handleModalClose}
+           onOpen={handleModalOpen}
+           trigger={<Button>Add Transaction</Button>}
+           style = {{ fontSize: '13px' }}
+    >
+      <Modal.Header>Add Transaction</Modal.Header>
+      <Modal.Content>
+        <DateField name='date'/>
+        <TextField name='payee'
+                   defaultValue=''/>
+        <SelectField name='category'
+                     options={getCategoryChoices()}/>
+        <NumField name='amount'/>
+        <TextField name='name'/>
+        <TextField name='notes'/>
+        <ErrorsField/>
+      </Modal.Content>
+      <Modal.Actions>
+        <SubmitField value='Submit'/>
+      </Modal.Actions>
+    </Modal>
+  );
+};
 
 export default AddTransaction;

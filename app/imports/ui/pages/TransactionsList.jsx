@@ -117,7 +117,7 @@ export default withTracker(() => {
   // Get access to Transaction documents.
   const sub = Meteor.subscribe(Transactions.userPublicationName);
   return {
-    transactions: Transactions.collection.find({}, { sort: { date: -1 } }).fetch(),
+    transactions: Transactions.collection.find({}, { sort: { date: -1 }, reactive: true }).fetch(),
     ready: sub.ready(),
   };
 })(TransactionsList);
