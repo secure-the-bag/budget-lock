@@ -6,22 +6,32 @@ class BudgetBar extends React.Component {
 
   render() {
 
+    const month = new Date();
+    month.setHours(0, 0, 0, 0);
+
     function getSpending(category, transactions) {
-      return transactions.filter(transaction => transaction.category.toLowerCase() === category.toLowerCase()).reduce((accumulator, transaction) => accumulator + Math.abs(transaction.amount), 0);
+      return transactions.filter(({ amount }) => amount < 0)
+        .filter(({ date }) => month.getMonth() === date.getMonth() && date <= month)
+        .filter(transaction => transaction.category.toLowerCase() === category.toLowerCase())
+        .reduce((accumulator, transaction) => accumulator + Math.abs(transaction.amount), 0);
     }
 
     function getPercentage(cost, transactions, total) {
       const spent = getSpending(cost, transactions);
-      const result = total / spent;
-      if (!Number.isFinite(result)) {
+      const result = spent / total;
+      if (spent === total) {
+        return 100;
+      }
+      if (result === 0) {
         return 0;
       }
-      return result.toFixed(0);
+      return (result * 100).toFixed(0);
     }
 
     function getProgressColor(spent, transactions, total) {
       const percentage = getPercentage(spent, transactions, total);
-      if ((percentage >= 0 && percentage < 50) || !Number.isFinite(percentage)) {
+      console.log(percentage)
+      if ((percentage >= 0 && percentage < 50)) {
         return 'green';
       }
       if (percentage >= 51 && percentage < 90) {
@@ -34,7 +44,7 @@ class BudgetBar extends React.Component {
       <Grid.Row columns={3}>
         <Grid.Column width={3}>
           <b style={{ textTransform: 'capitalize' }}>
-            ${this.props.budget.category}
+            {this.props.budget.category}
             <br/>
             <b>{`$${this.props.budget.budget}`}</b>
           </b>
