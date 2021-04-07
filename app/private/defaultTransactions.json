@@ -5,7 +5,7 @@
     "category": "creditCard",
     "notes": "",
     "amount": -150,
-    "balance": 868.90,
+    "balance": 848.90,
     "owner": "admin@foo.com"
   }, {
     "date": "Tues Mar 30 2021 00:00:00 GMT-1000 (Hawaii-Aleutian Standard Time)",
@@ -13,7 +13,7 @@
     "category": "paycheck",
     "notes": "",
     "amount": 360.26,
-    "balance": 1018.90,
+    "balance": 998.90,
     "owner": "admin@foo.com"
   }, {
     "date": "Mon Mar 29 2021 00:00:00 GMT-1000 (Hawaii-Aleutian Standard Time)",
@@ -21,7 +21,7 @@
     "category": "subscription",
     "notes": "",
     "amount": -5.22,
-    "balance": 658.64,
+    "balance": 638.64,
     "owner": "admin@foo.com"
   }, {
     "date": "Wed Mar 24 2021 00:00:00 GMT-1000 (Hawaii-Aleutian Standard Time)",
@@ -29,7 +29,7 @@
     "category": "groceries",
     "notes": "",
     "amount": -21.36,
-    "balance": 663.86,
+    "balance": 643.86,
     "owner": "admin@foo.com"
   }, {
     "date": "Wed Mar 24 2021 00:00:00 GMT-1000 (Hawaii-Aleutian Standard Time)",
@@ -37,7 +37,7 @@
     "category": "restaurant",
     "notes": "",
     "amount": -17.32,
-    "balance": 675.22,
+    "balance": 665.22,
     "owner": "admin@foo.com"
   }, {
     "date": "Wed Mar 24 2021 00:00:00 GMT-1000 (Hawaii-Aleutian Standard Time)",

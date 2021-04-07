@@ -13,10 +13,12 @@ import {
   SubmitField,
   TextField,
 } from 'uniforms-semantic';
+import PropTypes from 'prop-types';
 import { Transactions } from '../../api/transaction/Transaction';
 import { getCategoryChoices } from '../utilities/GlobalFunctions';
+import { getNewBalance } from '../utilities/UpdateBalances';
 
-const AddTransaction = () => {
+const AddTransaction = (props) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleModalOpen = () => {
@@ -55,7 +57,8 @@ const AddTransaction = () => {
     const notes = (typeof data.notes === 'string') ? data.notes : '';
     const amount = (['paycheck', 'starting'].includes(category)) ? data.amount : -data.amount;
     const owner = Meteor.user().username;
-    Transactions.collection.insert({ name, date, payee, amount, balance: 0, notes, owner, category },
+    const balance = props.transactions.length === 0 ? amount : getNewBalance(date, amount, props.transactions);
+    Transactions.collection.insert({ name, date, payee, amount, balance, notes, owner, category },
       { removeEmptyStrings: false },
       (error) => {
         if (error) {
@@ -97,6 +100,10 @@ const AddTransaction = () => {
       </Modal.Actions>
     </Modal>
   );
+};
+
+AddTransaction.propTypes = {
+  transactions: PropTypes.array.isRequired,
 };
 
 export default AddTransaction;

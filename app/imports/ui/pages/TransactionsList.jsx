@@ -69,7 +69,7 @@ class TransactionsList extends React.Component {
 
           <Grid.Row columns={2} verticalAlign='bottom'>
             <Grid.Column floated='left'>
-              <AddTransaction/>
+              <AddTransaction transactions={this.props.transactions}/>
             </Grid.Column>
             <Grid.Column textAlign='right' floated='right'>
               <Input size='mini' icon='search' placeholder='Search...' />
@@ -116,8 +116,9 @@ TransactionsList.propTypes = {
 export default withTracker(() => {
   // Get access to Transaction documents.
   const sub = Meteor.subscribe(Transactions.userPublicationName);
+  const transactions = Transactions.collection.find({}, { sort: { date: -1 }, reactive: true }).fetch();
   return {
-    transactions: Transactions.collection.find({}, { sort: { date: -1 }, reactive: true }).fetch(),
+    transactions,
     ready: sub.ready(),
   };
 })(TransactionsList);
