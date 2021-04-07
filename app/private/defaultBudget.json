@@ -1,0 +1,17 @@
+[
+  {
+    "budget": 200,
+    "category": "groceries",
+    "owner": "admin@foo.com"
+  },
+  {
+    "budget": 50,
+    "category": "fun",
+    "owner": "admin@foo.com"
+  },
+  {
+    "budget": 50,
+    "category": "restaurants",
+    "owner": "admin@foo.com"
+  }
+]
