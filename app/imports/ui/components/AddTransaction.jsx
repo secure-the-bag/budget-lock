@@ -15,7 +15,7 @@ import {
 } from 'uniforms-semantic';
 import PropTypes from 'prop-types';
 import { Transactions } from '../../api/transaction/Transaction';
-import { getCategoryChoices } from '../utilities/GlobalFunctions';
+import { getCategoryChoices, validateOptionalFields } from '../utilities/GlobalFunctions';
 import { getNewBalance } from '../utilities/UpdateBalances';
 
 const AddTransaction = (props) => {
@@ -29,7 +29,7 @@ const AddTransaction = (props) => {
     setModalOpen(false);
   };
 
-  const makeSchema = () => new SimpleSchema({
+  const formSchema = new SimpleSchema({
     date: Date,
     payee: {
       type: String,
@@ -47,28 +47,22 @@ const AddTransaction = (props) => {
     },
   });
 
-  const formSchema = makeSchema();
   const bridge = new SimpleSchema2Bridge(formSchema);
 
   const submit = (data) => {
     const { date, category } = data;
-    const payee = (typeof data.payee === 'string') ? data.payee : '';
-    const name = (typeof data.name === 'string') ? data.name : '';
-    const notes = (typeof data.notes === 'string') ? data.notes : '';
+    const { payee, name, notes } = validateOptionalFields(data);
     const amount = (['paycheck', 'starting'].includes(category)) ? data.amount : -data.amount;
     const owner = Meteor.user().username;
-    const balance = props.transactions.length === 0 ? amount : getNewBalance(date, amount, props.transactions);
+    const balance = props.transactions.length === 0 ? amount :
+        getNewBalance(date, amount, props.transactions);
     Transactions.collection.insert({ name, date, payee, amount, balance, notes, owner, category },
       { removeEmptyStrings: false },
-      (error) => {
-        if (error) {
-          swal('Error', error.message, 'error');
-        } else {
+      (error) => (error ?
+          swal('Error', error.message, 'error') :
           swal('Success', 'Data added successfully', 'success').then(() => {
             handleModalClose();
-          });
-        }
-      });
+          })));
   };
 
   return (

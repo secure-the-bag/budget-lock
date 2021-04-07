@@ -10,11 +10,11 @@ import { Transactions } from '../../api/transaction/Transaction';
  * Updates the balances of filtered transactions in Transaction collection
  *
  * @param balance, balance after adding the amount of newly added transaction
- * @param nextTransactions, previously keyed in transactions with date field values greater than the new transaction's
+ * @param laterTransactions, previously keyed in transactions with date field values greater than the new transaction's
  */
-const updateBalances = (balance, nextTransactions) => {
+const updateBalances = (balance, laterTransactions) => {
   let updatedBalance = balance;
-  nextTransactions.map((transaction) => {
+  laterTransactions.map((transaction) => {
     updatedBalance += transaction.amount;
     return Transactions.collection.update(transaction._id, { $set: { balance: updatedBalance } });
   });
@@ -31,20 +31,16 @@ const updateBalances = (balance, nextTransactions) => {
 export const getNewBalance = (newDate, newAmount, transactions) => {
   let balance;
 
-  if (transactions.length === 0) {
-    return newAmount;
-  }
+  const laterTransactions = transactions.filter(({ date }) => date >= newDate).reverse();
 
-  const nextTransactions = transactions.filter(({ date }) => date >= newDate).reverse();
-
-  if (nextTransactions.length === 0) {
+  if (laterTransactions.length === 0) {
     balance = transactions[0].balance + newAmount;
   } else {
-    const next = nextTransactions[0];
+    const next = laterTransactions[0];
     const beforeBalance = Number((next.balance - next.amount).toFixed(2));
     balance = beforeBalance + newAmount;
 
-    updateBalances(balance, nextTransactions);
+    updateBalances(balance, laterTransactions);
   }
   return balance;
 };
