@@ -14,9 +14,9 @@ import {
   TextField,
 } from 'uniforms-semantic';
 import PropTypes from 'prop-types';
-import { Transactions } from '../../api/transaction/Transaction';
-import { getCategoryChoices, validateOptionalFields } from '../utilities/GlobalFunctions';
-import { getNewBalance } from '../utilities/UpdateBalances';
+import { Transactions } from '../../../api/transaction/Transaction';
+import { getCategoryChoices, validateOptionalFields } from '../../utilities/GlobalFunctions';
+import { getNewBalance } from '../../utilities/UpdateBalances';
 
 const AddTransaction = (props) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -74,7 +74,9 @@ const AddTransaction = (props) => {
            open={modalOpen}
            onClose={handleModalClose}
            onOpen={handleModalOpen}
-           trigger={<Button>Add Transaction</Button>}
+           trigger={
+             <Button size={'mini'} icon={'add'}/>
+           }
            style = {{ fontSize: '13px' }}
     >
       <Modal.Header>Add Transaction</Modal.Header>

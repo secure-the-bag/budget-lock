@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form, Icon, Modal, Table, Select } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { getCategoryEquivalent } from '../utilities/GlobalFunctions';
+import { getCategoryEquivalent } from '../../utilities/GlobalFunctions';
 
 class TransactionItem extends React.Component {
   constructor(props) {
