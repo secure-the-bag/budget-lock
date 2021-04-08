@@ -16,6 +16,14 @@ class BudgetBar extends React.Component {
         .reduce((accumulator, transaction) => accumulator + Math.abs(transaction.amount), 0);
     }
 
+    function getSpendingLeft(budget, category, transaction) {
+      const spending = budget - getSpending(category, transaction);
+      if (spending <= 0) {
+        return 0;
+      }
+      return spending;
+    }
+
     function getPercentage(cost, transactions, total) {
       const spent = getSpending(cost, transactions);
       const result = spent / total;
@@ -30,7 +38,6 @@ class BudgetBar extends React.Component {
 
     function getProgressColor(spent, transactions, total) {
       const percentage = getPercentage(spent, transactions, total);
-      console.log(percentage)
       if ((percentage >= 0 && percentage < 50)) {
         return 'green';
       }
@@ -53,7 +60,7 @@ class BudgetBar extends React.Component {
           <Progress active progress
                     percent={getPercentage(this.props.budget.category, this.props.transactions, this.props.budget.budget)}
                     color={getProgressColor(this.props.budget.category, this.props.transactions, this.props.budget.budget)}>
-            {`$${this.props.budget.budget - getSpending(this.props.budget.category, this.props.transactions)} left`}
+            {`$${getSpendingLeft(this.props.budget.budget, this.props.budget.category, this.props.transactions)} left`}
           </Progress>
         </Grid.Column>
         <Grid.Column textAlign={'right'} width={3}>

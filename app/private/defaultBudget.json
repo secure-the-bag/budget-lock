@@ -11,7 +11,7 @@
   },
   {
     "budget": 50,
-    "category": "restaurants",
+    "category": "restaurant",
     "owner": "admin@foo.com"
   }
 ]

@@ -80,7 +80,7 @@ class Overview extends React.Component {
                 </Grid.Column>
               </Grid.Row>
             </Grid.Column>
-            <Grid.Row>
+            <Grid.Row style={{ maxWidth: '50rem' }}>
               <BudgetComponent month={month.toLocaleString('default', { month: 'long' })}/>
             </Grid.Row>
           </Grid.Row>

@@ -1,16 +1,19 @@
 import React from 'react';
-import { Grid, Header, Icon, Loader } from 'semantic-ui-react';
+import { Grid, Header, Loader } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Budget } from '../../api/budget/Budget';
 import { Transactions } from '../../api/transaction/Transaction';
+import { Budget } from '../../api/budget/Budget';
 import BudgetBar from './BudgetBar';
+import AddBudget from './AddBudget';
 
 class BudgetComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      open: false,
+    };
   }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
@@ -22,7 +25,7 @@ class BudgetComponent extends React.Component {
     return (
       <Grid.Column width={10} style={{ border: '0.2rem solid gray', padding: '1rem', borderRadius: '10px' }}>
         <Grid.Column align={'right'} style={{ flexGrow: '0', marginBottom: '1.5rem' }}>
-          <Icon name={'settings'} link/>
+          <AddBudget budget={this.props.budget}/>
         </Grid.Column>
         <Grid columns={2} style={{ flexGrow: '0', padding: '0rem 1.5rem' }}>
           <Grid.Row>
@@ -40,7 +43,7 @@ class BudgetComponent extends React.Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-        <Grid columns='2' style={{ padding: '0rem 1.5rem 2rem 1.5rem' }}>
+        <Grid style={{ padding: '0rem 1.5rem 2rem 1.5rem' }}>
           {this.props.budget.map((data, index) => <BudgetBar key={index} budget={data} transactions={this.props.transactions}/>)}
         </Grid>
       </Grid.Column>
