@@ -21,17 +21,25 @@ const updateBalances = (balance, laterTransactions) => {
 };
 
 /**
+ * Gets an array of transaction objects with date field values greater than the new transaction's date field.
+ *
+ * @param newDate, date of new transaction
+ * @param transactions, Transaction.collection
+ */
+const getLaterTransactions = (newDate, transactions) => transactions.filter(({ date }) => date > newDate).reverse();
+
+/**
  * Computes for the new balance after user inputs a new transaction
  *
- * @param newDate
- * @param newAmount
- * @param transactions
+ * @param newDate, date of new transaction
+ * @param newAmount, amount of new transaction
+ * @param transactions, Transaction.collection
  * @returns Number
  */
 export const getNewBalance = (newDate, newAmount, transactions) => {
   let balance;
 
-  const laterTransactions = transactions.filter(({ date }) => date >= newDate).reverse();
+  const laterTransactions = getLaterTransactions(newDate, transactions);
 
   if (laterTransactions.length === 0) {
     balance = transactions[0].balance + newAmount;

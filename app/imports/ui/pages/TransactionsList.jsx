@@ -63,11 +63,15 @@ const TransactionsList = (props) => {
                     <Table.Row>
                       <Table.Cell colSpan={6}><b>Scheduled Transactions</b></Table.Cell>
                     </Table.Row>
-                    {getData().scheduled.map((value, index) => <TransactionItem key={index} data={value}/>)}
+                    {getData().scheduled.map(
+                        (value, index) => <TransactionItem key={index} data={value} transactions={props.transactions}/>,
+                        )}
                     <Table.Row>
                       <Table.Cell colSpan={6}><b>Cleared Transactions</b></Table.Cell>
                     </Table.Row>
-                    {getData().cleared.map((value, index) => <TransactionItem key={index} data={value}/>)}
+                    {getData().cleared.map(
+                        (value, index) => <TransactionItem key={index} data={value} transactions={props.transactions}/>,
+                        )}
                   </Table.Body>
                 </Table>
               </Grid.Row>
