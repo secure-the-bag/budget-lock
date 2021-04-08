@@ -10,7 +10,6 @@ import {
   ErrorsField,
   NumField,
   SelectField,
-  SubmitField,
   TextField,
 } from 'uniforms-semantic';
 import swal from 'sweetalert';
@@ -100,14 +99,7 @@ const TransactionItem = (props) => {
           <ErrorsField/>
         </Modal.Content>
         <Modal.Actions>
-          <SubmitField value='Submit'/>
-          <Button icon
-                  negative
-                  labelPosition={'right'}
-          >
-            Delete
-            <Icon name={'trash alternate outline'}/>
-          </Button>
+          <Button size='tiny'>Edit</Button>
         </Modal.Actions>
       </Modal>
   );
