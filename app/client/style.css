@@ -67,3 +67,8 @@
 .profile-input-disabled label {
     opacity: 1 !important;
 }
+
+.budget-bar:hover {
+    background-color: #eaeaea !important;
+    cursor: pointer;
+}

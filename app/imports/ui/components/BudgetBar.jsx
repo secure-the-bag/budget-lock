@@ -48,7 +48,7 @@ class BudgetBar extends React.Component {
     }
 
     return (
-      <Grid.Row columns={3}>
+      <Grid.Row columns={3} className={'budget-bar'}>
         <Grid.Column width={3}>
           <b style={{ textTransform: 'capitalize' }}>
             {this.props.budget.category}
