@@ -1,8 +1,29 @@
 import React from 'react';
-import { Grid, Progress } from 'semantic-ui-react';
+import { Grid, Modal, Progress } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import {
+  AutoForm,
+  ErrorsField,
+  NumField,
+  SelectField,
+  SubmitField,
+  HiddenField,
+} from 'uniforms-semantic';
+import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
+import { Budget } from '../../api/budget/Budget';
 
 class BudgetBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modalOpen: false,
+    };
+  }
+
+  // Handles the state of the modal (close or open)
+  handleModalOpen = () => this.setState({ modalOpen: true });
+
+  handleModalClose = () => this.setState({ modalOpen: false });
 
   render() {
 
@@ -47,26 +68,49 @@ class BudgetBar extends React.Component {
       return 'red';
     }
 
+    const bridge = new SimpleSchema2Bridge(Budget.schema);
+
     return (
-      <Grid.Row columns={3} className={'budget-bar'}>
-        <Grid.Column width={3}>
-          <b style={{ textTransform: 'capitalize' }}>
-            {this.props.budget.category}
-            <br/>
-            <b>{`$${this.props.budget.budget}`}</b>
-          </b>
-        </Grid.Column>
-        <Grid.Column width={10}>
-          <Progress active progress
-                    percent={getPercentage(this.props.budget.category, this.props.transactions, this.props.budget.budget)}
-                    color={getProgressColor(this.props.budget.category, this.props.transactions, this.props.budget.budget)}>
-            {`$${getSpendingLeft(this.props.budget.budget, this.props.budget.category, this.props.transactions)} left`}
-          </Progress>
-        </Grid.Column>
-        <Grid.Column textAlign={'right'} width={3}>
-          <b>{`$${getSpending(this.props.budget.category, this.props.transactions)}`}</b>
-        </Grid.Column>
-      </Grid.Row>
+      <Modal size='mini'
+             closeIcon
+             open={this.state.modalOpen}
+             onClose={this.handleModalClose}
+             onOpen={this.handleModalOpen}
+             trigger={
+               <Grid.Row columns={3} className={'budget-bar'}>
+                 <Grid.Column width={3}>
+                   <b style={{ textTransform: 'capitalize' }}>
+                     {this.props.budget.category}
+                     <br/>
+                     <b>{`$${this.props.budget.budget}`}</b>
+                   </b>
+                 </Grid.Column>
+                 <Grid.Column width={10}>
+                   <Progress active progress
+                             percent={getPercentage(this.props.budget.category, this.props.transactions, this.props.budget.budget)}
+                             color={getProgressColor(this.props.budget.category, this.props.transactions, this.props.budget.budget)}>
+                     {`$${getSpendingLeft(this.props.budget.budget, this.props.budget.category, this.props.transactions)} left`}
+                   </Progress>
+                 </Grid.Column>
+                 <Grid.Column textAlign={'right'} width={3}>
+                   <b>{`$${getSpending(this.props.budget.category, this.props.transactions)}`}</b>
+                 </Grid.Column>
+               </Grid.Row>
+             }
+      >
+        <Modal.Header>Edit Budget</Modal.Header>
+        <Modal.Content>
+          <AutoForm
+            schema={bridge}
+            modal={this.props.budget}
+            onSubmit={data => { this.submit(data) }}>
+            <SelectField name='category'/>
+            <NumField name='budget'/>
+            <SubmitField value='Submit'/>
+            <ErrorsField/>
+          </AutoForm>
+        </Modal.Content>
+      </Modal>
     );
   }
 }
