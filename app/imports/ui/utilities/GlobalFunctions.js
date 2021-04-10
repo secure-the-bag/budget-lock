@@ -28,3 +28,11 @@ export const getCategoryChoices = () => [
 export const getCategoryEquivalent = (category, type) => ((type === 'label') ?
     getCategoryChoices().find(({ value }) => value === category).label :
     getCategoryChoices().find(({ label }) => label === category).value);
+
+export const validateOptionalFields = (data) => {
+  const payee = (typeof data.payee === 'string') ? data.payee : '';
+  const name = (typeof data.name === 'string') ? data.name : '';
+  const notes = (typeof data.notes === 'string') ? data.notes : '';
+
+  return { payee, name, notes };
+};
