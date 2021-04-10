@@ -5,11 +5,12 @@ import {
   AutoForm,
   ErrorsField,
   NumField,
-  SelectField,
+  TextField,
   SubmitField,
   HiddenField,
 } from 'uniforms-semantic';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
+import swal from 'sweetalert';
 import { Budget } from '../../api/budget/Budget';
 
 class BudgetBar extends React.Component {
@@ -24,6 +25,27 @@ class BudgetBar extends React.Component {
   handleModalOpen = () => this.setState({ modalOpen: true });
 
   handleModalClose = () => this.setState({ modalOpen: false });
+
+  // On submit, insert data.
+  submit(data) {
+    console.log(data);
+    const { budget, category, owner, _id } = data;
+    console.log(_id)
+    console.log(budget)
+    console.log(category)
+    console.log(owner)
+    Budget.collection.update(_id,
+      { $set: { budget, owner, category } },
+      (error) => {
+        if (error) {
+          swal('Error', error.message, 'error');
+        } else {
+          swal('Success', 'Data added successfully', 'success').then(() => {
+            this.handleModalClose();
+          });
+        }
+      });
+  }
 
   render() {
 
@@ -101,12 +123,16 @@ class BudgetBar extends React.Component {
         <Modal.Header>Edit Budget</Modal.Header>
         <Modal.Content>
           <AutoForm
+            className='edit-budget-input-disabled'
             schema={bridge}
-            modal={this.props.budget}
-            onSubmit={data => { this.submit(data) }}>
-            <SelectField name='category'/>
-            <NumField name='budget'/>
+            model={this.props.budget}
+            onSubmit={data => this.submit(data)}>
+            <TextField
+              name='category' value={this.props.budget.category} disabled={true}/>
+            <NumField
+              name='budget' placeholder={this.props.budget.budget} />
             <SubmitField value='Submit'/>
+            <HiddenField name='owner'/>
             <ErrorsField/>
           </AutoForm>
         </Modal.Content>
