@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Modal, Progress } from 'semantic-ui-react';
+import { Button, Grid, Icon, Modal, Progress } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import {
   AutoForm,
@@ -28,12 +28,7 @@ class BudgetBar extends React.Component {
 
   // On submit, insert data.
   submit(data) {
-    console.log(data);
     const { budget, category, owner, _id } = data;
-    console.log(_id)
-    console.log(budget)
-    console.log(category)
-    console.log(owner)
     Budget.collection.update(_id,
       { $set: { budget, owner, category } },
       (error) => {
@@ -41,6 +36,19 @@ class BudgetBar extends React.Component {
           swal('Error', error.message, 'error');
         } else {
           swal('Success', 'Data added successfully', 'success').then(() => {
+            this.handleModalClose();
+          });
+        }
+      });
+  }
+
+  // On submit, delete.
+  delete() {
+    Budget.collection.remove(this.props.budget._id, (error) => {
+        if (error) {
+          swal('Error', error.message, 'error');
+        } else {
+          swal('Success', 'Data deleted successfully', 'success').then(() => {
             this.handleModalClose();
           });
         }
@@ -131,11 +139,16 @@ class BudgetBar extends React.Component {
               name='category' value={this.props.budget.category} disabled={true}/>
             <NumField
               name='budget' placeholder={this.props.budget.budget} />
-            <SubmitField value='Submit'/>
+            <SubmitField value='Update'/>
             <HiddenField name='owner'/>
             <ErrorsField/>
           </AutoForm>
         </Modal.Content>
+        <Modal.Actions>
+          <Button color='red' onClick={() => this.delete()}>
+            <Icon name='trash' /> Delete
+          </Button>
+        </Modal.Actions>
       </Modal>
     );
   }
