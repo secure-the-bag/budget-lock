@@ -90,8 +90,45 @@
   * Implement Upcoming Bills page 
   * Further development of TransactionItem.jsx (allow user to edit/delete selected transaction/row from database/collection)
 
+***
+
+## Milestone 3
+## 03/21/2021 - 04/10/2021 | Database Implementation
+* Linked the database to the different pages
+
+# Pending Enhancements
+* Further enhance the pages and add the Admin page
+
+# The Team
+### Nadine Alcantara
+* Done
+  * TBA
+* Next
+  * TBA
+
+### Jennifer Hsu
+* Done
+  * Implemented Budget editor and database
+  * Updated overview; monthly spending and budget editor now linked to database
+* Next
+  * Implement Cash Flow Over Time page and database
+
+### Andre Joseph Ruiz
+* Done
+  * TBA
+* Next
+  * TBA
+
+### Daphne Marie Tapia
+* Done
+  * TBA
+
+* Next
+  * TBA
+
+
 Template used for application development: [meteor-application-template-react](http://ics-software-engineering.github.io/meteor-application-template-react/)
 
 ***
 
-Last updated: 03/28/2021
+Last updated: 04/10/2021
