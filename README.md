@@ -1,6 +1,7 @@
 # Table of Contents
 * [01/24/2021 - 02/21/2021](#milestone-1)
 * [02/21/2021 - 03/21/2021](#milestone-2)
+* [03/21/2021 - 04/11/2021](#milestone-3)
 
 # Development History
 ## Milestone 1
@@ -93,7 +94,7 @@
 ***
 
 ## Milestone 3
-## 03/21/2021 - 04/10/2021 | Database Implementation
+## 03/21/2021 - 04/11/2021 | Functionality Implementation
 * Linked the database to the different pages
 
 # Pending Enhancements
