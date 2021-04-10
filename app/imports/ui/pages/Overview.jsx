@@ -1,11 +1,12 @@
 import React from 'react';
-import { Grid, Progress, Container, Header, Icon, Loader } from 'semantic-ui-react';
+import { Grid, Container, Header, Icon, Loader } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Transactions } from '../../api/transaction/Transaction';
 import MonthlySpendingChart from '../components/MonthlySpendingChart';
 import CashFlowOverTimeChart from '../components/CashFlowOverTimeChart';
+import BudgetComponent from '../components/BudgetComponent';
 import { getCategoryEquivalent } from '../utilities/GlobalFunctions';
 
 class Overview extends React.Component {
@@ -79,78 +80,9 @@ class Overview extends React.Component {
                 </Grid.Column>
               </Grid.Row>
             </Grid.Column>
-
-            <Grid.Column width={10} style={{ border: '0.2rem solid gray', padding: '1rem', borderRadius: '10px' }}>
-              <Grid.Column floated={'right'} style={{ flexGrow: '0', marginBottom: '1.5rem' }}>
-                <Icon name={'settings'} link/>
-              </Grid.Column>
-              <Grid columns={2} style={{ flexGrow: '0', padding: '0rem 1.5rem' }}>
-                <Grid.Row>
-                  <Grid.Column style={{ paddingRight: '0px' }}>
-                    <Header>
-                      November Budget
-                      <hr/>
-                    </Header>
-                  </Grid.Column>
-                  <Grid.Column textAlign={'right'} style={{ paddingLeft: '0px' }}>
-                    <Header>
-                      Budget
-                      <hr/>
-                    </Header>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid>
-              <Grid columns='2' style={{ padding: '0rem 1.5rem 2rem 1.5rem' }}>
-                <Grid.Row columns={3}>
-                  <Grid.Column width={3}>
-                    <b>Groceries
-                      <br/>
-                      $280
-                    </b>
-                  </Grid.Column>
-                  <Grid.Column width={10}>
-                    <Progress active progress percent={93} color={'red'}>
-                      $20 left
-                    </Progress>
-                  </Grid.Column>
-                  <Grid.Column textAlign={'right'} width={3}>
-                    <b>$300</b>
-                  </Grid.Column>
-                </Grid.Row>
-                <Grid.Row columns={3}>
-                  <Grid.Column width={3}>
-                    <b>Restaurants
-                      <br/>
-                      $12
-                    </b>
-                  </Grid.Column>
-                  <Grid.Column width={10}>
-                    <Progress active progress percent={12} color={'green'}>
-                      $88 left
-                    </Progress>
-                  </Grid.Column>
-                  <Grid.Column textAlign={'right'} width={3}>
-                    <b>$100</b>
-                  </Grid.Column>
-                </Grid.Row>
-                <Grid.Row columns={3}>
-                  <Grid.Column width={3}>
-                    <b>Fun
-                      <br/>
-                      $50
-                    </b>
-                  </Grid.Column>
-                  <Grid.Column width={10}>
-                    <Progress active progress percent={50} color={'yellow'}>
-                      $50 left
-                    </Progress>
-                  </Grid.Column>
-                  <Grid.Column textAlign={'right'} width={3}>
-                    <b>$50</b>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid>
-            </Grid.Column>
+            <Grid.Row style={{ maxWidth: '50rem' }}>
+              <BudgetComponent month={month.toLocaleString('default', { month: 'long' })}/>
+            </Grid.Row>
           </Grid.Row>
         </Grid>
 

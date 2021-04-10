@@ -56,14 +56,19 @@
     padding-right: 40px;
 }
 
-.profile-input-disabled .ui input {
+.profile-input-disabled .ui input, .edit-budget-input-disabled .disabled.required.field .ui input  {
     background: whitesmoke !important;
 }
 
-.profile-input-disabled .ui.form .disabled.fields .field, .ui.form .disabled.field, .ui.form .field :disabled {
+.profile-input-disabled .ui.form .disabled.fields .field, .ui.form .disabled.field, .ui.form .field :disabled, .edit-budget-input-disabled .ui.form .disabled.fields .field, .ui.form .disabled.field, .ui.form .field :disabled {
     opacity: 1 !important;
 }
 
-.profile-input-disabled label {
+.profile-input-disabled label, .edit-budget-input-disabled label {
     opacity: 1 !important;
+}
+
+.budget-bar:hover {
+    background-color: #eaeaea !important;
+    cursor: pointer;
 }

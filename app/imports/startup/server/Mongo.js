@@ -2,11 +2,13 @@ import { Meteor } from 'meteor/meteor';
 import { Stuffs } from '../../api/stuff/Stuff.js';
 import { Transactions } from '../../api/transaction/Transaction';
 import { Profiles } from '../../api/profile/Profile';
+import { Budget } from '../../api/budget/Budget';
 
 /* eslint-disable no-console */
 
 const defaultProfiles = JSON.parse(Assets.getText('defaultProfile.json'));
 const defaultTransaction = JSON.parse(Assets.getText('defaultTransactions.json'));
+const defaultBudget = JSON.parse(Assets.getText('defaultBudget.json'));
 
 /** Initialize the database with a default data document. */
 function addData(data) {
@@ -34,6 +36,17 @@ function addTransaction(data) {
 if (Transactions.collection.find().count() === 0) {
   console.log('Creating default transaction data.');
   defaultTransaction.map(data => addTransaction(data));
+}
+
+function addBudget(data) {
+  console.log(`  Adding: Budget ${data.category}: $${data.budget} | (${data.owner})`);
+  Budget.collection.insert(data);
+}
+
+/** Initialize the collection if empty. */
+if (Budget.collection.find().count() === 0) {
+  console.log('Creating default budget data.');
+  defaultBudget.map(data => addBudget(data));
 }
 
 /** Initialize the collection if empty. */
