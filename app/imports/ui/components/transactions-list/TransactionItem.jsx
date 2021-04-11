@@ -14,7 +14,7 @@ import {
 } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import { getCategoryChoices, getCategoryEquivalent, validateOptionalFields } from '../../utilities/GlobalFunctions';
-import { getNewBalance } from '../../utilities/UpdateBalances';
+import { getLaterTransactions, getNewBalance, updateBalances } from '../../utilities/UpdateBalances';
 import { Transactions } from '../../../api/transaction/Transaction';
 
 const TransactionItem = (props) => {
@@ -75,6 +75,8 @@ const TransactionItem = (props) => {
   };
 
   const handleDelete = () => {
+    const balanceOfPrevious = transaction.balance - transaction.amount;
+    updateBalances(balanceOfPrevious, getLaterTransactions(transaction.date, transactions));
     Transactions.collection.remove(transaction._id, (error) => {
       if (error) {
         swal('Error', error.message, 'error');

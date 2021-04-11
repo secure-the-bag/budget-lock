@@ -12,7 +12,7 @@ import { Transactions } from '../../api/transaction/Transaction';
  * @param balance, balance after adding the amount of newly added transaction
  * @param laterTransactions, previously keyed in transactions with date field values greater than the new transaction's
  */
-const updateBalances = (balance, laterTransactions) => {
+export const updateBalances = (balance, laterTransactions) => {
   let updatedBalance = balance;
   laterTransactions.map((transaction) => {
     updatedBalance += transaction.amount;
@@ -26,7 +26,7 @@ const updateBalances = (balance, laterTransactions) => {
  * @param newDate, date of new transaction
  * @param transactions, Transaction.collection
  */
-const getLaterTransactions = (newDate, transactions) => transactions.filter(({ date }) => date > newDate).reverse();
+export const getLaterTransactions = (newDate, transactions) => transactions.filter(({ date }) => date > newDate).reverse();
 
 /**
  * Computes for the new balance after user inputs a new transaction
