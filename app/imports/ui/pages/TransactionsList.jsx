@@ -19,8 +19,8 @@ const TransactionsList = (props) => {
 
     // compute balances, total expenses, and total income
     const sum = (array) => array.reduce((accumulator, transaction) => accumulator + transaction.amount, 0);
-    const total = props.transactions[0].balance;
-    const current = cleared[0].balance;
+    const total = (props.transactions.length === 0) ? 0 : props.transactions[0].balance;
+    const current = (cleared.length === 0) ? 0 : cleared[0].balance;
     const scheduledExpenses = sum(scheduled.filter(({ amount }) => amount < 0));
     const scheduledIncome = sum(scheduled.filter(({ amount }) => amount >= 0));
 
@@ -31,19 +31,34 @@ const TransactionsList = (props) => {
     };
   };
 
+  const data = getData();
+  const transactions = props.transactions;
+
+  const showScheduledRow = data.scheduled.length === 0 ? null : (
+      <Table.Row>
+        <Table.Cell colSpan={6}><b>Scheduled Transactions</b></Table.Cell>
+      </Table.Row>
+  );
+
+  const showClearedRow = data.cleared.length === 0 ? null : (
+      <Table.Row>
+        <Table.Cell colSpan={6}><b>Cleared Transactions</b></Table.Cell>
+      </Table.Row>
+  );
+
   return !props.ready ?
       <Loader active>Fetching Transactions</Loader> :
       (
           <Container style={{ margin: '2rem 1rem' }}>
             <Grid id='transaction' container
                   style={{ border: '0.2rem solid gray', padding: '2rem', borderRadius: '10px' }}>
-              <TransactionsSummary data={getData().summary}/>
+              <TransactionsSummary data={data.summary}/>
 
               <Divider/>
 
               <Grid.Row verticalAlign='bottom'>
                 <Grid.Column textAlign='right' floated='right'>
-                  <AddTransaction transactions={props.transactions}/>
+                  <AddTransaction transactions={transactions}/>
                 </Grid.Column>
               </Grid.Row>
 
@@ -60,17 +75,13 @@ const TransactionsList = (props) => {
                     </Table.Row>
                   </Table.Header>
                   <Table.Body>
-                    <Table.Row>
-                      <Table.Cell colSpan={6}><b>Scheduled Transactions</b></Table.Cell>
-                    </Table.Row>
-                    {getData().scheduled.map(
-                        (value, index) => <TransactionItem key={index} data={value} transactions={props.transactions}/>,
+                    {showScheduledRow}
+                    {data.scheduled.map(
+                        (value, index) => <TransactionItem key={index} data={value} transactions={transactions}/>,
                         )}
-                    <Table.Row>
-                      <Table.Cell colSpan={6}><b>Cleared Transactions</b></Table.Cell>
-                    </Table.Row>
-                    {getData().cleared.map(
-                        (value, index) => <TransactionItem key={index} data={value} transactions={props.transactions}/>,
+                    {showClearedRow}
+                    {data.cleared.map(
+                        (value, index) => <TransactionItem key={index} data={value} transactions={transactions}/>,
                         )}
                   </Table.Body>
                 </Table>
@@ -87,7 +98,7 @@ TransactionsList.propTypes = {
 
 export default withTracker(() => {
   const ready = Meteor.subscribe(Transactions.userPublicationName).ready();
-  const transactions = Transactions.collection.find({}, { sort: { date: -1 }, reactive: true }).fetch();
+  const transactions = Transactions.collection.find({}, { sort: { date: -1 } }).fetch();
   return {
     transactions,
     ready,
