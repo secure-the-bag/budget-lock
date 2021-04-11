@@ -1,3 +1,5 @@
+[![ci-secure-the-bag-budget-lock](https://github.com/secure-the-bag/budget-lock/actions/workflows/ci.yml/badge.svg)](https://github.com/secure-the-bag/budget-lock/actions/workflows/ci.yml)
+
 # Table of Contents
 * [01/24/2021 - 02/21/2021](#milestone-1)
 * [02/21/2021 - 03/21/2021](#milestone-2)
@@ -122,14 +124,14 @@
 
 ### Daphne Marie Tapia
 * Done
-  * TBA
-
+  * Fixed updating balances of transactions after insert/edit
+  * Allows users to edit transactions
 * Next
-  * TBA
+  * Implement Upcoming Bills
 
 
 Template used for application development: [meteor-application-template-react](http://ics-software-engineering.github.io/meteor-application-template-react/)
 
 ***
 
-Last updated: 04/10/2021
+Last updated: 04/11/2021
