@@ -125,7 +125,7 @@
 ### Daphne Marie Tapia
 * Done
   * Fixed updating balances of transactions after insert/edit
-  * Allows users to edit transactions
+  * Allows users to edit/delete transactions
 * Next
   * Implement Upcoming Bills
 
