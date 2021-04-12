@@ -1,0 +1,24 @@
+[
+  {
+    "fixedAmount": 100,
+    "payee": "Discover",
+    "category": "creditCard",
+    "frequency": "monthly",
+    "until": "2022-12-31",
+    "owner": "admin@foo.com"
+  },
+  {
+    "fixedAmount": 150,
+    "payee": "StateFarm",
+    "category": "subscription",
+    "frequency": "biannually",
+    "owner": "admin@foo.com"
+  },
+  {
+    "fixedAmount": 5.22,
+    "payee": "Spotify",
+    "category": "subscription",
+    "frequency": "monthly",
+    "owner": "admin@foo.com"
+  }
+]

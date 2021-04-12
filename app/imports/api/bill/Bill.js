@@ -8,11 +8,17 @@ class BillCollection {
     this.collection = new Mongo.Collection(this.name);
     this.schema = new SimpleSchema({
       fixedAmount: Number,
+      payee: String,
       category: String,
       frequency: {
         type: String,
-        allowedValues: ['once', 'daily', 'weekly', 'monthly', 'quarterly', 'biannually', 'annually'],
+        allowedValues: ['daily', 'weekly', 'monthly', 'quarterly', 'biannually', 'annually'],
       },
+      until: {
+        type: Date,
+        optional: true,
+      },
+      owner: String,
     }, { tracker: Tracker });
     this.collection.attachSchema(this.schema);
     this.userPublicationName = `${this.name}.publication.user`;

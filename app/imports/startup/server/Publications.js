@@ -4,6 +4,7 @@ import { Stuffs } from '../../api/stuff/Stuff';
 import { Transactions } from '../../api/transaction/Transaction';
 import { Profiles } from '../../api/profile/Profile';
 import { Budget } from '../../api/budget/Budget';
+import { Bills } from '../../api/bill/Bill';
 
 // User-level publication.
 // If logged in, then publish documents owned by this user. Otherwise publish nothing.
@@ -27,6 +28,14 @@ Meteor.publish(Budget.userPublicationName, function () {
   if (this.userId) {
     const username = Meteor.users.findOne(this.userId).username;
     return Budget.collection.find({ owner: username });
+  }
+  return this.ready();
+});
+
+Meteor.publish(Bills.userPublicationName, function () {
+  if (this.userId) {
+    const username = Meteor.users.findOne(this.userId).username;
+    return Bills.collection.find({ owner: username });
   }
   return this.ready();
 });

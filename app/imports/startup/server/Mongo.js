@@ -3,12 +3,14 @@ import { Stuffs } from '../../api/stuff/Stuff.js';
 import { Transactions } from '../../api/transaction/Transaction';
 import { Profiles } from '../../api/profile/Profile';
 import { Budget } from '../../api/budget/Budget';
+import { Bills } from '../../api/bill/Bill';
 
 /* eslint-disable no-console */
 
 const defaultProfiles = JSON.parse(Assets.getText('defaultProfile.json'));
 const defaultTransaction = JSON.parse(Assets.getText('defaultTransactions.json'));
 const defaultBudget = JSON.parse(Assets.getText('defaultBudget.json'));
+const defaultBill = JSON.parse(Assets.getText('defaultBills.json'));
 
 /** Initialize the database with a default data document. */
 function addData(data) {
@@ -36,6 +38,17 @@ function addTransaction(data) {
 if (Transactions.collection.find().count() === 0) {
   console.log('Creating default transaction data.');
   defaultTransaction.map(data => addTransaction(data));
+}
+
+function addBill(data) {
+  console.log(`  Adding: Bill ${data.category}: $${data.fixedAmount} | (${data.owner})`);
+  Bills.collection.insert(data);
+}
+
+/** Initialize the collection if empty. */
+if (Bills.collection.find().count() === 0) {
+  console.log('Creating default bill data.');
+  defaultBill.map(data => addBill(data));
 }
 
 function addBudget(data) {
