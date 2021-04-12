@@ -105,9 +105,10 @@
 # The Team
 ### Nadine Alcantara
 * Done
-  * TBA
+  * Fixed broken admin roles to admin accounts
+  * Implemented Admin page that lists all registered users in the database
 * Next
-  * TBA
+  * Implement delete function in Admin page to delete users
 
 ### Jennifer Hsu
 * Done
