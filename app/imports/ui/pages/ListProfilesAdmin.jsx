@@ -4,6 +4,7 @@ import { Container, Table, Header, Loader } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import ProfileItem from '../components/ProfileItem';
+import { Profiles } from '../../api/profile/Profile';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListProfilesAdmin extends React.Component {
@@ -26,7 +27,7 @@ class ListProfilesAdmin extends React.Component {
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              {this.props.users.map((profile) => <ProfileItem key={profile._id} profile={profile} />)}
+              {this.props.profiles.map((profile) => <ProfileItem key={profile._id} user={profile}/>)}
             </Table.Body>
           </Table>
         </Container>
@@ -36,16 +37,17 @@ class ListProfilesAdmin extends React.Component {
 
 /** Require an array of Stuff documents in the props. */
 ListProfilesAdmin.propTypes = {
-  users: PropTypes.array.isRequired,
-  ready: PropTypes.bool.isRequired,
+  profiles: PropTypes.array.isRequired,
+  ready: PropTypes.bool.isRequired
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe('admin');
+  const subscription = Meteor.subscribe(Profiles.adminPublicationName);
   return {
-    users: Meteor.users.find().fetch(),
-    ready: subscription.ready(),
+    profiles: Profiles.collection.find({})
+        .fetch(),
+    ready: subscription.ready()
   };
 })(ListProfilesAdmin);
