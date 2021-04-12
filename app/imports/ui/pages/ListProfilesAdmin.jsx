@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Table, Header, Loader } from 'semantic-ui-react';
+import { Grid, Container, Table, Header, Loader, Divider } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import ProfileItem from '../components/ProfileItem';
@@ -18,18 +18,21 @@ class ListProfilesAdmin extends React.Component {
   renderPage() {
     return (
         <Container style={{ margin: '2rem 1rem' }}>
-          <Header as="h2" textAlign="center">List Profiles</Header>
-          <Table celled>
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell>Username</Table.HeaderCell>
-                <Table.HeaderCell>Delete?</Table.HeaderCell>
-              </Table.Row>
-            </Table.Header>
-            <Table.Body>
-              {this.props.profiles.map((profile) => <ProfileItem key={profile._id} user={profile}/>)}
-            </Table.Body>
-          </Table>
+          <Grid style={{ border: '0.2rem solid gray', padding: '2rem', borderRadius: '10px' }}>
+            <Grid.Row><Header as="h2" textAlign="center">List Profiles</Header></Grid.Row>
+            <Divider/>
+            <Table celled style={{ paddingLeft: '0rem', paddingRight: '0rem' }}>
+              <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell>Username</Table.HeaderCell>
+                  <Table.HeaderCell>Delete?</Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
+              <Table.Body>
+                {this.props.profiles.map((profile) => <ProfileItem key={profile._id} user={profile}/>)}
+              </Table.Body>
+            </Table>
+          </Grid>
         </Container>
     );
   }

@@ -3,13 +3,13 @@
     {
       "email": "admin@foo.com",
       "password": "changeme",
-      "phoneNumber": "123-423-4323",
+      "phoneNumber": "1123456789",
       "role": "admin"
     },
     {
       "email": "john@foo.com",
       "password": "changeme",
-      "phoneNumber": "322-1111-2222"
+      "phoneNumber": "18081234567"
     }
   ],
 
