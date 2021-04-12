@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Container, Divider, Grid, Loader, Table } from 'semantic-ui-react';
+import { Container, Grid, Label, Loader, Table } from 'semantic-ui-react';
 import { Transactions } from '../../api/transaction/Transaction';
-import AddTransaction from '../components/transactions-list/AddTransaction';
 import TransactionsSummary from '../components/transactions-list/TransactionsSummary';
 import TransactionItem from '../components/transactions-list/TransactionItem';
 
@@ -36,13 +35,17 @@ const TransactionsList = (props) => {
 
   const showScheduledRow = data.scheduled.length === 0 ? null : (
       <Table.Row>
-        <Table.Cell colSpan={6}><b>Scheduled Transactions</b></Table.Cell>
+        <Table.Cell colSpan={6}>
+          <Label basic ribbon>Scheduled Transactions</Label>
+        </Table.Cell>
       </Table.Row>
   );
 
   const showClearedRow = data.cleared.length === 0 ? null : (
       <Table.Row>
-        <Table.Cell colSpan={6}><b>Cleared Transactions</b></Table.Cell>
+        <Table.Cell colSpan={6}>
+          <Label basic ribbon>Cleared Transactions</Label>
+        </Table.Cell>
       </Table.Row>
   );
 
@@ -51,19 +54,10 @@ const TransactionsList = (props) => {
       (
           <Container style={{ margin: '2rem 1rem' }}>
             <Grid id='transaction' container
-                  style={{ border: '0.2rem solid gray', padding: '2rem', borderRadius: '10px' }}>
-              <TransactionsSummary data={data.summary}/>
-
-              <Divider/>
-
-              <Grid.Row verticalAlign='bottom'>
-                <Grid.Column textAlign='right' floated='right'>
-                  <AddTransaction transactions={transactions}/>
-                </Grid.Column>
-              </Grid.Row>
-
+                  style={{ padding: '2rem', borderRadius: '10px' }}>
+              <TransactionsSummary data={data.summary} transactions={transactions}/>
               <Grid.Row>
-                <Table singleLine>
+                <Table singleLine basic='very' compact>
                   <Table.Header>
                     <Table.Row>
                       <Table.HeaderCell width={2}>Date</Table.HeaderCell>
