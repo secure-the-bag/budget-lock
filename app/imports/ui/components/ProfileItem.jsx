@@ -9,9 +9,11 @@ import { withRouter } from 'react-router-dom';
 class ProfileItem extends React.Component {
     handleDelete = () => {
         Meteor.users.remove(this.props.user._id);
-        /** this refreshes the page */
-        // eslint-disable-next-line no-unused-expressions
-        <meta httpEquiv="refresh" content="2; url=/#/admin"/>;
+        swal('Successfully deleted!')
+            .then(() => {
+                // eslint-disable-next-line no-undef
+                window.location = '/#/';
+            });
     };
 
     handleClick = () => swal({
@@ -22,8 +24,7 @@ class ProfileItem extends React.Component {
     })
         .then((willDelete) => {
             if (willDelete) {
-                // this.handleDelete();
-                swal('Deleted!');
+                this.handleDelete();
             } else {
                 swal(`Canceled deleting ${this.props.user.email}`);
             }
