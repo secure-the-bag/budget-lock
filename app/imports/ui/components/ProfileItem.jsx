@@ -20,7 +20,7 @@ class ProfileItem extends React.Component {
         text: `Are you sure you want to delete ${this.props.user.email}?`,
         icon: 'warning',
         buttons: true,
-        dangerMode: true
+        dangerMode: true,
     })
         .then((willDelete) => {
             if (willDelete) {

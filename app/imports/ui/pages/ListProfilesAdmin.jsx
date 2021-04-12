@@ -41,7 +41,7 @@ class ListProfilesAdmin extends React.Component {
 /** Require an array of Stuff documents in the props. */
 ListProfilesAdmin.propTypes = {
   profiles: PropTypes.array.isRequired,
-  ready: PropTypes.bool.isRequired
+  ready: PropTypes.bool.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
@@ -51,6 +51,6 @@ export default withTracker(() => {
   return {
     profiles: Profiles.collection.find({})
         .fetch(),
-    ready: subscription.ready()
+    ready: subscription.ready(),
   };
 })(ListProfilesAdmin);

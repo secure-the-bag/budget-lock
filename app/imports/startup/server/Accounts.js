@@ -33,6 +33,6 @@ if (Meteor.users.find()
 Meteor.users.allow({
   remove: function () {
     return true;
-  }
+  },
 
 });
