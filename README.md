@@ -118,9 +118,9 @@
 
 ### Andre Joseph Ruiz
 * Done
-  * TBA
+  * Implemented 2FA Page into test page.
 * Next
-  * TBA
+  * Implementing 2FA plugin into Signin and Profile Pages.
 
 ### Daphne Marie Tapia
 * Done
