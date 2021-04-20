@@ -102,7 +102,7 @@ class Signup extends React.Component {
               </Segment>
             </Form>
             <Segment align='center' textAlign='center' style={{ marginTop: '-10px' }}>
-              Invisible Authy by Twilio Terms & Policy <br/>
+              Invisible Verify by Twilio Terms & Policy <br/>
               Already have an account? Login <Link to="/signin">here</Link>
             </Segment>
             {this.state.error === '' ? (

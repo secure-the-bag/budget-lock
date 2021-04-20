@@ -17,6 +17,7 @@ import MonthlySpending from '../pages/MonthlySpending';
 import TransactionsList from '../pages/TransactionsList';
 import Profile from '../pages/Profile';
 import UpcomingBiils from '../pages/UpcomingBiils';
+import ListProfilesAdmin from '../pages/ListProfilesAdmin';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -29,8 +30,9 @@ class App extends React.Component {
               <Route exact path="/" component={Landing}/>
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
-              <Route path="/signout" component={Signout}/>
-              <ProtectedRoute path="/overview" component={Overview}/>
+                <Route path="/signout" component={Signout}/>
+                <AdminProtectedRoute path="/admin" component={ListProfilesAdmin}/>
+                <ProtectedRoute path="/overview" component={Overview}/>
               <ProtectedRoute path="/transactions" component={TransactionsList}/>
               <ProtectedRoute path="/monthly-spending" component={MonthlySpending}/>
               <ProtectedRoute path="/upcoming-bills" component={UpcomingBiils}/>

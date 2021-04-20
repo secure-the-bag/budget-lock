@@ -105,9 +105,10 @@
 # The Team
 ### Nadine Alcantara
 * Done
-  * TBA
+  * Fixed broken admin roles to admin accounts
+  * Implemented Admin page that lists all registered users in the database
 * Next
-  * TBA
+  * Implement delete function in Admin page to delete users
 
 ### Jennifer Hsu
 * Done
@@ -118,14 +119,14 @@
 
 ### Andre Joseph Ruiz
 * Done
-  * TBA
+  * Implemented 2FA Page into test page.
 * Next
-  * TBA
+  * Implementing 2FA plugin into Signin and Profile Pages.
 
 ### Daphne Marie Tapia
 * Done
   * Fixed updating balances of transactions after insert/edit
-  * Allows users to edit transactions
+  * Allows users to edit/delete transactions
 * Next
   * Implement Upcoming Bills
 
