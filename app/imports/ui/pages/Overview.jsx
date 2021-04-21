@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Container, Header, Icon, Loader } from 'semantic-ui-react';
+import { Grid, Container, Header, Loader, Table } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
@@ -8,6 +8,8 @@ import MonthlySpendingChart from '../components/MonthlySpendingChart';
 import CashFlowOverTimeChart from '../components/CashFlowOverTimeChart';
 import BudgetComponent from '../components/BudgetComponent';
 import { getCategoryEquivalent } from '../utilities/GlobalFunctions';
+import { Bills } from '../../api/bill/Bill';
+import UpcomingBillsOverview from '../components/UpcomingBillsOverview';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -24,8 +26,16 @@ class Overview extends React.Component {
     const spending = this.props.transactions.filter(({ amount }) => amount < 0);
     const month = new Date();
     month.setHours(0, 0, 0, 0);
+
+    const today = new Date();
+    today.setHours(23, 59, 59, 999);
+
     let currentMonth;
     currentMonth = spending.filter(({ date }) => month.getMonth() === date.getMonth() && date <= month);
+
+    const bills = this.props.bills.map(bill => bill.payee);
+    const upcomingBills = spending.filter(({ date, payee }) => date > today && bills.includes(payee));
+
     // eslint-disable-next-line no-undef
     currentMonth = _.sortBy(currentMonth, 'date');
     const monthlySpending = [];
@@ -65,18 +75,15 @@ class Overview extends React.Component {
           <Grid.Row>
             <Grid.Column width={5} style={{ border: '0.2rem solid gray', padding: '1rem', marginRight: '5rem', borderRadius: '10px' }}>
               <Grid.Row>
-                <div style={{ textAlign: 'right' }}>
-                  <Icon name={'settings'} link/>
-                </div>
                 <Grid.Column style={{ padding: '1.5rem' }}>
                   <Header>Upcoming Bills
                     <hr/>
                   </Header>
-                  <p>Credit Card Payment: $150</p>
-                  <p>Credit Card Payment: $150</p>
-                  <p>Credit Card Payment: $150</p>
-                  <p>Credit Card Payment: $150</p>
-                  <p>Credit Card Payment: $150</p>
+                  <Table singleLine basic='very' compact>
+                    <Table.Body>
+                      {upcomingBills.map((transaction, index) => <UpcomingBillsOverview key={index} transaction={transaction}/>)}
+                    </Table.Body>
+                  </Table>
                 </Grid.Column>
               </Grid.Row>
             </Grid.Column>
@@ -112,6 +119,7 @@ class Overview extends React.Component {
 /** Ensure that the React Router location object is available in case we need to redirect. */
 Overview.propTypes = {
   transactions: PropTypes.array.isRequired,
+  bills: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -119,8 +127,10 @@ Overview.propTypes = {
 export default withTracker(() => {
   // Get access to Transaction documents.
   const sub = Meteor.subscribe(Transactions.userPublicationName);
+  const sub2 = Meteor.subscribe(Bills.userPublicationName);
   return {
-    transactions: Transactions.collection.find({}).fetch(),
-    ready: sub.ready(),
+    transactions: Transactions.collection.find({}, { sort: { date: -1 } }).fetch(),
+    bills: Bills.collection.find({}).fetch(),
+    ready: sub.ready() && sub2.ready(),
   };
 })(Overview);

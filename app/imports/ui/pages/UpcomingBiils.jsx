@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Accordion, Container, Grid, Loader } from 'semantic-ui-react';
+import { Accordion, Button, Container, Divider, Grid, Header, Loader } from 'semantic-ui-react';
 import { Bills } from '../../api/bill/Bill';
 import { Transactions } from '../../api/transaction/Transaction';
 import UpcomingBillsContent from '../components/upcoming-bills/UpcomingBillsContent';
 
 const UpcomingBills = (props) => {
+  const today = new Date();
+  today.setHours(23, 59, 59, 999);
+
+  const getTransactions = (billPayee) => props.transactions.filter(({ date, payee }) => date > today && payee === billPayee);
+
   const panels = [];
   props.bills.forEach(function (bill) {
     panels.push({
@@ -19,7 +24,7 @@ const UpcomingBills = (props) => {
       content: {
         content: (
             <div>
-              {<UpcomingBillsContent bill={bill} transactions={props.transactions}/>}
+              {<UpcomingBillsContent bill={bill} transactions={getTransactions(bill.payee)}/>}
             </div>
         ),
       },
@@ -30,11 +35,23 @@ const UpcomingBills = (props) => {
       <Loader active>Fetching Bills</Loader> :
       (
           <Container style={{ margin: '2rem 1rem' }}>
-            <Grid id='transaction' container
-                  style={{ padding: '1.5rem', borderRadius: '10px' }}>
+            <Grid id='transaction'
+                  container
+                  style={{ border: '0.2rem solid gray', padding: '1.5rem', borderRadius: '10px' }}>
+              <Grid.Row textAlign='center'>
+                <Grid.Column as={Header}
+                             size='huge'
+                             content={'Upcoming Bills'}
+                />
+              </Grid.Row>
+              <Divider/>
               <Accordion fluid
                          styled
-                         panels={panels}/>
+                         panels={panels}
+              />
+              <Grid.Row>
+                <Button basic floated='right' size={'mini'} icon={'add'}/>
+              </Grid.Row>
             </Grid>
           </Container>
       );

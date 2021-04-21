@@ -75,7 +75,7 @@ const AddTransaction = (props) => {
            onClose={handleModalClose}
            onOpen={handleModalOpen}
            trigger={
-             <Button size={'mini'} icon={'add'}/>
+             <Button basic size={'mini'} icon={'add'}/>
            }
            style = {{ fontSize: '13px' }}
     >

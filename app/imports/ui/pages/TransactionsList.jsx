@@ -54,7 +54,7 @@ const TransactionsList = (props) => {
       (
           <Container style={{ margin: '2rem 1rem' }}>
             <Grid id='transaction' container
-                  style={{ padding: '2rem', borderRadius: '10px' }}>
+                  style={{ border: '0.2rem solid gray', padding: '2rem', borderRadius: '10px' }}>
               <TransactionsSummary data={data.summary} transactions={transactions}/>
               <Grid.Row>
                 <Table singleLine basic='very' compact>
