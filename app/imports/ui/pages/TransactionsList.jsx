@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Container, Grid, Label, Loader, Table } from 'semantic-ui-react';
+import { Accordion, Container, Grid, Label, Loader, Table } from 'semantic-ui-react';
 import { Transactions } from '../../api/transaction/Transaction';
 import TransactionsSummary from '../components/transactions-list/TransactionsSummary';
 import TransactionItem from '../components/transactions-list/TransactionItem';
@@ -33,31 +33,48 @@ const TransactionsList = (props) => {
   const data = getData();
   const transactions = props.transactions;
 
-  const showScheduledRow = data.scheduled.length === 0 ? null : (
-      <Table.Row>
-        <Table.Cell colSpan={6}>
-          <Label basic ribbon>Scheduled Transactions</Label>
-        </Table.Cell>
-      </Table.Row>
-  );
-
-  const showClearedRow = data.cleared.length === 0 ? null : (
-      <Table.Row>
-        <Table.Cell colSpan={6}>
-          <Label basic ribbon>Cleared Transactions</Label>
-        </Table.Cell>
-      </Table.Row>
-  );
+  const panels = [
+    {
+      key: 'scheduled',
+      title: 'Scheduled Transactions',
+      content: {
+        content: (
+            <Table singleLine basic='very' compact>
+              <Table.Body>
+                {data.scheduled.map(
+                    (value, index) => <TransactionItem key={index} data={value} transactions={transactions}/>,
+                )}
+              </Table.Body>
+            </Table>
+        ),
+      },
+    },
+    {
+      key: 'cleared',
+      title: 'Cleared Transactions',
+      content: {
+        content: (
+            <Table singleLine basic='very' compact>
+              <Table.Body>
+                {data.cleared.map(
+                    (value, index) => <TransactionItem key={index} data={value} transactions={transactions}/>,
+                )}
+              </Table.Body>
+            </Table>
+        ),
+      },
+    },
+  ];
 
   return !props.ready ?
       <Loader active>Fetching Transactions</Loader> :
       (
-          <Container style={{ margin: '2rem 1rem' }}>
+          <Container style={{ margin: '2rem 1rem', width: 900 }}>
             <Grid id='transaction' container
                   style={{ border: '0.2rem solid gray', padding: '2rem', borderRadius: '10px' }}>
               <TransactionsSummary data={data.summary} transactions={transactions}/>
               <Grid.Row>
-                <Table singleLine basic='very' compact>
+                <Table singleLine basic='very' compact style={{ paddingLeft: 15, width: 825 }}>
                   <Table.Header>
                     <Table.Row>
                       <Table.HeaderCell width={2}>Date</Table.HeaderCell>
@@ -68,17 +85,13 @@ const TransactionsList = (props) => {
                       <Table.HeaderCell width={2}>Balance</Table.HeaderCell>
                     </Table.Row>
                   </Table.Header>
-                  <Table.Body>
-                    {showScheduledRow}
-                    {data.scheduled.map(
-                        (value, index) => <TransactionItem key={index} data={value} transactions={transactions}/>,
-                        )}
-                    {showClearedRow}
-                    {data.cleared.map(
-                        (value, index) => <TransactionItem key={index} data={value} transactions={transactions}/>,
-                        )}
-                  </Table.Body>
                 </Table>
+                <Accordion fluid
+                           styled
+                           panels={panels}
+                           defaultActiveIndex={[1]}
+                           exclusive={false}
+                           />
               </Grid.Row>
             </Grid>
           </Container>

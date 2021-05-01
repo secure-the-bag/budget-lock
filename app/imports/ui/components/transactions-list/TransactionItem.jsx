@@ -31,7 +31,7 @@ const TransactionItem = (props) => {
   const transactions = props.transactions;
 
   const getNumFormat = (num) => ((num < 0) ?
-        <Table.Cell style={{ color: 'red' }}>-${Math.abs(num).toFixed(2)}</Table.Cell> :
+        <Table.Cell style={{ color: 'red' }} width={2}>-${Math.abs(num).toFixed(2)}</Table.Cell> :
         <Table.Cell>${num.toFixed(2)}</Table.Cell>);
 
   const categoryLabel = getCategoryEquivalent(transaction.category, 'label');
@@ -97,10 +97,10 @@ const TransactionItem = (props) => {
              onOpen={handleModalOpen}
              trigger={
                <Table.Row style={{ cursor: 'pointer' }}>
-                 <Table.Cell>{transaction.date.toLocaleDateString()}</Table.Cell>
-                 <Table.Cell>{transaction.payee}</Table.Cell>
-                 <Table.Cell>{categoryLabel}</Table.Cell>
-                 <Table.Cell>{transaction.notes}</Table.Cell>
+                 <Table.Cell width={2}>{transaction.date.toLocaleDateString()}</Table.Cell>
+                 <Table.Cell width={3}>{transaction.payee}</Table.Cell>
+                 <Table.Cell width={4}>{categoryLabel}</Table.Cell>
+                 <Table.Cell width={3}>{transaction.notes}</Table.Cell>
                  {getNumFormat(transaction.amount)}
                  {getNumFormat(transaction.balance)}
                </Table.Row>
