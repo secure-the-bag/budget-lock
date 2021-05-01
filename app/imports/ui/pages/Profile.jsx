@@ -89,14 +89,40 @@ class Profile extends React.Component {
     this.setState({ verifyPassword: data.value });
   }
 
+  handleDelete = () => {
+    const userToRemove = Profiles.collection.find({}, { fields: { email: 1 } })
+        .fetch();
+    Profiles.collection.remove(userToRemove[0]._id);
+    Meteor.users.remove(Meteor.userId());
+    swal('Successfully deleted!')
+        .then(() => {
+          // eslint-disable-next-line no-undef
+          window.location = '/#/';
+        });
+  };
+
+  handleClick = () => swal({
+    text: 'Are you sure you want to delete your account',
+    icon: 'warning',
+    buttons: true,
+    dangerMode: true,
+  })
+      .then((willDelete) => {
+        if (willDelete) {
+          this.handleDelete();
+        } else {
+          swal('Canceled deleting your account');
+        }
+      });
+
   renderEditButton() {
     if (this.state.readOnly) {
       return (
-        <Button onClick={() => this.onEdit()}>
-          <Button.Content>
-            <Icon name='edit'/>
-          </Button.Content>
-        </Button>
+          <Button onClick={() => this.onEdit()}>
+            <Button.Content>
+              <Icon name='edit'/>
+            </Button.Content>
+          </Button>
       );
     }
     return (
@@ -185,14 +211,20 @@ class Profile extends React.Component {
           </Modal.Content>
           <Modal.Actions>
             <Button
-              content="Update Password"
-              labelPosition='right'
-              icon='checkmark'
-              onClick={() => this.verifyPassword()}
-              positive
+                content="Update Password"
+                labelPosition='right'
+                icon='checkmark'
+                onClick={() => this.verifyPassword()}
+                positive
             />
           </Modal.Actions>
         </Modal>
+        <br/>
+        <div align={'center'}>
+          <Button negative onClick={this.handleClick}>
+            Delete Account
+          </Button>
+        </div>
       </Container>
     );
   }
