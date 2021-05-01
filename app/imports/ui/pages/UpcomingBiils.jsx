@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Accordion, Button, Container, Divider, Grid, Header, Loader } from 'semantic-ui-react';
+import { Accordion, Container, Divider, Grid, Header, Loader } from 'semantic-ui-react';
 import { Bills } from '../../api/bill/Bill';
 import { Transactions } from '../../api/transaction/Transaction';
 import UpcomingBillsContent from '../components/upcoming-bills/UpcomingBillsContent';
+import AddUpcomingBill from '../components/upcoming-bills/AddUpcomingBill';
 
 const UpcomingBills = (props) => {
   const today = new Date();
@@ -50,7 +51,7 @@ const UpcomingBills = (props) => {
                          panels={panels}
               />
               <Grid.Row>
-                <Button basic floated='right' size={'mini'} icon={'add'}/>
+                <AddUpcomingBill transactions={props.allTransactions}/>
               </Grid.Row>
             </Grid>
           </Container>
@@ -59,6 +60,7 @@ const UpcomingBills = (props) => {
 
 UpcomingBills.propTypes = {
   bills: PropTypes.array.isRequired,
+  allTransactions: PropTypes.array.isRequired,
   transactions: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
@@ -68,7 +70,9 @@ export default withTracker(() => {
       Meteor.subscribe(Transactions.userPublicationName).ready();
   const bills = Bills.collection.find({}, { sort: { date: -1 } }).fetch();
   const transactions = Transactions.collection.find({}, { sort: [['date', 'asc']] }).fetch();
+  const allTransactions = Transactions.collection.find({}, { sort: { date: -1 } }).fetch();
   return {
+    allTransactions,
     transactions,
     bills,
     ready,

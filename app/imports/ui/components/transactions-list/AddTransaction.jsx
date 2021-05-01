@@ -15,7 +15,11 @@ import {
 } from 'uniforms-semantic';
 import PropTypes from 'prop-types';
 import { Transactions } from '../../../api/transaction/Transaction';
-import { getCategoryChoices, validateOptionalFields } from '../../utilities/GlobalFunctions';
+import {
+  getCategoryChoices,
+  getCategoryChoicesNoStarting,
+  validateOptionalFields,
+} from '../../utilities/GlobalFunctions';
 import { getNewBalance } from '../../utilities/UpdateBalances';
 
 const AddTransaction = (props) => {
@@ -49,6 +53,8 @@ const AddTransaction = (props) => {
 
   const bridge = new SimpleSchema2Bridge(formSchema);
 
+  const categories = props.transactions.length === 0 ? getCategoryChoices() : getCategoryChoicesNoStarting;
+
   const submit = (data) => {
     const { date, category } = data;
     const { payee, name, notes } = validateOptionalFields(data);
@@ -60,7 +66,7 @@ const AddTransaction = (props) => {
       { removeEmptyStrings: false },
       (error) => (error ?
           swal('Error', error.message, 'error') :
-          swal('Success', 'Data added successfully', 'success').then(() => {
+          swal('Success', 'Transaction added successfully', 'success').then(() => {
             handleModalClose();
           })));
   };
@@ -85,7 +91,7 @@ const AddTransaction = (props) => {
         <TextField name='payee'
                    defaultValue=''/>
         <SelectField name='category'
-                     options={getCategoryChoices()}/>
+                     options={categories}/>
         <NumField name='amount'/>
         <TextField name='name'/>
         <TextField name='notes'/>

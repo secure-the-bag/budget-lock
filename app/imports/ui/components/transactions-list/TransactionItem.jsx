@@ -13,7 +13,12 @@ import {
   TextField,
 } from 'uniforms-semantic';
 import swal from 'sweetalert';
-import { getCategoryChoices, getCategoryEquivalent, validateOptionalFields } from '../../utilities/GlobalFunctions';
+import {
+  getCategoryChoices,
+  getCategoryChoicesNoStarting,
+  getCategoryEquivalent,
+  validateOptionalFields,
+} from '../../utilities/GlobalFunctions';
 import { getLaterTransactions, getNewBalance, updateBalances } from '../../utilities/UpdateBalances';
 import { Transactions } from '../../../api/transaction/Transaction';
 
@@ -53,6 +58,8 @@ const TransactionItem = (props) => {
       optional: true,
     },
   });
+
+  const categories = (transactions.length === 0 || transactions[transactions.length - 1]._id === transaction._id) ? getCategoryChoices() : getCategoryChoicesNoStarting;
 
   const bridge = new SimpleSchema2Bridge(formSchema);
 
@@ -117,7 +124,7 @@ const TransactionItem = (props) => {
             <TextField name='payee'
                        defaultValue=''/>
             <SelectField name='category'
-                         options={getCategoryChoices()}/>
+                         options={categories}/>
             <NumField name='amount'/>
             <TextField name='name'/>
             <TextField name='notes'/>

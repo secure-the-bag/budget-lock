@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Accordion, Container, Grid, Label, Loader, Table } from 'semantic-ui-react';
+import { Accordion, Container, Grid, Loader, Table } from 'semantic-ui-react';
 import { Transactions } from '../../api/transaction/Transaction';
 import TransactionsSummary from '../components/transactions-list/TransactionsSummary';
 import TransactionItem from '../components/transactions-list/TransactionItem';
