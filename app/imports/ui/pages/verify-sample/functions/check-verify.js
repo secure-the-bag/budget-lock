@@ -17,7 +17,7 @@
  */
 
 // eslint-disable-next-line consistent-return
-exports.handler = function checkVerify(context, event, callback) {
+function checkVerify(context, event, callback) {
   // eslint-disable-next-line no-undef
   const response = new Twilio.Response();
   response.appendHeader('Content-Type', 'application/json');
@@ -74,4 +74,4 @@ exports.handler = function checkVerify(context, event, callback) {
       });
       callback(null, response);
     });
-};
+}
