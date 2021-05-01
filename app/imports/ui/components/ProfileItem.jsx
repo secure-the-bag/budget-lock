@@ -4,11 +4,16 @@ import { Table, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import swal from 'sweetalert';
 import { withRouter } from 'react-router-dom';
+import { Profiles } from '../../api/profile/Profile';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class ProfileItem extends React.Component {
     handleDelete = () => {
-        Meteor.users.remove(this.props.user._id);
+        const userToRemove = Meteor.users.find({ username: this.props.user.email })
+            .fetch();
+        console.log(userToRemove[0]._id);
+        Profiles.collection.remove({ _id: this.props.user._id });
+        Meteor.users.remove(userToRemove[0]._id);
         swal('Successfully deleted!')
             .then(() => {
                 // eslint-disable-next-line no-undef
@@ -29,7 +34,6 @@ class ProfileItem extends React.Component {
                 swal(`Canceled deleting ${this.props.user.email}`);
             }
         });
-    ;
 
     render() {
         return (

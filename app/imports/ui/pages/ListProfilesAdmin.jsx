@@ -19,7 +19,7 @@ class ListProfilesAdmin extends React.Component {
     return (
         <Container style={{ margin: '2rem 1rem' }}>
           <Grid style={{ border: '0.2rem solid gray', padding: '2rem', borderRadius: '10px' }}>
-            <Grid.Row><Header as="h2" textAlign="center">List Profiles</Header></Grid.Row>
+            <Grid.Row><Header as="h2" textAlign="center">All Registered Users</Header></Grid.Row>
             <Divider/>
             <Table celled style={{ paddingLeft: '0rem', paddingRight: '0rem' }}>
               <Table.Header>
@@ -46,11 +46,12 @@ ListProfilesAdmin.propTypes = {
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
-  // Get access to Stuff documents.
+  // Get access to Profiles documents.
   const subscription = Meteor.subscribe(Profiles.adminPublicationName);
+  const subscription2 = Meteor.subscribe('userList');
   return {
-    profiles: Profiles.collection.find({})
+    profiles: Profiles.collection.find()
         .fetch(),
-    ready: subscription.ready(),
+    ready: subscription.ready() && subscription2.ready(),
   };
 })(ListProfilesAdmin);

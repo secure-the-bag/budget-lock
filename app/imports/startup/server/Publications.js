@@ -5,6 +5,10 @@ import { Transactions } from '../../api/transaction/Transaction';
 import { Profiles } from '../../api/profile/Profile';
 import { Budget } from '../../api/budget/Budget';
 
+Meteor.publish('userList', function () {
+  return Meteor.users.find({}, { fields: { username: 1 } });
+});
+
 // User-level publication.
 // If logged in, then publish documents owned by this user. Otherwise publish nothing.
 Meteor.publish(Profiles.userPublicationName, function () {
