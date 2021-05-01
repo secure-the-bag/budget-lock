@@ -4,7 +4,8 @@
     "payee": "Discover",
     "category": "creditCard",
     "frequency": "monthly",
-    "until": "2022-12-31",
+    "start": "2021-05-01",
+    "until": "2021-12-01",
     "owner": "admin@foo.com"
   },
   {
@@ -12,6 +13,7 @@
     "payee": "StateFarm",
     "category": "subscription",
     "frequency": "biannually",
+    "start": "2021-05-11",
     "owner": "admin@foo.com"
   },
   {
@@ -19,6 +21,7 @@
     "payee": "Spotify",
     "category": "subscription",
     "frequency": "monthly",
+    "start": "2021-04-29",
     "owner": "admin@foo.com"
   }
 ]

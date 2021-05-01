@@ -76,14 +76,15 @@ class Overview extends React.Component {
             <Grid.Column width={5} style={{ border: '0.2rem solid gray', padding: '1rem', marginRight: '5rem', borderRadius: '10px' }}>
               <Grid.Row>
                 <Grid.Column style={{ padding: '1.5rem' }}>
-                  <Header>Upcoming Bills
-                    <hr/>
-                  </Header>
-                  <Table singleLine basic='very' compact>
-                    <Table.Body>
-                      {upcomingBills.map((transaction, index) => <UpcomingBillsOverview key={index} transaction={transaction}/>)}
-                    </Table.Body>
-                  </Table>
+                  <Grid.Row as={Header} content='Upcoming Bills'/>
+                  <hr/>
+                  <Grid.Row style={{ overflow: 'auto', maxHeight: 255 }}>
+                    <Table singleLine basic='very' compact>
+                      <Table.Body>
+                        {upcomingBills.map((transaction, index) => <UpcomingBillsOverview key={index} transaction={transaction}/>)}
+                      </Table.Body>
+                    </Table>
+                  </Grid.Row>
                 </Grid.Column>
               </Grid.Row>
             </Grid.Column>
@@ -129,7 +130,7 @@ export default withTracker(() => {
   const sub = Meteor.subscribe(Transactions.userPublicationName);
   const sub2 = Meteor.subscribe(Bills.userPublicationName);
   return {
-    transactions: Transactions.collection.find({}, { sort: { date: -1 } }).fetch(),
+    transactions: Transactions.collection.find({}, { sort: [['date', 'asc']] }).fetch(),
     bills: Bills.collection.find({}).fetch(),
     ready: sub.ready() && sub2.ready(),
   };

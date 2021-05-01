@@ -1,59 +1,218 @@
 [
   {
-    "date": "Wed Mar 31 2021 00:00:00 GMT-1000 (Hawaii-Aleutian Standard Time)",
-    "payee": "Discover",
-    "category": "creditCard",
+    "date": "04/20/21",
+    "payee": "",
+    "category": "starting",
     "notes": "",
-    "amount": -150,
-    "balance": 848.90,
+    "amount": 1580.11,
+    "balance": 1580.11,
     "owner": "admin@foo.com"
-  }, {
-    "date": "Tues Mar 30 2021 00:00:00 GMT-1000 (Hawaii-Aleutian Standard Time)",
-    "payee": "University of Hawaii",
+  },
+  {
+    "date": "04/20/21",
+    "payee": "State of Hawaii",
     "category": "paycheck",
     "notes": "",
-    "amount": 360.26,
-    "balance": 998.90,
+    "amount": 402.43,
+    "balance": 1982.54,
     "owner": "admin@foo.com"
-  }, {
-    "date": "Mon Mar 29 2021 00:00:00 GMT-1000 (Hawaii-Aleutian Standard Time)",
-    "payee": "Spotify",
-    "category": "subscription",
-    "notes": "",
-    "amount": -5.22,
-    "balance": 638.64,
-    "owner": "admin@foo.com"
-  }, {
-    "date": "Wed Mar 24 2021 00:00:00 GMT-1000 (Hawaii-Aleutian Standard Time)",
-    "payee": "Walmart",
-    "category": "groceries",
-    "notes": "",
-    "amount": -21.36,
-    "balance": 643.86,
-    "owner": "admin@foo.com"
-  }, {
-    "date": "Wed Mar 24 2021 00:00:00 GMT-1000 (Hawaii-Aleutian Standard Time)",
+  },
+  {
+    "date": "04/23/21",
     "payee": "Ireh Restaurant",
     "category": "restaurant",
     "notes": "",
     "amount": -17.32,
-    "balance": 665.22,
+    "balance": 1965.22,
     "owner": "admin@foo.com"
-  }, {
-    "date": "Wed Mar 24 2021 00:00:00 GMT-1000 (Hawaii-Aleutian Standard Time)",
-    "payee": "University of Hawaii",
+  },
+  {
+    "date": "04/26/21",
+    "payee": "Walmart",
+    "category": "groceries",
+    "notes": "",
+    "amount": -21.36,
+    "balance": 1943.86,
+    "owner": "admin@foo.com"
+  },
+  {
+    "date": "04/29/21",
+    "payee": "Spotify",
+    "category": "subscription",
+    "notes": "",
+    "amount": -5.22,
+    "balance": 1938.64,
+    "owner": "admin@foo.com"
+  },
+  {
+    "date": "05/01/21",
+    "payee": "Discover",
+    "category": "creditCard",
+    "notes": "",
+    "amount": -150,
+    "balance": 1788.64,
+    "owner": "admin@foo.com"
+  },
+  {
+    "date": "05/05/21",
+    "payee": "State of Hawaii",
     "category": "paycheck",
     "notes": "",
-    "amount": 402.43,
-    "balance": 682.54,
+    "amount": 360.26,
+    "balance": 2148.9,
     "owner": "admin@foo.com"
-  }, {
-    "date": "Sat Mar 20 2021 00:00:00 GMT-1000 (Hawaii-Aleutian Standard Time)",
-    "payee": "",
+  },
+  {
+    "date": "05/11/21",
+    "payee": "StateFarm",
+    "category": "subscription",
     "notes": "",
-    "category": "starting",
-    "amount": 280.11,
-    "balance": 280.11,
+    "amount": -332,
+    "balance": 1816.9,
+    "owner": "admin@foo.com"
+  },
+  {
+    "date": "05/29/21",
+    "payee": "Spotify",
+    "category": "subscription",
+    "notes": "",
+    "amount": -5.22,
+    "balance": 1811.68,
+    "owner": "admin@foo.com"
+  },
+  {
+    "date": "06/01/21",
+    "payee": "Discover",
+    "category": "creditCard",
+    "notes": "",
+    "amount": -150,
+    "balance": 1661.68,
+    "owner": "admin@foo.com"
+  },
+  {
+    "date": "06/29/21",
+    "payee": "Spotify",
+    "category": "subscription",
+    "notes": "",
+    "amount": -5.22,
+    "balance": 1656.46,
+    "owner": "admin@foo.com"
+  },
+  {
+    "date": "07/01/21",
+    "payee": "Discover",
+    "category": "creditCard",
+    "notes": "",
+    "amount": -150,
+    "balance": 1506.46,
+    "owner": "admin@foo.com"
+  },
+  {
+    "date": "07/29/21",
+    "payee": "Spotify",
+    "category": "subscription",
+    "notes": "",
+    "amount": -5.22,
+    "balance": 1501.24,
+    "owner": "admin@foo.com"
+  },
+  {
+    "date": "08/01/21",
+    "payee": "Discover",
+    "category": "creditCard",
+    "notes": "",
+    "amount": -150,
+    "balance": 1351.24,
+    "owner": "admin@foo.com"
+  },
+  {
+    "date": "08/29/21",
+    "payee": "Spotify",
+    "category": "subscription",
+    "notes": "",
+    "amount": -5.22,
+    "balance": 1346.02,
+    "owner": "admin@foo.com"
+  },
+  {
+    "date": "09/01/21",
+    "payee": "Discover",
+    "category": "creditCard",
+    "notes": "",
+    "amount": -150,
+    "balance": 1196.02,
+    "owner": "admin@foo.com"
+  },
+  {
+    "date": "09/29/21",
+    "payee": "Spotify",
+    "category": "subscription",
+    "notes": "",
+    "amount": -5.22,
+    "balance": 1190.8,
+    "owner": "admin@foo.com"
+  },
+  {
+    "date": "10/01/21",
+    "payee": "Discover",
+    "category": "creditCard",
+    "notes": "",
+    "amount": -150,
+    "balance": 1040.8,
+    "owner": "admin@foo.com"
+  },
+  {
+    "date": "10/29/21",
+    "payee": "Spotify",
+    "category": "subscription",
+    "notes": "",
+    "amount": -5.22,
+    "balance": 1035.58,
+    "owner": "admin@foo.com"
+  },
+  {
+    "date": "11/01/21",
+    "payee": "Discover",
+    "category": "creditCard",
+    "notes": "",
+    "amount": -150,
+    "balance": 885.58,
+    "owner": "admin@foo.com"
+  },
+  {
+    "date": "11/11/21",
+    "payee": "StateFarm",
+    "category": "subscription",
+    "notes": "",
+    "amount": -332,
+    "balance": 553.58,
+    "owner": "admin@foo.com"
+  },
+  {
+    "date": "11/29/21",
+    "payee": "Spotify",
+    "category": "subscription",
+    "notes": "",
+    "amount": -5.22,
+    "balance": 548.36,
+    "owner": "admin@foo.com"
+  },
+  {
+    "date": "12/01/21",
+    "payee": "Discover",
+    "category": "creditCard",
+    "notes": "",
+    "amount": -150,
+    "balance": 398.36,
+    "owner": "admin@foo.com"
+  },
+  {
+    "date": "12/29/21",
+    "payee": "Spotify",
+    "category": "subscription",
+    "notes": "",
+    "amount": -5.22,
+    "balance": 393.14,
     "owner": "admin@foo.com"
   }
 ]

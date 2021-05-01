@@ -14,6 +14,7 @@ class BillCollection {
         type: String,
         allowedValues: ['daily', 'weekly', 'monthly', 'quarterly', 'biannually', 'annually'],
       },
+      start: Date,
       until: {
         type: Date,
         optional: true,

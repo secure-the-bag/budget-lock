@@ -67,7 +67,7 @@ export default withTracker(() => {
   const ready = Meteor.subscribe(Bills.userPublicationName).ready() &&
       Meteor.subscribe(Transactions.userPublicationName).ready();
   const bills = Bills.collection.find({}, { sort: { date: -1 } }).fetch();
-  const transactions = Transactions.collection.find({}, { sort: { date: -1 } }).fetch();
+  const transactions = Transactions.collection.find({}, { sort: [['date', 'asc']] }).fetch();
   return {
     transactions,
     bills,
