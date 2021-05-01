@@ -19,7 +19,7 @@ class ListProfilesAdmin extends React.Component {
     return (
         <Container style={{ margin: '2rem 1rem' }}>
           <Grid style={{ border: '0.2rem solid gray', padding: '2rem', borderRadius: '10px' }}>
-            <Grid.Row><Header as="h2" textAlign="center">All Registered Users</Header></Grid.Row>
+            <Grid.Row><Header as="h2" textAlign="center">All Budget Lock Users</Header></Grid.Row>
             <Divider/>
             <Table celled style={{ paddingLeft: '0rem', paddingRight: '0rem' }}>
               <Table.Header>
