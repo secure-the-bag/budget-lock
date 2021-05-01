@@ -11,7 +11,6 @@ class ProfileItem extends React.Component {
     handleDelete = () => {
         const userToRemove = Meteor.users.find({ username: this.props.user.email })
             .fetch();
-        console.log(userToRemove[0]._id);
         Profiles.collection.remove({ _id: this.props.user._id });
         Meteor.users.remove(userToRemove[0]._id);
         swal('Successfully deleted!')
