@@ -9,7 +9,7 @@ class CashFlowOverTimeChart extends React.Component {
   }
 
   componentDidMount() {
-    // const _this = this;
+    const _this = this;
     // Init chart with data from props.
     const chart = Highcharts.chart({
       chart: {
@@ -43,7 +43,7 @@ class CashFlowOverTimeChart extends React.Component {
           groupPadding: 0,
           color: 'green',
           negativeColor: 'red',
-          data: [130, 43, -143, 203, -66, 13, 0, 0, 0, 0, 0],
+          data: _this.props.data,
           showInLegend: false,
         }],
     });

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Container, Header, Loader, Table } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
+import { _ } from 'lodash';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Transactions } from '../../api/transaction/Transaction';
@@ -23,6 +24,30 @@ class Overview extends React.Component {
   }
 
   renderPage() {
+
+    const sorted_month = _.groupBy(this.props.transactions, (transaction) => new Date(transaction.date).getMonth());
+    const months = [];
+    for (let i = 1; i <= 12; i++) {
+      months.push({
+        month: i,
+        amount: 0,
+      });
+    }
+    // eslint-disable-next-line guard-for-in,no-restricted-syntax
+    for (const key in sorted_month) {
+      const obj = sorted_month[key];
+      let cashFlow = 0;
+      for (let i = 0; i < obj.length; i++) {
+        cashFlow += obj[i].amount;
+      }
+      months[key] = {
+        month: parseInt(key, 10),
+        amount: cashFlow,
+      };
+    }
+
+    const cashflow = Object.keys(months).map((key) => [months[key].amount]).flat();
+
     const spending = this.props.transactions.filter(({ amount }) => amount < 0);
     const month = new Date();
     month.setHours(0, 0, 0, 0);
@@ -104,7 +129,7 @@ class Overview extends React.Component {
           </Grid.Row>
           <Grid.Row columns={'equal'}>
             <Grid.Column>
-              <CashFlowOverTimeChart/>
+              <CashFlowOverTimeChart data={cashflow}/>
             </Grid.Column>
             <Grid.Column>
               <MonthlySpendingChart totalSpending={totalSpending.toFixed(2)} data={chartData}
