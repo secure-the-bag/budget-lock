@@ -1,22 +1,27 @@
 [![ci-secure-the-bag-budget-lock](https://github.com/secure-the-bag/budget-lock/actions/workflows/ci.yml/badge.svg)](https://github.com/secure-the-bag/budget-lock/actions/workflows/ci.yml)
 
 # Table of Contents
-* [01/24/2021 - 02/21/2021](#milestone-1)
-* [02/21/2021 - 03/21/2021](#milestone-2)
-* [03/21/2021 - 04/11/2021](#milestone-3)
+* [Development History](#development-history)
+  * [01/24/2021 - 02/21/2021](#milestone-1)
+  * [02/21/2021 - 03/21/2021](#milestone-2)
+  * [03/21/2021 - 04/11/2021](#milestone-3)
+  * [04/11/2021 - 05/02/2021](#milestone-4)
+* [Technical Notes](#technical-notes)
+* [Developer Notes](#developer-notes)
+* [Important Links](#important-links)
 
 # Development History
 ## Milestone 1
-## 01/24/2021 - 02/21/2021 | Mockup Development
+### 01/24/2021 - 02/21/2021 | Mockup Development
 * Created HTML mockups for the following pages: Sign Up and Sign In, Landing, Overview, Monthly Spending, TransactionsList
 * Developed a database schema for Transaction collection
 
-# Pending Enhancements
+### Pending Enhancements
 * Implement Two-Factor Authorization onto the sign in page
 * Implement pages for the following: User Profile, Upcoming Bills
 * Research the following: password encryption, MongoDB user authentication
 
-# The Team
+### Team Contributions
 ### Nadine Alcantara
 * Done
   * Implement Landing page and Navigation Bar mockups  
@@ -51,15 +56,15 @@
 ***
 
 ## Milestone 2
-## 02/21/2021 - 03/21/2021 | Database Implementation
+### 02/21/2021 - 03/21/2021 | Database Implementation
 * Linked the database to the different pages
 * Implemented Trillo API functionality
 
-# Pending Enhancements
+### Pending Enhancements
 * Implement 2FA with Trillo on Sign Up page
 * Further enhance the pages and add the Admin page
 
-# The Team
+### Team Contributions
 ### Nadine Alcantara
 * Done
   * Created Profiles API
@@ -96,13 +101,13 @@
 ***
 
 ## Milestone 3
-## 03/21/2021 - 04/11/2021 | Functionality Implementation
+### 03/21/2021 - 04/11/2021 | Functionality Implementation
 * Linked the database to the different pages
 
-# Pending Enhancements
+### Pending Enhancements
 * Further enhance the pages and add the Admin page
 
-# The Team
+### Team Contrubutions
 ### Nadine Alcantara
 * Done
   * Fixed broken admin roles to admin accounts
@@ -130,9 +135,58 @@
 * Next
   * Implement Upcoming Bills
 
+***
+
+## Milestone 4
+### 04/11/2021 - 05/02/2021 | Release
+* (insert summary here)
+
+### Team Contrubutions
+### Nadine Alcantara
+* 
+
+### Jennifer Hsu
+* 
+
+### Andre Joseph Ruiz
+* 
+
+### Daphne Marie Tapia
+* Updated UI for Transaction and Upcoming Bills pages and finalized functionalities used in these pages.
+
+***
+
+# Technical Notes
+## Specifications For Use (optional)
+
+## Platfrom and Browser Requirements
+Budget Lock can be run on any device that can run web browsers and has Command Prompt/Terminal. It is highly suggested to use Google Chrome to run the application, however, any web browser other than the Brave browser may be used.
+
+## How to run the application
+1. Install [Node.js](https://nodejs.dev/) (LTS) and [Meteor](https://www.meteor.com/developers/install) on your machine. 
+2. Go to the [project repository](https://github.com/secure-the-bag/budget-lock) and clone the repository by opening with Github Desktop or downloading as ZIP file. If you did the latter, unzip the file on your machine.
+3. Using Command Prompt/Terminal, navigate to the app directory of the cloned repository.
+4. Install third party libraries by running ``meteor npm install``
+5. Launch the app by running ``meteor npm run start``
+6. Using any browser, go to the localhost port specified on the Command Prompt/Terminal (ex: localhost:3000) 
+
+
+# Developer Notes
+### Nadine Alcantara
+### Jennifer Hsu
+### Joseph Ruiz
+### Daphne Marie Tapia
+
+# Important Links
+* [Project Repository](https://github.com/secure-the-bag/budget-lock)
+* [Project Documentation](https://github.com/secure-the-bag/budget-lock#readme)
+* [Release Version]()
+* [Wiki Page](https://github.com/secure-the-bag/budget-lock/wiki)
+
+***
 
 Template used for application development: [meteor-application-template-react](http://ics-software-engineering.github.io/meteor-application-template-react/)
 
 ***
 
-Last updated: 04/11/2021
+Last updated: 05/01/2021
