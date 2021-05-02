@@ -160,7 +160,7 @@ Daphne Marie Tapia
 ## Platform and Browser Requirements
 Budget Lock can be run on any device that can run web browsers and has Command Prompt/Terminal. It is highly recommended to use Google Chrome to run the application, however, any web browser other than the Brave browser may be used.
 
-## How to run the application
+## Running the Application
 1. Install [Node.js](https://nodejs.dev/) (LTS) and [Meteor](https://www.meteor.com/developers/install) on your machine. 
 2. Go to the [project repository](https://github.com/secure-the-bag/budget-lock) and clone the repository by opening with Github Desktop or downloading as ZIP file. If you did the latter, unzip the file on your machine.
 3. Using Command Prompt/Terminal, navigate to the app directory of the cloned repository.
