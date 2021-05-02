@@ -25,7 +25,7 @@ class CashFlowOverTimeChart extends React.Component {
         },
       },
       xAxis: {
-        categories: ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sept', 'Nov', 'Dec'],
+        categories: ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
       },
       yAxis: {
         labels: {
