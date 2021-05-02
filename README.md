@@ -139,14 +139,14 @@ Daphne Marie Tapia
 
 ## Milestone 4
 ### 04/11/2021 - 05/02/2021 | Release
-* (insert summary here)
+* Further refinement of UI and functionality 
 
 ### Team Contrubutions
 Nadine Alcantara
 * .
 
 Jennifer Hsu
-* .
+* Implemented Cash Flow Trend Over Time functionality in the Overview page.
 
 Andre Joseph Ruiz
 * .
