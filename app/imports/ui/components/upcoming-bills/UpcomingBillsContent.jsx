@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Grid, Header, Table } from 'semantic-ui-react';
+import { Grid, Header, Table } from 'semantic-ui-react';
 import { getCategoryEquivalent } from '../../utilities/GlobalFunctions';
 import UpcomingBillsTableItem from './UpcomingBillsTableItem';
+import DeleteUpcomingBill from './DeleteUpcomingBill';
 
 const UpcomingBillsContent = (props) => {
   const until = props.bill.until ? props.bill.until.toLocaleDateString() : 'Not Specified';
+
   return (
       <Grid columns={5} centered
             style={{ paddingLeft: '2rem' }}>
@@ -35,7 +37,7 @@ const UpcomingBillsContent = (props) => {
                        textAlign='center'
           />
           <Grid.Column floated='right' width={2}>
-            <Button basic compact>Edit</Button>
+            <DeleteUpcomingBill bill={props.bill} transactions={props.transactions} allTransactions={props.allTransactions}/>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
@@ -59,6 +61,7 @@ const UpcomingBillsContent = (props) => {
 UpcomingBillsContent.propTypes = {
   bill: PropTypes.object.isRequired,
   transactions: PropTypes.array.isRequired,
+  allTransactions: PropTypes.array.isRequired,
 };
 
 export default (UpcomingBillsContent);

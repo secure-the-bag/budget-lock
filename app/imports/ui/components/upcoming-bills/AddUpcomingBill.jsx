@@ -60,6 +60,8 @@ const AddUpcomingBill = (props) => {
         swal('Error', error.message, 'error') :
         swal('Success', 'Bill added successfully', 'success').then(() => {
           handleModalClose();
+          // eslint-disable-next-line no-undef
+          window.location.reload();
         })));
   };
 

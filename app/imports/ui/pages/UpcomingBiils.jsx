@@ -7,12 +7,22 @@ import { Bills } from '../../api/bill/Bill';
 import { Transactions } from '../../api/transaction/Transaction';
 import UpcomingBillsContent from '../components/upcoming-bills/UpcomingBillsContent';
 import AddUpcomingBill from '../components/upcoming-bills/AddUpcomingBill';
+import { getLaterTransactions, updateBalances } from '../utilities/UpdateBalances';
+
+const today = new Date();
+today.setHours(23, 59, 59, 999);
 
 const UpcomingBills = (props) => {
-  const today = new Date();
-  today.setHours(23, 59, 59, 999);
 
-  const getTransactions = (billPayee) => props.transactions.filter(({ date, payee }) => date > today && payee === billPayee);
+  const getTransactions = (billPayee) => props.transactions.filter(({ payee }) => payee === billPayee);
+
+  const fixBalances = () => {
+    if (props.transactions.length > 0) {
+      const firstTransaction = props.transactions[0];
+      // update balances after
+      updateBalances(firstTransaction.balance, getLaterTransactions(firstTransaction.date, props.allTransactions));
+    }
+  };
 
   const panels = [];
   props.bills.forEach(function (bill) {
@@ -25,7 +35,7 @@ const UpcomingBills = (props) => {
       content: {
         content: (
             <div>
-              {<UpcomingBillsContent bill={bill} transactions={getTransactions(bill.payee)}/>}
+              {<UpcomingBillsContent bill={bill} transactions={getTransactions(bill.payee)} allTransactions={props.allTransactions}/>}
             </div>
         ),
       },
@@ -36,6 +46,7 @@ const UpcomingBills = (props) => {
       <Loader active>Fetching Bills</Loader> :
       (
           <Container style={{ margin: '2rem 1rem' }}>
+            {fixBalances()}
             <Grid id='transaction'
                   container
                   style={{ border: '0.2rem solid gray', padding: '1.5rem', borderRadius: '10px' }}>
@@ -69,8 +80,8 @@ export default withTracker(() => {
   const ready = Meteor.subscribe(Bills.userPublicationName).ready() &&
       Meteor.subscribe(Transactions.userPublicationName).ready();
   const bills = Bills.collection.find({}, { sort: { date: -1 } }).fetch();
-  const transactions = Transactions.collection.find({}, { sort: [['date', 'asc']] }).fetch();
-  const allTransactions = Transactions.collection.find({}, { sort: { date: -1 } }).fetch();
+  const transactions = Transactions.collection.find({}, { sort: [['date', 'asc']] }).fetch().filter(({ date }) => date > today);
+  const allTransactions = Transactions.collection.find({}, { sort: { date: -1 } }).fetch().filter(({ date }) => date > today);
   return {
     allTransactions,
     transactions,

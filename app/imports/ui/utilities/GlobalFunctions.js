@@ -110,13 +110,15 @@ export const insertNewBillTransactions = ({ fixedAmount, start, until, frequency
     if (frequency === 'biannually') tempDate.setMonth(start.getMonth() + (count * 6));
     if (frequency === 'annually') tempDate.setFullYear(start.getFullYear() + (count * 1));
     // insert transaction
-    const data = {};
-    data.date = tempDate;
-    data.category = category;
-    data.payee = payee;
-    data.amount = fixedAmount;
-    data.owner = owner;
-    insertTransaction(data, transactions);
-    count += 1;
+    if (tempDate < until) {
+      const data = {};
+      data.date = tempDate;
+      data.category = category;
+      data.payee = payee;
+      data.amount = fixedAmount;
+      data.owner = owner;
+      insertTransaction(data, transactions);
+      count += 1;
+    }
   }
 };
