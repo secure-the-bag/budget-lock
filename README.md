@@ -157,10 +157,8 @@ Daphne Marie Tapia
 ***
 
 # Technical Notes
-## Specifications For Use (optional)
-
-## Platfrom and Browser Requirements
-Budget Lock can be run on any device that can run web browsers and has Command Prompt/Terminal. It is highly suggested to use Google Chrome to run the application, however, any web browser other than the Brave browser may be used.
+## Platform and Browser Requirements
+Budget Lock can be run on any device that can run web browsers and has Command Prompt/Terminal. It is highly recommended to use Google Chrome to run the application, however, any web browser other than the Brave browser may be used.
 
 ## How to run the application
 1. Install [Node.js](https://nodejs.dev/) (LTS) and [Meteor](https://www.meteor.com/developers/install) on your machine. 
