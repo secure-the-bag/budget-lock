@@ -143,13 +143,13 @@ Daphne Marie Tapia
 
 ### Team Contrubutions
 Nadine Alcantara
-* 
+* .
 
 Jennifer Hsu
-* 
+* .
 
 Andre Joseph Ruiz
-* 
+* .
 
 Daphne Marie Tapia
 * Updated UI for Transaction and Upcoming Bills pages and finalized functionalities used in these pages.
