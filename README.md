@@ -22,7 +22,7 @@
 * Research the following: password encryption, MongoDB user authentication
 
 ### Team Contributions
-### Nadine Alcantara
+Nadine Alcantara
 * Done
   * Implement Landing page and Navigation Bar mockups  
   * Initialize database schema for Transaction collection
@@ -30,7 +30,7 @@
   * Further development on the front-end application
   * Linking database to the mockup pages
 
-### Jennifer Hsu
+Jennifer Hsu
 * Done
   * Design mockups for different pages
   * Implement Monthly Spending and Overview page mockups
@@ -39,13 +39,13 @@
   * Research MongoDB user authentication 
   * Development of profile page for users
 
-### Andre Joseph Ruiz
+Andre Joseph Ruiz
 * Done
   * Building the sign up and sign in pages, determining what kind of personal information that would be used in the app model, and researching potential security measure to have on these pages (2FA, Encryption, etc).
 * Next
   * Implementing Two-Factor Authorization onto the sign in page and testing out different options. Twilio so far would be the best choice, but Google's Recaptcha is another potential option.
 
-### Daphne Marie Tapia
+Daphne Marie Tapia
 * Done
   * Implement Transaction page mockup
 * Next
@@ -65,7 +65,7 @@
 * Further enhance the pages and add the Admin page
 
 ### Team Contributions
-### Nadine Alcantara
+Nadine Alcantara
 * Done
   * Created Profiles API
   * Linked Profiles API to Sign Up page to add profiles to the collections 
@@ -73,7 +73,7 @@
   * Further assist in implementing database schemas into pages
   * Implement the Admin page 
 
-### Jennifer Hsu
+Jennifer Hsu
 * Done
   * Implemented Profile and connected it to database
   * Implemented Monthly Spending page and connected it to database (allow user to also edit transaction)
@@ -84,13 +84,13 @@
   * Update Overview
   * Implement Budget editor and API
 
-### Andre Joseph Ruiz
+Andre Joseph Ruiz
 * Done
   * Finished skeleton mockups for 2FA code and setting up Postman testing database.
 * Next
   * Implementation of 2FA into Signin and Profile Pages.
 
-### Daphne Marie Tapia
+Daphne Marie Tapia
 * Done
   * Further development of TransactionsList.jsx (formerly Transactions.jsx, filters 'Sheduled Transactions' and 'Cleared Transactions')
   * Further development of AddTransaction.jsx (user can now add a transaction to collection; matched form schema with collection's schema)
@@ -108,27 +108,27 @@
 * Further enhance the pages and add the Admin page
 
 ### Team Contrubutions
-### Nadine Alcantara
+Nadine Alcantara
 * Done
   * Fixed broken admin roles to admin accounts
   * Implemented Admin page that lists all registered users in the database
 * Next
   * Implement delete function in Admin page to delete users
 
-### Jennifer Hsu
+Jennifer Hsu
 * Done
   * Implemented Budget editor and database
   * Updated overview; monthly spending and budget editor now linked to database
 * Next
   * Implement Cash Flow Over Time page and database
 
-### Andre Joseph Ruiz
+Andre Joseph Ruiz
 * Done
   * Implemented 2FA Page into test page.
 * Next
   * Implementing 2FA plugin into Signin and Profile Pages.
 
-### Daphne Marie Tapia
+Daphne Marie Tapia
 * Done
   * Fixed updating balances of transactions after insert/edit
   * Allows users to edit/delete transactions
@@ -142,16 +142,16 @@
 * (insert summary here)
 
 ### Team Contrubutions
-### Nadine Alcantara
+Nadine Alcantara
 * 
 
-### Jennifer Hsu
+Jennifer Hsu
 * 
 
-### Andre Joseph Ruiz
+Andre Joseph Ruiz
 * 
 
-### Daphne Marie Tapia
+Daphne Marie Tapia
 * Updated UI for Transaction and Upcoming Bills pages and finalized functionalities used in these pages.
 
 ***
