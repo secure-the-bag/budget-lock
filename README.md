@@ -143,7 +143,8 @@ Daphne Marie Tapia
 
 ### Team Contrubutions
 Nadine Alcantara
-* .
+* Implemented the Delete Account function for user profiles
+* Implemented the Delete Account function for admins to delete other users
 
 Jennifer Hsu
 * Implemented Cash Flow Trend Over Time functionality in the Overview page.
