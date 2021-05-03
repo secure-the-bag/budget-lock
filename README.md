@@ -177,6 +177,7 @@ Budget Lock can be run on any device that can run web browsers and has Command P
 ### Achievements 
 ### Disappointments
 * Not being able to fully implement two factor authorization into the sign in page due to server complications.
+* Not adding extra security measures around profile page and sign up page.
 
 # Important Links
 * [Project Repository](https://github.com/secure-the-bag/budget-lock)
