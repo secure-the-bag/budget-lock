@@ -169,12 +169,17 @@ Budget Lock can be run on any device that can run web browsers and has Command P
 5. Launch the app by running ``meteor npm run start``
 6. Using any browser, go to the localhost port specified on the Command Prompt/Terminal (ex: localhost:3000) 
 
+## Uninstalling the Program
+1. Deleting the folder will effectively delete the program.
+2. If you wish you uninstall Meteor and other dependencies that were used and downloaded globally, you can run npm uninstall meteor.
 
 # Developer Notes
 ### Challenges
+* Working with collections.
 ### Surprises
 * Realizing the difficulty of two factor authorization through a third party server and relaying it back to the application.
-### Achievements 
+### Achievements
+* Finding out how to compute 'balances' properly.
 ### Disappointments
 * Not being able to fully implement two factor authorization into the sign in page due to server complications.
 * Not adding extra security measures around profile page and sign up page.
