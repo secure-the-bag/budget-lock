@@ -171,10 +171,10 @@ Budget Lock can be run on any device that can run web browsers and has Command P
 
 
 # Developer Notes
-### Nadine Alcantara
-### Jennifer Hsu
-### Joseph Ruiz
-### Daphne Marie Tapia
+### Challenges
+### Surprises
+### Achievements 
+### Disappointments
 
 # Important Links
 * [Project Repository](https://github.com/secure-the-bag/budget-lock)
