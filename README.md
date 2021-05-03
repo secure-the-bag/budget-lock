@@ -178,7 +178,7 @@ Budget Lock can be run on any device that can run web browsers and has Command P
 # Important Links
 * [Project Repository](https://github.com/secure-the-bag/budget-lock)
 * [Project Documentation](https://github.com/secure-the-bag/budget-lock#readme)
-* [Release Version]()
+* [Release Version](https://github.com/secure-the-bag/budget-lock/releases/tag/v1.0)
 * [Wiki Page](https://github.com/secure-the-bag/budget-lock/wiki)
 
 ***
