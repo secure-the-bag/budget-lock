@@ -150,7 +150,7 @@ Jennifer Hsu
 * Implemented Cash Flow Trend Over Time functionality in the Overview page.
 
 Andre Joseph Ruiz
-* .
+* Cleaned up front end UI
 
 Daphne Marie Tapia
 * Updated UI for Transaction and Upcoming Bills pages and finalized functionalities used in these pages.
