@@ -142,7 +142,9 @@ class Profile extends React.Component {
                   model={this.props.profile[0]}
                   className={this.state.style}
         >
-          <Segment>
+          <Segment
+            style={{ border: '0.2rem solid gray', padding: '2rem', borderRadius: '10px' }}
+          >
             <div align={'right'}>
               {this.renderEditButton()}
             </div>
@@ -179,9 +181,10 @@ class Profile extends React.Component {
 
   renderPage() {
     return (
-      <Container style={{ padding: '5rem' }}>
+      <Container stretched style={{ padding: '5rem' }}>
         {this.renderForm()}
         <Modal
+          style={{ border: '0.2rem solid gray', padding: '2rem', borderRadius: '10px' }}
           closeIcon
           onClose={() => this.setState({ passwordModalOpen: false })}
           onOpen={() => this.setState({ passwordModalOpen: true })}
