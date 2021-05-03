@@ -176,10 +176,13 @@ Budget Lock can be run on any device that can run web browsers and has Command P
 # Developer Notes
 ### Challenges
 * Working with collections.
+* Trying to implement a dynamic analysis tool to our code.
 ### Surprises
 * Realizing the difficulty of two factor authorization through a third party server and relaying it back to the application.
+* There is not much available dynamic analysis tool for Javascript.
 ### Achievements
 * Finding out how to compute 'balances' properly.
+* Being able to create a basic budgeting app.
 ### Disappointments
 * Not being able to fully implement two factor authorization into the sign in page due to server complications.
 * Not adding extra security measures around profile page and sign up page.
