@@ -80,7 +80,7 @@ export default class Signin extends React.Component {
               </Segment>
             </Form>
             <Segment align='center' textAlign='center' style={{ marginTop: '-10px' }}>
-              Invisible Verify by Twilio Terms & Policy <br/>
+              Verify by Twilio <a href="https://www.twilio.com/legal/tos">Terms & Policy</a> <br/>
               New user? Sign up <Link to="/signup">here</Link>
             </Segment>
             {this.state.error === '' ? (
